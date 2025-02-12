@@ -842,7 +842,7 @@ footer .copyright {
 /* small screen device */
 @media (max-width: 477px) {
     #navbar {
-        height: 40vh;
+        height: 44vh;
         width: 45%;
       }
 
