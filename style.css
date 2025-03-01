@@ -105,6 +105,26 @@ body {
   transition: 0.3s ease;
 }
 
+#lg-bag a i{
+  font-size: 20px;
+}
+
+#navbar .bag-item-count{
+  position: absolute;
+  top: 0;
+  right: 12px;
+  width: 15px;
+  height: 15px;
+  background-color: #ff5e00;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
 #navbar li a:hover,
 #navbar li a.active {
   color: #088178;
