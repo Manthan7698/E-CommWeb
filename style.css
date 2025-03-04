@@ -887,6 +887,44 @@ footer .copyright {
   color: #818ea0;
 }
 
+/* Bag Page */
+
+#bag-container{
+  background-color: rgba(128, 128, 128, 0.26);
+  width: 100%;
+}
+
+.bag-box-area{
+  padding: 30px 20px;
+  width: 75%;
+}
+
+.bag-boxes{
+
+  background-color: #fff;
+}
+
+.bag-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+}
+
+.bag-item img{
+  width: 30%;
+  height: 30%;
+  object-fit: cover;
+  padding-right: 20px;
+}
+
+.bag-item-des p{
+  font-size: 14px;
+}
+
+.bag-item-des span{
+  font-size: 14px;
+}
+
 /* Media Queries */
 
 @media (max-width: 799px) {
