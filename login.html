@@ -20,10 +20,34 @@
     <title>Login Page</title>
   </head>
   <body>
+
+    <section id="header">
+        <a href="#"><img src="img/logo.png" alt="Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li id="lg-bag">
+                    <a href="bag.html" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
+                    <span class="bag-item-count"></span>
+                </li>
+                <li><a  class="active" href="login.html">Login/Sign-up</a></li>
+                <li><a href="#" id="close" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="bag.html" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-outdent"></i>
+        </div>
+    </section>
+
     <div class="container" id="container">
       <div class="sign-up">
         <form>
-          <h1>Create Account</h1>
+          <h3>Create Account</h3>
           <div class="icons">
             <a href="#" class="icon" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
             <a href="#" class="icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -39,7 +63,7 @@
       </div>
       <div class="sign-in">
         <form>
-          <h1>Sign In</h1>
+          <h3>Sign In</h3>
           <div class="icons">
             <a href="#" class="icon" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
             <a href="#" class="icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -56,12 +80,12 @@
       <div class="toogle-container">
         <div class="toogle">
           <div class="toogle-panel toogle-left">
-            <h1>Welcome User!</h1>
+            <h3>Welcome User!</h3>
             <p>If you already have an account</p>
             <button class="hidden" id="login">Sign In</button>
           </div>
           <div class="toogle-panel toogle-right">
-            <h1>Hello, User!</h1>
+            <h3>Hello, User!</h3>
             <p>If you don't have an account</p>
             <button class="hidden" id="register">Sign Up</button>
           </div>
@@ -69,5 +93,57 @@
       </div>
     </div>
     <script src="script.js"></script>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="img/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> 562 Wellington Road, Street 32, San Francisco</p>
+            <p><strong>Phone:</strong> (+91) 9510670132 / (+91) 8866830048</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icons">
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>  
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sing-in</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play Store</p>
+            <div class="row">
+                <img src="img/pay/app.jpg" alt="">
+                <img src="img/pay/play.jpg" alt="">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="img/pay/pay.png" alt="">
+        </div>
+        <div class="copyright">
+            <p>© 2024, E-Commerce Website</p>
+        </div>
+    </footer>
+
   </body>
 </html>
