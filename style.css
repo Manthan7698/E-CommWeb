@@ -97,6 +97,33 @@ body {
   justify-content: center;
 }
 
+/*search bar*/
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 350px;
+  height: 40px;
+  padding: 0 0 0 15px;
+  border-radius: 20px;
+  border: 1px solid #e1e1e1;
+  outline: none;
+}
+
+.search-box button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #088178;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
 #Search input{
   width: 320px;
   height: 35px;
