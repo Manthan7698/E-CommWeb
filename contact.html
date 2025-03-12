@@ -11,27 +11,29 @@
 
 <body>
     <section id="header">
-        <a href="#"><img src="img/logo.png" alt="Logo" /></a>
+        <a href="#"><img src="img/logo.png" alt="Logo"></a>
         <div class="search-box">
             <input type="text" placeholder="Search...">
             <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button> 
         </div>
         <div>
-            <ul id="navbar">
+            <ul id="navbar">         
+                <!-- <li id="Search"><input type="text" style="padding-left: 15px;" placeholder="Search"></li> -->
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a class="active" href="contact.html">Contact Us</a></li>
                 <li id="lg-bag">
-                    <a href="cart.html" title="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
+                    <a href="bag.html" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
+                    <span class="bag-item-count"></span>
                 </li>
-                <li><a href="login.html">Login/Sign-up</a></li>
+                <li><a class="login-btn-box" href="login.html">Login</a></li>
                 <li><a href="#" id="close" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
             </ul>
         </div>
         <div id="mobile">
-            <a href="cart.html" title="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="bag.html" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
             <i id="bar" class="fa-solid fa-outdent"></i>
         </div>
     </section>
