@@ -6,13 +6,33 @@
     <title>E-Commerce</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        #bag-container .bag-subtotal-box{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding-left: 10px;
+            width: 250px;
+        }
+        #bag-container .bag-box-area{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+        }
+    </style>
 </head>
 <body>
 
     <section id="header">
         <a href="#"><img src="img/logo.png" alt="Logo"></a>
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button> 
+        </div>
         <div>
-            <ul id="navbar">
+            <ul id="navbar">         
+                <!-- <li id="Search"><input type="text" style="padding-left: 15px;" placeholder="Search"></li> -->
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="blog.html">Blog</a></li>
@@ -22,7 +42,7 @@
                     <a class="active" href="bag.html" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
                     <span class="bag-item-count"></span>
                 </li>
-                <li><a href="login.html">Login/Sign-up</a></li>
+                <li><a class="login-btn-box" href="login.html">Login</a></li>
                 <li><a href="#" id="close" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
             </ul>
         </div>
@@ -34,45 +54,15 @@
 
     <section id="bag-container">
         <div class="bag-box-area">
+            <div class="bag-subtotal-box">
+                <div class="bag-subtotal-des">
+                    <h1>Subtotal</h1>
+                    <p>Shipping and discount codes are added at checkout.</p>
+                    <p>Subtotal: <span>$0.00</span></p>
+                </div>
+            </div>
             <div class="bag-boxes">
                 <h1>Your Items</h1>
-                <div class="bag-item">
-                    <img src="img/products/f1.jpg" alt="Item_img">
-                    <div class="bag-item-des">
-                        <h4>Adidas</h4>
-                        <p>Cartoon Astronaut T-Shirt</p>
-                        <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
-                            sq.yd. fabric constructed from 100% cotton, this classic fit preshrunk
-                            jersey knit provides unmatched comfort with each wear. Featuring a
-                            taped neck and shoulder, and a seamless double-needle collar, and
-                            available in a range of colors. it offers it all in the ultimate
-                            head-turing package.</span>
-                        <h4>$79</h4>
-                        <button>-</button>
-                        <textarea name="Quantity" id="quantity1" placeholder="Enter quantity"></textarea>
-                        <button>+</button>
-                        <i class="fa-solid fa-trash"></i>
-                    </div>
-                </div>
-                <div class="bag-item">
-                    <img src="img/products/f1.jpg" alt="Item_img">
-                    <div class="bag-item-des">
-                        <h4>Adidas</h4>
-                        <p>Cartoon Astronaut T-Shirt</p>
-                        <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
-                            sq.yd. fabric constructed from 100% cotton, this classic fit preshrunk
-                            jersey knit provides unmatched comfort with each wear. Featuring a
-                            taped neck and shoulder, and a seamless double-needle collar, and
-                            available in a range of colors. it offers it all in the ultimate
-                            head-turing package.</span>
-                        <h4>$79</h4>
-                        <button>-</button>
-                        <label for="quantity">Quantity:</label>
-                        <textarea name="Quantity" id="quantity" title="Enter quantity" placeholder="Enter quantity"></textarea>
-                        <button>+</button>
-                        <i class="fa-solid fa-trash"></i>
-                    </div>
-                </div>
             </div>
             <div class="bag-boxes"></div>
         </div>
