@@ -12,6 +12,10 @@
 <body>
     <section id="header">
         <a href="#"><img src="img/logo.png" alt="Logo" /></a>
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button> 
+        </div>
         <div>
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
@@ -20,14 +24,14 @@
                 <li><a href="about.html">About</a></li>
                 <li><a class="active" href="contact.html">Contact Us</a></li>
                 <li id="lg-bag">
-                    <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+                    <a href="cart.html" title="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
                 </li>
                 <li><a href="login.html">Login/Sign-up</a></li>
-                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+                <li><a href="#" id="close" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
             </ul>
         </div>
         <div id="mobile">
-            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="cart.html" title="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
             <i id="bar" class="fa-solid fa-outdent"></i>
         </div>
     </section>
@@ -42,7 +46,7 @@
             <span>GET IN TOUCH</span>
             <h2>Visit one of our agency locations or contact us today</h2>
             <h3>Head office</h3>
-            <div>
+            <ul>
                 <li>
                     <i class="fa-solid fa-location-dot"></i>
                     <p>56 Glassford Street Glassgow G1 1UL New York</p>
@@ -59,13 +63,12 @@
                     <i class="fa-regular fa-clock"></i>
                     <p>Monday to Saturday: 9:00am to 16:00pm</p>
                 </li>
-            </div>
+            </ul>
         </div>
         <div class="map">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79041.58768512552!2d-1.24758785!3d51.7504163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48713380adc41faf%3A0xc820dba8cb547402!2sOxford%2C%20UK!5e0!3m2!1sen!2sin!4v1739438890125!5m2!1sen!2sin"
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                width="600" height="450" class="iframe-style" allowfullscreen="" title="Google Maps"></iframe>
         </div>
     </section>
 
@@ -77,7 +80,7 @@
             <input type="email" placeholder="Email" />
             <input type="text" placeholder="Subject" />
             <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-            <button class="normal">Submit</button>
+            <button type="submit" class="normal">Submit</button>
         </form>
 
         <div class="people">
@@ -124,11 +127,11 @@
             <div class="follow">
                 <h4>Follow Us</h4>
                 <div class="icons">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
