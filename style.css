@@ -39,6 +39,14 @@ p {
   margin: 15px 0px 20px 0px;
 }
 
+.small-p-txt{
+  font-size: 14px;
+}
+
+.subtotal-txt{
+  color: #000;
+}
+
 .section-p1 {
   padding: 40px 80px;
 }
@@ -947,14 +955,27 @@ footer .copyright {
   width: 100%;
 }
 
-.bag-box-area{
-  padding: 30px 20px;
-  width: 75%;
+#bag-container .bag-subtotal-box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding-left: 10px;
+  width: 30%;
 }
 
-.bag-boxes{
+.bag-box-area{
+  padding: 30px 15px;
+}
 
+#bag-container .bag-box-area{
+  display: flex;
+}
+
+.bag-item-box-area{
   background-color: #fff;
+  padding: 30px 20px;
+  width: 66%;
 }
 
 .bag-item {
@@ -976,6 +997,10 @@ footer .copyright {
 
 .bag-item-des span{
   font-size: 14px;
+}
+
+.blank-area{
+  width: 4%;
 }
 
 /* Media Queries */
