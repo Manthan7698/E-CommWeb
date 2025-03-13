@@ -412,7 +412,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   background-image: url(img/banner/b17.jpg);
-  min-width: 650px;
+  min-width: 580px;
   height: 40vh;
   background-size: cover;
   background-position: center;
@@ -679,7 +679,7 @@ footer .copyright {
 }
 
 #prodetails .single-pro-details h4{
-    padding: 40px 0 20px 0;
+    padding: 20px 0 10px 0;
     
 }
 #prodetails .single-pro-details h2{
