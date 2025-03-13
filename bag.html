@@ -6,21 +6,6 @@
     <title>E-Commerce</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <style>
-        #bag-container .bag-subtotal-box{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #fff;
-            padding-left: 10px;
-            width: 250px;
-        }
-        #bag-container .bag-box-area{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
-        }
-    </style>
 </head>
 <body>
 
@@ -54,17 +39,37 @@
 
     <section id="bag-container">
         <div class="bag-box-area">
-            <div class="bag-subtotal-box">
-                <div class="bag-subtotal-des">
-                    <h1>Subtotal</h1>
-                    <p>Shipping and discount codes are added at checkout.</p>
-                    <p>Subtotal: <span>$0.00</span></p>
+            <div class="bag-item-box-area">
+                <h2>Your Items</h2>
+                <div class="bag-item-box">
+                    <div class="bag-item">
+                        <img src="img/products/f1.jpg" alt="">
+                        <div class="bag-item-des">
+                            <h5>Cartoon Astronaut T-Shirt</h5>
+                            <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
+                                sq.yd. fabric constructed from 100% cotton...
+                            </span>
+                            <label for="size">Size</label>
+                            <select name="sizes" id="size">
+                                <option>Select Size</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                                <option>XXL</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="bag-boxes">
-                <h1>Your Items</h1>
-            </div>
-            <div class="bag-boxes"></div>
+            <div class="bag-box-area blank-area"></div>
+            <div class="bag-subtotal-box">
+                <div class="bag-subtotal-des">
+                    <h3>Subtotal</h3>
+                    <p class="small-p-txt">Shipping and discount codes are added at checkout.</p>
+                    <p class="subtotal-txt">Subtotal: <span><strong>$0.00</strong></span></p>
+                </div>
+            </div>    
         </div>
     </section>
 
