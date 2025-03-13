@@ -151,9 +151,9 @@ body {
 }
 
 .login-btn-box{
-  background-color:rgb(158, 111, 172);
+  background-color:#088178;
   padding: 5px 25px;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 #navbar .bag-item-count{
@@ -1320,6 +1320,7 @@ footer .copyright {
   line-height: 20px;
   letter-spacing: 0.3px;
   margin: 20px 0;
+  color: #343434;
 }
 
 
@@ -1328,13 +1329,13 @@ footer .copyright {
 }
 
 .container a {
-  color: #333;
+  color: #088178;
   font-size: 13px;
   text-decoration: none;
   margin: 15px 0 10px;
 }
 .container button {
-  background-color: #7494ec;
+  background-color: #088178;
   color: #fff;
   padding: 10px 45px;
   border: 1px solid transparent;
@@ -1447,9 +1448,9 @@ footer .copyright {
 }
 
 .toogle {
-  background-color: #7494ec;
+  background-color: #088178;
   height: 100%;
-  background: linear-gradient(to right, #7494ec, #7494ec);
+  background: linear-gradient(to right, #088178, #088178);
   color: #fff;
   position: relative;
   left: -100%;
