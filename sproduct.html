@@ -14,12 +14,12 @@
         <a href="#"><img src="img/logo.png" alt="Logo"></a>
         <div class="search-box">
             <input type="text" placeholder="Search...">
-            <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button> 
+            <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button>
         </div>
         <div>
-            <ul id="navbar">         
+            <ul id="navbar">
                 <!-- <li id="Search"><input type="text" style="padding-left: 15px;" placeholder="Search"></li> -->
-                <li><a  href="index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a class="active" href="shop.html">Shop</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
@@ -97,7 +97,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i>
                     </div>
                     <h4>$75</h4>
                 </div>
@@ -113,7 +113,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i>
                     </div>
                     <h4>$79</h4>
                 </div>
@@ -129,7 +129,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i>
                     </div>
                     <h4>$79</h4>
                 </div>
@@ -145,7 +145,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i>
                     </div>
                     <h4>$79</h4>
                 </div>
@@ -224,6 +224,23 @@
 
     <script src="https://kit.fontawesome.com/0164451027.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script>
+        var MainImg = document.getElementById("MainImg");
+        var smallimg = document.getElementsByClassName("small-img");
+
+        smallimg[0].onclick = function () {
+            MainImg.src = smallimg[0].src;
+        }
+        smallimg[1].onclick = function () {
+            MainImg.src = smallimg[1].src;
+        }
+        smallimg[2].onclick = function () {
+            MainImg.src = smallimg[2].src;
+        }
+        smallimg[3].onclick = function () {
+            MainImg.src = smallimg[3].src;
+        }
+    </script>
 </body>
 
 </html>
