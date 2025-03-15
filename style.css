@@ -39,6 +39,15 @@ p {
   margin: 15px 0px 20px 0px;
 }
 
+.small-p-txt{
+  font-size: 16px;
+}
+
+.subtotal-txt{
+  font-size: 20px;
+  color: #000;
+}
+
 .section-p1 {
   padding: 40px 80px;
 }
@@ -947,14 +956,48 @@ footer .copyright {
   width: 100%;
 }
 
-.bag-box-area{
-  padding: 30px 20px;
-  width: 75%;
+#bag-container .bag-subtotal-box{
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding-left: 10px;
+  width: 33%;
+  height: 300px;
 }
 
-.bag-boxes{
+.proceed-to-buy {
+  background-color: #FFD700; /* Yellow color */
+  color: black; /* Text color */
+  border: none; /* Remove border */
+  padding: 15px 100px 15px 100px; /* Space inside the button */
+  text-align: center; /* Align text to center */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Inline-block for flexibility */
+  font-size: 16px; /* Adjust font size */
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-family: Arial, sans-serif; /* Font style */
+  margin-left: 38px;
+  margin-right: 38px;
+}
 
+.proceed-to-buy:hover {
+  background-color: #FFC107; /* Darker yellow on hover */
+}
+
+.bag-box-area{
+  padding: 30px 15px;
+}
+
+#bag-container .bag-box-area{
+  display: flex;
+}
+
+.bag-item-box-area{
   background-color: #fff;
+  padding: 30px 20px;
+  width: 66%;
 }
 
 .bag-item {
@@ -977,6 +1020,19 @@ footer .copyright {
 .bag-item-des span{
   font-size: 14px;
 }
+
+.blank-area{
+  width: 2%;
+}
+
+#size {
+  margin-right: 20px; /* Adds space to the right of the size drop-down menu */
+}
+
+#color {
+  margin-left: 0; /* No extra space on the left of the color drop-down */
+}
+
 
 /* Media Queries */
 
