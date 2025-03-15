@@ -956,12 +956,31 @@ footer .copyright {
 }
 
 #bag-container .bag-subtotal-box{
-  display: flex;
+  display: flex; 
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
   padding-left: 10px;
   width: 30%;
+  height: 300px;
+}
+
+.proceed-to-buy {
+  background-color: #FFD700; /* Yellow color */
+  color: black; /* Text color */
+  border: none; /* Remove border */
+  padding: 15px 100px 15px 100px; /* Space inside the button */
+  text-align: center; /* Align text to center */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Inline-block for flexibility */
+  font-size: 16px; /* Adjust font size */
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-family: Arial, sans-serif; /* Font style */
+}
+
+.proceed-to-buy:hover {
+  background-color: #FFC107; /* Darker yellow on hover */
 }
 
 .bag-box-area{
@@ -1000,7 +1019,7 @@ footer .copyright {
 }
 
 .blank-area{
-  width: 4%;
+  width: 2%;
 }
 
 /* Media Queries */
