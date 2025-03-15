@@ -40,10 +40,11 @@ p {
 }
 
 .small-p-txt{
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .subtotal-txt{
+  font-size: 20px;
   color: #000;
 }
 
@@ -961,7 +962,7 @@ footer .copyright {
   align-items: center;
   background-color: #fff;
   padding-left: 10px;
-  width: 30%;
+  width: 33%;
   height: 300px;
 }
 
@@ -977,6 +978,8 @@ footer .copyright {
   border-radius: 25px; /* Rounded corners */
   cursor: pointer; /* Pointer cursor on hover */
   font-family: Arial, sans-serif; /* Font style */
+  margin-left: 38px;
+  margin-right: 38px;
 }
 
 .proceed-to-buy:hover {
@@ -1021,6 +1024,15 @@ footer .copyright {
 .blank-area{
   width: 2%;
 }
+
+#size {
+  margin-right: 20px; /* Adds space to the right of the size drop-down menu */
+}
+
+#color {
+  margin-left: 0; /* No extra space on the left of the color drop-down */
+}
+
 
 /* Media Queries */
 
