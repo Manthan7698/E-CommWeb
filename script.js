@@ -2,6 +2,10 @@ const bar = document.getElementById('bar');
 const close = document.getElementById('close');
 const nav = document.getElementById('navbar');
 
+const container = document.getElementById("container");
+const registerbtn = document.getElementById("register");
+const loginbtn = document.getElementById("login");
+
 if (bar) {
   bar.addEventListener('click', () => {
     nav.classList.toggle('active');
@@ -14,31 +18,11 @@ if (close) {
   });
 }
 
-const container = document.getElementById("container");
-const registerbtn = document.getElementById("register");
-const loginbtn = document.getElementById("login");
+if (registerbtn) { registerbtn.addEventListener("click", () => { 
+  container.classList.add("active"); }); }
 
-registerbtn.addEventListener("click", () => {
-  container.classList.add("active");
-});
-
-loginbtn.addEventListener("click", () => {
-  container.classList.remove("active");
-});
-
-
-var MainImg = document.getElementById("MainImg");
-var smallimg = document.getElementsByClassName("small-img");
-
-smallimg[0].onclick = function () {
-  MainImg.src = smallimg[0].src;
-}
-smallimg[1].onclick = function () {
-  MainImg.src = smallimg[1].src;
-}
-smallimg[2].onclick = function () {
-  MainImg.src = smallimg[2].src;
-}
-smallimg[3].onclick = function () {
-  MainImg.src = smallimg[3].src;
+if (loginbtn){
+  loginbtn.addEventListener("click", () => {
+    container.classList.remove("active");
+  });
 }

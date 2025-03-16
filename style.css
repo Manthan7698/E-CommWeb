@@ -159,7 +159,7 @@ body {
   font-size: 20px;
 }
 
-.login-btn-box{
+#login-btn{
   background-color:#088178;
   padding: 5px 25px;
   border-radius: 20px;
@@ -184,9 +184,6 @@ body {
 #navbar li a:hover,
 #navbar li a.active {
   color: #088178;
-}
-#navbar li .login-btn-box:hover{
-  color: #fff;
 }
 
 #navbar li a.active::after,
@@ -611,7 +608,7 @@ footer .install img {
 }
 
 footer .follow i:hover,
-footer a:hover {
+footer a:hover {  
   color: #088178;
 }
 
