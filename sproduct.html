@@ -62,17 +62,29 @@
             <h6>Home/ T-Shirt</h6>
             <h4>Men's Fashion T Shirt</h4>
             <h2>$139.00</h2>
-            <label for="size-select">Size</label>
-            <select id="size-select">
+            <label for="size">Size :</label>
+            <select name="sizes" id="Size" title="Select Size">
                 <option>Select Size</option>
                 <option>S</option>
+                <option>M</option>
                 <option>L</option>
                 <option>XL</option>
                 <option>XXL</option>
             </select>
-            <label for="quantity">Quantity</label>
-            <input type="number" id="quantity" value="1" placeholder="Enter quantity" />
-            <button class="normal">Add To Bag</button>
+            <div class="quantity-container">
+                <label for="quantity">Quantity :</label>
+                <select name="quantity" id="quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>            
+            <div class="button-container">
+                <button id="add-to-bag">Add To Bag</button>
+                <button id="purchase-now">Purchase Now</button>
+            </div>            
             <h4>Product Description</h4>
             <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
                 sq.yd. fabric constructed from 100% cotton, this classic fit preshrunk
@@ -101,7 +113,7 @@
                     </div>
                     <h4>$75</h4>
                 </div>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
             </div>
             <div class="pro">
                 <img src="img/products/n2.jpg" alt="">
@@ -117,7 +129,7 @@
                     </div>
                     <h4>$79</h4>
                 </div>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
             </div>
             <div class="pro">
                 <img src="img/products/n3.jpg" alt="">
@@ -133,7 +145,7 @@
                     </div>
                     <h4>$79</h4>
                 </div>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
             </div>
             <div class="pro">
                 <img src="img/products/n4.jpg" alt="">
@@ -149,7 +161,7 @@
                     </div>
                     <h4>$79</h4>
                 </div>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>
     </section>
@@ -181,11 +193,11 @@
             <div class="follow">
                 <h4>Follow Us</h4>
                 <div class="icons">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
