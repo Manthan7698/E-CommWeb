@@ -62,7 +62,7 @@ button.normal {
   padding: 12px 30px;
   color: black;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 25px;
   cursor: pointer;
   border: none;
   outline: none;
@@ -695,7 +695,6 @@ footer .copyright {
     font-size: 26px;
 }
 #prodetails .single-pro-details select{
-    display: block;
     padding: 5px 10px;
     margin-bottom: 10px
 }
@@ -710,13 +709,71 @@ footer .copyright {
     outline: none;
 }
 #prodetails .single-pro-details button{
-    background-color: #088178;
     color: #fff;
     margin-left: 10px;
 }
 #prodetails .single-pro-details span{
     line-height: 25px;
 }
+
+.button-container {
+  display: flex; /* Align buttons in one row */
+  align-items: center; /* Vertically align buttons */
+  gap: 15px; /* Space between the two buttons */
+  margin-top: 20px; /* Space above the button section */
+}
+
+#add-to-bag, #purchase-now {
+  padding: 10px 20px; /* Button size and padding */
+  font-size: 16px; /* Font size */
+  border: none; /* No border */
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+#add-to-bag {
+  background-color: #FFD700; /* Yellow for "Add To Bag" */
+  color: black;
+}
+
+#add-to-bag:hover {
+  background-color: #FFC107; /* Darker yellow on hover */
+}
+
+#purchase-now {
+  background-color: #FF4500; /* Orange-red for "Purchase Now" */
+  color: white;
+}
+
+#purchase-now:hover {
+  background-color: #E63900; /* Darker orange-red on hover */
+}
+
+.quantity-container {
+  display: flex; /* Align label and drop-down horizontally */
+  align-items: center; /* Vertically align the elements */
+  gap: 10px; /* Add spacing between label and dropdown */
+  margin-top: 20px; /* Add space above the container */
+}
+
+#quantity {
+  padding: 10px; /* Space inside the dropdown */
+  font-size: 14px;
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light gray background */
+  cursor: pointer; /* Pointer cursor */
+}
+
+#Size {
+  padding: 10px; /* Space inside the dropdown */
+  font-size: 14px;
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light gray background */
+  cursor: pointer; /* Pointer cursor */
+}
+  
 
 /* Blog Page */
 #s-pg-header.blog-header{
@@ -1007,8 +1064,8 @@ footer .copyright {
 }
 
 .bag-item img{
-  width: 30%;
-  height: 30%;
+  width: 50%;
+  height: 50%;
   object-fit: cover;
   padding-right: 20px;
 }
@@ -1027,10 +1084,6 @@ footer .copyright {
 
 #size {
   margin-right: 20px; /* Adds space to the right of the size drop-down menu */
-}
-
-#color {
-  margin-left: 0; /* No extra space on the left of the color drop-down */
 }
 
 
@@ -1390,6 +1443,7 @@ footer .copyright {
   text-decoration: none;
   margin: 15px 0 10px;
 }
+
 .container button {
   background-color: #088178;
   color: #fff;
