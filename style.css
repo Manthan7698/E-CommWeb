@@ -165,20 +165,36 @@ body {
   border-radius: 20px;
 }
 
-#navbar .bag-item-count{
+#bag-item-count{
   position: absolute;
   top: 0;
   right: 12px;
   width: 15px;
   height: 15px;
-  background-color: #ff5e00;
-  border-radius: 50%;
+  background-color: #088178;
+  border-radius: 12px;
   font-size: 12px;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
+  /* visibility: hidden; */
+}
+
+#shop-bag-item-count{
+  position: absolute;
+  top: 0;
+  right: 12px;
+  width: 15px;
+  height: 15px;
+  background-color: #088178;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* visibility: hidden; */
 }
 
 #navbar li a:hover,
@@ -305,8 +321,7 @@ body {
   min-width: 250px;
   padding: 10px 12px;
   border: 1px solid #e6e6e6;
-  border-radius: 25px;
-  cursor: pointer;
+  border-radius: 25px;  
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.07);
   margin: 15px 0;
   transition: 0.5s ease;
@@ -320,6 +335,7 @@ body {
 .pro > img {
   width: 100%;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .pro .des {
@@ -350,7 +366,7 @@ body {
   padding: 10px 0;
 }
 
-.pro a {
+.pro button{
   align-content: center;
   width: 60px;
   height: 40px;
@@ -363,6 +379,7 @@ body {
   position: absolute;
   bottom: 10px;
   right: 10px;
+  cursor: pointer;
 }
 
 .pro-container {
@@ -418,7 +435,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   background-image: url(img/banner/b17.jpg);
-  min-width: 580px;
+  min-width: 660px;
   height: 40vh;
   background-size: cover;
   background-position: center;
@@ -743,7 +760,7 @@ footer .copyright {
 }
 
 #purchase-now:hover {
-  background-color: #E63900; /* Darker orange-red on hover */
+  background-color: #943313; /* Darker orange-red on hover */
 }
 
 .quantity-container {
