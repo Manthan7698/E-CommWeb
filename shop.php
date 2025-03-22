@@ -21,8 +21,8 @@
     <div>
       <ul id="navbar">
         <!-- <li id="Search"><input type="text" style="padding-left: 15px;" placeholder="Search"></li> -->
-        <li><a class="active" href="index.php">Home</a></li>
-        <li><a href="shop.php">Shop</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a class="active" href="shop.php">Shop</a></li>
         <li><a href="blog.php">Blog</a></li>
         <li><a href="about.php">About</a></li>
         <li><a href="contact.php">Contact Us</a></li>
