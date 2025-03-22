@@ -13,7 +13,7 @@
 <body>
 
     <section id="header">
-        <a href="#"><img src="img/logo.png" alt="Logo"></a>
+        <a href="index.php"><img src="img/logo.png" alt="Logo"></a>
         <div class="search-box">
             <input type="text" placeholder="Search...">
             <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button>
