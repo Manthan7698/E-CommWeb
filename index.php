@@ -98,7 +98,7 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <h4><i class="fa-solid fa-dollar-sign"></i> <?= number_format($row['product_price'], 2) ?> </h4>
+                        <h4><i class="fa-solid fa-dollar-sign"></i> <?php echo number_format($row['product_price'], 2); ?> </h4>
                     </div>
                     <div class="card-footer-btn">
                         <form action="" class="form-submit">
