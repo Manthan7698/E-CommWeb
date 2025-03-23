@@ -181,6 +181,7 @@
     src="https://kit.fontawesome.com/0164451027.js"
     crossorigin="anonymous"></script>
   <script src="script.js"></script>
+
 </body>
 
 </html>
