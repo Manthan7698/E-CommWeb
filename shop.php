@@ -28,7 +28,7 @@
         <li><a href="contact.php">Contact Us</a></li>
         <li id="lg-bag">
           <a href="bag.php" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
-          <span id="shop-bag-item-count">0</span>
+          <span id="bag-item-count"></span>
         </li>
         <li><a id="login-btn" href="login.php">Login</a></li>
         <li><a href="#" id="close" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
