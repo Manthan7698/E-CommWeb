@@ -7,7 +7,11 @@
     <title>E-Commerce</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .pro a img{
+            border-radius: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -81,13 +85,13 @@
         <div class="pro-container">
             <?php
             include 'config.php';
-            $stmt = $conn->prepare("SELECT * FROM products");
+            $stmt = $conn->prepare("SELECT * FROM products LIMIT 8");
             $stmt->execute();
             $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()):
             ?>
                 <div class="pro">
-                    <img src="<?= $row['product_img'] ?>" alt="">
+                   <a href="sproduct.php?pid=<?php echo $row['id']?>"><img src="<?= $row['product_img'] ?>" width="100%"></a> 
                     <div class="des">
                         <span><?= $row['product_brand'] ?></span>
                         <h5><?= $row['product_name'] ?></h5>
@@ -121,14 +125,14 @@
         <button class="normal">Explore More</button>
     </section>
 
-    <section id="product1" class="section-p1">
+    <section id="product2" class="section-p1">
         <h2>New Arrivals</h2>
         <p>Summer Collection New Morden Design</p>
         <div id="message"></div>
         <div class="pro-container">
             <?php
             include 'config.php';
-            $stmt = $conn->prepare("SELECT * FROM products");
+            $stmt = $conn->prepare("SELECT * FROM products LIMIT 8 OFFSET 8");
             $stmt->execute();
             $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()):
