@@ -8,11 +8,21 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
-
+        
     </style>
 </head>
 
 <body>
+    <?php
+        include("config.php");
+        $pid = $_REQUEST['pid'];
+        // Fetch product details from database
+        $stmt = $conn->prepare("SELECT * FROM products WHERE id = $pid");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        
+    ?>
     <section id="header">
         <a href="#"><img src="img/logo.png" alt="Logo"></a>
         <div class="search-box">
@@ -62,9 +72,9 @@
         </div>
 
         <div class="single-pro-details">
-            <h6>Home/ T-Shirt</h6>
-            <h4>Men's Fashion T Shirt</h4>
-            <h2>$139.00</h2>
+            <h6><?= $row['product_brand']?></h6>
+            <h4><?= $row['product_name']?></h4>
+            <h2><i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'],2)?></h2>
             <label for="size">Size :</label>
             <select name="sizes" id="Size" title="Select Size">
                 <option>Select Size</option>
