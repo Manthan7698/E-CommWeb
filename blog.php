@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,33 +16,7 @@
 </head>
 
 <body>
-  <section id="header">
-    <a href="#"><img src="img/logo.png" alt="Logo"></a>
-    <div class="search-box">
-      <input type="text" placeholder="Search...">
-      <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button>
-    </div>
-    <div>
-      <ul id="navbar">
-        <!-- <li id="Search"><input type="text" style="padding-left: 15px;" placeholder="Search"></li> -->
-        <li><a href="index.php">Home</a></li>
-        <li><a href="shop.php">Shop</a></li>
-        <li><a class="active" href="blog.php">Blog</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="contact.php">Contact Us</a></li>
-        <li id="lg-bag">
-          <a href="bag.php" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
-          <span id="bag-item-count">0</span>
-        </li>
-        <li><a id="login-btn" href="login.php">Login</a></li>
-        <li><a href="#" id="close" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
-      </ul>
-    </div>
-    <div id="mobile">
-      <a href="bag.html" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
-      <i id="bar" class="fa-solid fa-outdent"></i>
-    </div>
-  </section>
+    <?php include 'header.php'; ?>
 
   <section id="s-pg-header" class="blog-header">
     <h2>#readmore</h2>
