@@ -47,7 +47,7 @@
         <h2>Super Value Deals</h2>
         <h1>On all products</h1>
         <p>Save more with coupons and upto 70% off!</p>
-        <button>Shop Now</button>
+        <button onclick="window.location.href='shop.php'">Shop Now</button>
     </section>
 
     <section id="feature" class="section-p1">
