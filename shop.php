@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,41 +13,15 @@
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <style>
-      .pro a img{
-            border-radius: 20px;
-        }
-    </style>
+  <style>
+    .pro a img {
+      border-radius: 20px;
+    }
+  </style>
 </head>
 
 <body>
-  <section id="header">
-    <a href="#"><img src="img/logo.png" alt="Logo"></a>
-    <div class="search-box">
-      <input type="text" placeholder="Search...">
-      <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button>
-    </div>
-    <div>
-      <ul id="navbar">
-        <!-- <li id="Search"><input type="text" style="padding-left: 15px;" placeholder="Search"></li> -->
-        <li><a href="index.php">Home</a></li>
-        <li><a class="active" href="shop.php">Shop</a></li>
-        <li><a href="blog.php">Blog</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="contact.php">Contact Us</a></li>
-        <li id="lg-bag">
-          <a href="bag.php" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
-          <span id="bag-item-count"></span>
-        </li>
-        <li><a id="login-btn" href="login.php">Login</a></li>
-        <li><a href="#" id="close" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
-      </ul>
-    </div>
-    <div id="mobile">
-      <a href="bag.html" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
-      <i id="bar" class="fa-solid fa-outdent"></i>
-    </div>
-  </section>
+    <?php include 'header.php'; ?>      
 
   <section id="s-pg-header">
     <h2>#stayhome</h2>
