@@ -33,14 +33,3 @@ if (isset($_POST['pid'])) {
 </div>';
     }
 }
-
-// Handle cart item count request - Move this outside the POST condition
-if (isset($_GET['cartItem']) && $_GET['cartItem'] == 'cart_item') {
-    $stmt = $conn->prepare("SELECT * FROM cart");
-    $stmt->execute();
-    $stmt->store_result();
-    $rows = $stmt->num_rows;
-    
-    echo $rows;
-}
-?>
