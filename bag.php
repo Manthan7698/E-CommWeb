@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
+
 <body>
 
     <section id="header">
         <a href="#"><img src="img/logo.png" alt="Logo"></a>
         <div class="search-box">
             <input type="text" placeholder="Search...">
-            <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button> 
+            <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button>
         </div>
         <div>
-            <ul id="navbar">         
+            <ul id="navbar">
                 <!-- <li id="Search"><input type="text" style="padding-left: 15px;" placeholder="Search"></li> -->
                 <li><a href="index.php">Home</a></li>
                 <li><a href="shop.php">Shop</a></li>
@@ -42,104 +44,50 @@
             <div class="bag-item-box-area">
                 <h2>Your Items</h2>
                 <div class="bag-item-box">
-                    <div class="bag-item">
-                        <img src="img/products/f1.jpg" alt="">
-                        <div class="bag-item-des">
-                            <h5>Cartoon Astronaut T-Shirt</h5>
-                            <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
-                                sq.yd. fabric constructed from 100% cotton...
-                            </span>
-                            <br>
-                            <br>
-                            <label for="size">Size :</label>
-                            <select name="sizes" id="size">
-                                <option>Select Size</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
+                    <?php
+                    include 'config.php';
+                    $stmt = $conn->prepare('SELECT * FROM cart');
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = $result->fetch_assoc()):
+                    ?>
+                        <div class="bag-item">
+                            <img src="<?php echo $row['product_img'] ?>" alt="">
+                            <div class="bag-item-des">
+                                <h4><?= $row['product_brand']?></h4>
+                                <h5><?= $row['product_name'] ?></h5>
+                                <span><?= $row['product_details'] ?>
+                                </span>
+                                <br>
+                                <br>
+                                <label for="size">Size :</label>
+                                <select name="sizes" id="size">
+                                    <option>Select Size</option>
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                    <option>XXL</option>
+                                </select>
+                                <br>
+                                <br>
+                                <button class="remove-item"><i class="fa-solid fa-trash"><input type="number" name="quantity" id="quantity" value="1" min="1" max="10"></i><i class="fa-solid fa-plus"></i></button>
+                            </div> 
                         </div>
-                    </div>
-                </div>
-                <div bag-item-box>
-                    <div class="bag-item">
-                        <img src="img/products/f2.jpg" alt="">
-                        <div class="bag-item-des">
-                            <h5>Cuban Collar Shirt With Short Sleeves</h5>
-                            <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
-                                sq.yd. fabric constructed from 100% cotton...
-                            </span>
-                            <br>
-                            <br>
-                            <label for="size">Size :</label>
-                            <select name="sizes" id="size">
-                                <option>Select Size</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div bag-item-box>
-                    <div class="bag-item">
-                        <img src="img/products/f3.jpg" alt="">
-                        <div class="bag-item-des">
-                            <h5>Cuban Collar Shirt With Short Sleeves</h5>
-                            <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
-                                sq.yd. fabric constructed from 100% cotton...
-                            </span>
-                            <br>
-                            <br>
-                            <label for="size">Size :</label>
-                            <select name="sizes" id="size">
-                                <option>Select Size</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div bag-item-box>
-                    <div class="bag-item">
-                        <img src="img/products/f4.jpg" alt="">
-                        <div class="bag-item-des">
-                            <h5>Cuban Collar Shirt With Short Sleeves</h5>
-                            <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
-                                sq.yd. fabric constructed from 100% cotton...
-                            </span>
-                            <br>
-                            <br>
-                            <label for="size">Size :</label>
-                            <select name="sizes" id="size">
-                                <option>Select Size</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                        </div>
-                    </div>
+                    <?php endwhile; ?>
                 </div>
             </div>
-            <div class="bag-box-area blank-area"></div>
-            <div class="bag-subtotal-box">
-                <div class="bag-subtotal-des">
-                    <h3>Subtotal</h3>
-                    <p class="small-p-txt">Shipping and discount codes are added at checkout.</p>
-                    <p class="subtotal-txt">Subtotal: <span><strong>$0.00</strong></span></p>
-                    <br>
-                    <button class="proceed-to-buy">Proceed to Buy</button>
-                </div>
-            </div>              
+        </div>
+        <div class="bag-box-area blank-area"></div>
+        <div class="bag-subtotal-box">
+            <div class="bag-subtotal-des">
+                <h3>Subtotal</h3>
+                <p class="small-p-txt">Shipping and discount codes are added at checkout.</p>
+                <p class="subtotal-txt">Subtotal: <span><strong>$0.00</strong></span></p>
+                <br>
+                <button class="proceed-to-buy">Proceed to Buy</button>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -153,7 +101,7 @@
             <button class="normal">Sign Up</button>
         </div>
     </section>
-    
+
     <footer class="section-p1">
         <div class="col">
             <img class="logo" src="img/logo.png" alt="">
@@ -170,7 +118,7 @@
                     <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
                     <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
-            </div>  
+            </div>
         </div>
         <div class="col">
             <h4>About</h4>
@@ -180,7 +128,7 @@
             <a href="#">Terms & Conditions</a>
             <a href="#">Contact Us</a>
         </div>
-        
+
         <div class="col">
             <h4>My Account</h4>
             <a href="#">Sing-in</a>
@@ -209,4 +157,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
