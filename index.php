@@ -36,7 +36,7 @@
                 <li><a href="#" id="close" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
             </ul>
         </div>
-        <div id="mobile">
+        <div data-action="" id="mobile">
             <a href="bag.html" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
             <i id="bar" class="fa-solid fa-outdent"></i>
         </div>
