@@ -8,6 +8,10 @@ if (isset($_POST['pid'])) {
     $pprice = $_POST['pprice'];
     $pimage = $_POST['pimage'];
     $pcode = $_POST['pcode'];
+    $pdetails = $_POST['pdetails'];
+    $pbrand = $_POST['pbrand'];
+    $psize = $_POST['psize'];
+    $pqty = $_POST['pqty'];
     $pqty = 1;
 
     $stmt = $conn->prepare("SELECT product_code FROM cart WHERE product_code=?");
@@ -18,8 +22,8 @@ if (isset($_POST['pid'])) {
     $code = isset($r['product_code']) ? $r['product_code'] : null;
 
     if (!$code) {
-        $query = $conn->prepare("INSERT INTO cart (product_name, product_price, product_img, qty, total_price, product_code) VALUES(?,?,?,?,?,?)");
-        $query->bind_param("sssiss", $pname, $pprice, $pimage, $pqty, $pprice, $pcode);
+        $query = $conn->prepare("INSERT INTO cart (product_name, product_price, product_img, qty, total_price, product_code, product_details, product_brand, product_size) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->bind_param("sssisssss", $pname, $pprice, $pimage, $pqty, $pprice, $pcode, $pdetails, $pbrand, $psize);
         $query->execute();
 
         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -33,3 +37,7 @@ if (isset($_POST['pid'])) {
 </div>';
     }
 }
+
+// Bag Item Counter
+
+
