@@ -8,20 +8,20 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
-        
+
     </style>
 </head>
 
 <body>
     <?php
-        include("config.php");
-        $pid = $_REQUEST['pid'];
-        // Fetch product details from database
-        $stmt = $conn->prepare("SELECT * FROM products WHERE id = $pid");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        
+    include("config.php");
+    $pid = $_REQUEST['pid'];
+    // Fetch product details from database
+    $stmt = $conn->prepare("SELECT * FROM products WHERE id = $pid");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
     ?>
     <section id="header">
         <a href="#"><img src="img/logo.png" alt="Logo"></a>
@@ -53,7 +53,7 @@
 
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
-            <img src="img/products/f1.jpg" id="MainImg" width="100%" alt="" />
+            <img src="<?= $row['product_img'] ?>" id="MainImg" width="100%" alt="" />
 
             <div class="small-img-group">
                 <div class="small-img-col">
@@ -72,9 +72,9 @@
         </div>
 
         <div class="single-pro-details">
-            <h6><?= $row['product_brand']?></h6>
-            <h4><?= $row['product_name']?></h4>
-            <h2><i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'],2)?></h2>
+            <h6><?= $row['product_brand'] ?></h6>
+            <h4><?= $row['product_name'] ?></h4>
+            <h2><i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'], 2) ?></h2>
             <label for="size">Size :</label>
             <select name="sizes" id="Size" title="Select Size">
                 <option>Select Size</option>
@@ -112,70 +112,38 @@
         <h2>Featured Products</h2>
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
-            <div class="pro">
-                <img src="img/products/n1.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-Shirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+            <?php
+            $stmt = $conn->prepare("SELECT * FROM products ORDER BY id DESC LIMIT 4");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()):
+            ?>
+                <div class="pro">
+                    <a href="sproduct.php?pid=<?= $row['id'] ?>"><img src="<?= $row['product_img'] ?>" width="100%"></a>
+                    <div class="des">
+                        <span><?= $row['product_brand'] ?></span>
+                        <h5><?= $row['product_name'] ?></h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4><i class="fa-solid fa-dollar-sign"></i> <?= number_format($row['product_price'], 2) ?> </h4>
                     </div>
-                    <h4>$75</h4>
-                </div>
-                <a href="#" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/n2.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cuban Collar Shirt With Short Sleeves</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                    <div class="card-footer-btn">
+                        <form action="" class="form-submit">
+                            <input type="hidden" class="pid" value="<?= $row['id'] ?>">
+                            <input type="hidden" class="pname" value="<?= $row['product_name'] ?>">
+                            <input type="hidden" class="pprice" value="<?= $row['product_price'] ?>">
+                            <input type="hidden" class="pimage" value="<?= $row['product_img'] ?>">
+                            <input type="hidden" class="pcode" value="<?= $row['product_code'] ?>">
+                            <button class="addItemBtn"><i class="fas fa-shopping-cart"></i></button>
+                        </form>
                     </div>
-                    <h4>$79</h4>
                 </div>
-                <a href="#" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/n3.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cuban Collar Shirt With Short Sleeves</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$79</h4>
-                </div>
-                <a href="#" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/n4.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cuban Collar Shirt With Short Sleeves</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$79</h4>
-                </div>
-                <a href="#" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
-            </div>
+            <?php endwhile; ?>
         </div>
     </section>
 
