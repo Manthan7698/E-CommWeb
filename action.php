@@ -1,40 +1,33 @@
 <?php
 require 'config.php';
 
-// Handle adding items to cart
 if (isset($_POST['pid'])) {
     $pid = $_POST['pid'];
     $pname = $_POST['pname'];
     $pprice = $_POST['pprice'];
     $pimage = $_POST['pimage'];
     $pcode = $_POST['pcode'];
-    $pdetails = $_POST['pdetails'];
-    $pbrand = $_POST['pbrand'];
-    $psize = $_POST['psize'];
     $pqty = $_POST['pqty'];
-    $pqty = 1;
 
-    $stmt = $conn->prepare("SELECT product_code FROM cart WHERE product_code=?");
-    $stmt->bind_param("s", $pcode);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    $r = $res->fetch_assoc();
-    $code = isset($r['product_code']) ? $r['product_code'] : null;
+    // Initialize cart session if not set
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
 
-    if (!$code) {
-        $query = $conn->prepare("INSERT INTO cart (product_name, product_price, product_img, qty, total_price, product_code, product_details, product_brand, product_size) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->bind_param("sssisssss", $pname, $pprice, $pimage, $pqty, $pprice, $pcode, $pdetails, $pbrand, $psize);
-        $query->execute();
-
-        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>The Item Added To The Cart</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
+    // Check if the product is already in the cart
+    $item_array_id = array_column($_SESSION['cart'], 'pid');
+    if (!in_array($pid, $item_array_id)) {
+        $item_array = [
+            'pid' => $pid,
+            'pname' => $pname,
+            'pprice' => $pprice,
+            'pimage' => $pimage,
+            'pqty' => $pqty,
+        ];
+        $_SESSION['cart'][] = $item_array;
+        echo "Item added to the cart!";
     } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>The Item Is Already In Cart</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
+        echo "Item already in the cart!";
     }
 }
 
