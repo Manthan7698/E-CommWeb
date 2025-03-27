@@ -11,9 +11,12 @@ session_start();
     <title>E-Commerce</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <style>
+    <script>
+    
+    </script>
 
-    </style>
+
+
 </head>
 
 <body>
@@ -28,7 +31,7 @@ session_start();
 
     ?>
     <?php include 'header.php'; ?>
-    
+
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
             <img src="<?= $row['product_img'] ?>" id="MainImg" width="100%" alt="" />
@@ -62,9 +65,12 @@ session_start();
                 <option>XL</option>
                 <option>XXL</option>
             </select>
-            <div class="quantity-container">
+           
+            <div class="button-container">
+                <form action="add-to-cart.php" class="form-submit">
+                <div class="quantity-container">
                 <label for="quantity">Quantity :</label>
-                <select name="quantity" id="quantity">
+                <select name="quantity" id="quantity" title="Quantity">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -72,9 +78,14 @@ session_start();
                     <option value="5">5</option>
                 </select>
             </div>
-            <div class="button-container">
-                <button id="add-to-bag">Add To Bag</button>
-                <button id="purchase-now">Purchase Now</button>
+                    <input type="hidden" class="pid" value="<?= $row['id'] ?>">
+                    <input type="hidden" class="pname" value="<?= $row['product_name'] ?>">
+                    <input type="hidden" class="pprice" value="<?= $row['product_price'] ?>">
+                    <input type="hidden" class="pimage" value="<?= $row['product_img'] ?>">
+                    <input type="hidden" class="pcode" value="<?= $row['product_code'] ?>">
+                   
+                    <input type="submit" class="addItemBtn" title="AddToBag"><i class="fas fa-shopping-cart"></i>
+                </form>
             </div>
             <h4>Product Description</h4>
             <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
@@ -143,6 +154,8 @@ session_start();
 
     <script src="https://kit.fontawesome.com/0164451027.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+
+    
 
 </body>
 
