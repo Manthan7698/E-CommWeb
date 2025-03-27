@@ -1,6 +1,6 @@
 <?php
-session_start();
-include 'action.php';
+session_start();    
+include 'add-to-cart.php';
 ?>
 
 <!DOCTYPE html>
