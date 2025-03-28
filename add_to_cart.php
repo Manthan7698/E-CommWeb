@@ -1,46 +1,36 @@
 <?php
-session_start();
 include 'config.php';
-header("Content-Type: application/json");
 
-$data = json_decode(file_get_contents("php://input"), true);
+// Check if the request is a POST request
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve product details from the POST request
+    $pid = $_POST['id'];
+    $pname = $_POST['product_name'];
+    $pprice = $_POST['product_price'];
+    $pimg = $_POST['product_img'];
+    $qty = $_POST['quantity'];
+    $pcode = $_POST['product_code'];
 
-if (isset($data['pid'])) {
-    $item = [
-        'id' => $data['pid'],
-        'name' => $data['pname'],
-        'price' => $data['pprice'],
-        'image' => $data['pimage'],
-        'code' => $data['pcode'],
-        'quantity' => 1,
-    ];
+    // Validate input
+    if (!empty($pid) && !empty($pname) && !empty($pprice) && !empty($pimg) && !empty($qty) && !empty($pcode)) {
+        // Prepare SQL query to insert into the cart table
+        $query = "INSERT INTO cart (id, product_name, product_price, product_img, qty, product_code) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("isssis", $pid, $pname, $pprice, $pimg, $qty, $pcode);
 
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
-    }
-
-    // Check if item already exists in the cart
-    $itemExists = false;
-    foreach ($_SESSION['cart'] as &$cartItem) {
-        if ($cartItem['id'] === $item['id']) {
-            $cartItem['quantity'] += 1; // Increment quantity
-            $itemExists = true;
-            break;
+        // Execute the query and check for success
+        if ($stmt->execute()) {
+            echo "Product added to cart successfully.";
+        } else {
+            echo "Error: " . $stmt->error;
         }
-    }
 
-    if (!$itemExists) {
-        $_SESSION['cart'][] = $item; // Add new item to cart
+        // Close the statement
+        $stmt->close();
+    } else {
+        echo "All fields are required.";
     }
-
-    echo json_encode([
-        "status" => "success",
-        "cart_count" => count($_SESSION['cart']),
-    ]);
-} else {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Invalid request",
-    ]);
 }
-?>
+
+// Close the database connection
+$conn->close();
