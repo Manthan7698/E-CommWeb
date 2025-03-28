@@ -45,34 +45,38 @@ if (smallimg.length > 0) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const addItemBtns = document.querySelectorAll(".addItemBtn");
+// Add to Cart Functionality
+const addToCartButtons = document.querySelectorAll('.addItemBtn');
 
-    addItemBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
+addToCartButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    const form = button.closest('.form-submit');
+    const productId = form.querySelector('.pid').value;
+    const productName = form.querySelector('.pname').value;
+    const productPrice = form.querySelector('.pprice').value;
+    const productImg = form.querySelector('.pimage').value;
+    const quantity = 1; // Default quantity
+    const productCode = form.querySelector('.pcode').value;
 
-            const form = btn.closest(".form-submit");
-            const pid = form.querySelector(".pid").value;
-            const pname = form.querySelector(".pname").value;
-            const pprice = form.querySelector(".pprice").value;
-            const pimage = form.querySelector(".pimage").value;
-            const pcode = form.querySelector(".pcode").value;
-            
-
-
-            fetch("add-to-cart.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: `pid=${pid}&pname=${pname}&pprice=${pprice}&pimage=${pimage}&pcode=${pcode}`,
-            })
-                .then((response) => response.text())
-                .then((message) => {
-                    alert(message); // Display success or error message
-                })
-                .catch((error) => console.error("Error:", error));
+    if (productId && productName && productPrice && productImg && quantity && productCode) {
+      fetch('add_to_cart.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `&id=${productId}&product_name=${productName}&product_price=${productPrice}&product_img=${productImg}&quantity=${quantity}&product_code=${productCode}`,
+      })
+        .then(response => response.text())
+        .then(data => {
+          alert(data); // Display success or error message
+        })
+        .catch(error => {
+          console.error('Error:', error);
         });
-    });
+    } else {
+      alert('Product details are missing.');
+    }
+  });
 });
+
