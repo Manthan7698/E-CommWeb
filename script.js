@@ -45,6 +45,19 @@ if (smallimg.length > 0) {
   }
 }
 
+// Function to update cart count
+function updateCartCount() {
+    fetch('get_cart_count.php')
+        .then(response => response.json())
+        .then(data => {
+            const cartCount = document.getElementById('bag-item-count');
+            if (cartCount) {
+                cartCount.textContent = data.count;
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
 // Add to Cart Functionality
 const addToCartButtons = document.querySelectorAll('.addItemBtn');
 
@@ -56,7 +69,7 @@ addToCartButtons.forEach(button => {
     const productName = form.querySelector('.pname').value;
     const productPrice = form.querySelector('.pprice').value;
     const productImg = form.querySelector('.pimage').value;
-    const quantity = 1; // Default quantity
+    const quantity = form.querySelector('#quantity') ? form.querySelector('#quantity').value : 1;
     const productCode = form.querySelector('.pcode').value;
 
     if (productId && productName && productPrice && productImg && quantity && productCode) {
@@ -70,6 +83,7 @@ addToCartButtons.forEach(button => {
         .then(response => response.text())
         .then(data => {
           alert(data); // Display success or error message
+          updateCartCount(); // Update cart count after adding item
         })
         .catch(error => {
           console.error('Error:', error);
@@ -79,4 +93,7 @@ addToCartButtons.forEach(button => {
     }
   });
 });
+
+// Update cart count when page loads
+document.addEventListener('DOMContentLoaded', updateCartCount);
 
