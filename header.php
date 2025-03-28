@@ -16,7 +16,7 @@ $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
             <li><a href="about.php" class="<?php echo ($current_page == 'about.php') ? 'active' : ''; ?>">About</a></li>
             <li><a href="contact.php" class="<?php echo ($current_page == 'contact.php') ? 'active' : ''; ?>">Contact Us</a></li>
             <li id="lg-bag">
-                <a href="bag.php" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
+                <a href="bag.php" class="<?php echo ($current_page == 'bag.php') ? 'active' : ''; ?>" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
                 <span id="bag-item-count">
                     <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
                 </span>
