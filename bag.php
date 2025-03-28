@@ -47,7 +47,12 @@ session_start();
                                 </select>
                                 <br>
                                 <br>
-                                <button class="remove-item"><i class="fa-solid fa-trash"><input type="number" name="quantity" id="quantity" value="1" min="1" max="10"></i><i class="fa-solid fa-plus"></i></button>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn minus" data-cart-id="<?= $row['id'] ?>">-</button>
+                                    <input type="number" class="quantity-input" value="<?= $row['qty'] ?>" min="1" max="10" data-cart-id="<?= $row['id'] ?>">
+                                    <button class="quantity-btn plus" data-cart-id="<?= $row['id'] ?>">+</button>
+                                    <button class="remove-item" data-cart-id="<?= $row['id'] ?>"><i class="fa-solid fa-trash"></i></button>
+                                </div>
                             </div> 
                         </div>
                     <?php endwhile; ?>
@@ -82,6 +87,96 @@ session_start();
 
     <script src="https://kit.fontawesome.com/0164451027.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script>
+        // Quantity update functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            const minusButtons = document.querySelectorAll('.quantity-btn.minus');
+            const plusButtons = document.querySelectorAll('.quantity-btn.plus');
+            const removeButtons = document.querySelectorAll('.remove-item');
+
+            function updateQuantity(cartId, newQuantity) {
+                fetch('update_quantity.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `cart_id=${cartId}&quantity=${newQuantity}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        updateCartCount();
+                    } else {
+                        alert('Error updating quantity');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const cartId = this.dataset.cartId;
+                    const newQuantity = parseInt(this.value);
+                    if (newQuantity >= 1 && newQuantity <= 10) {
+                        updateQuantity(cartId, newQuantity);
+                    } else {
+                        this.value = 1;
+                        updateQuantity(cartId, 1);
+                    }
+                });
+            });
+
+            minusButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartId = this.dataset.cartId;
+                    const input = this.nextElementSibling;
+                    const currentValue = parseInt(input.value);
+                    if (currentValue > 1) {
+                        input.value = currentValue - 1;
+                        updateQuantity(cartId, currentValue - 1);
+                    }
+                });
+            });
+
+            plusButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartId = this.dataset.cartId;
+                    const input = this.previousElementSibling;
+                    const currentValue = parseInt(input.value);
+                    if (currentValue < 10) {
+                        input.value = currentValue + 1;
+                        updateQuantity(cartId, currentValue + 1);
+                    }
+                });
+            });
+
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartId = this.dataset.cartId;
+                    if (confirm('Are you sure you want to remove this item?')) {
+                        fetch('remove_from_cart.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: `cart_id=${cartId}`
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                this.closest('.bag-item').remove();
+                                updateCartCount();
+                            } else {
+                                alert('Error removing item');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 
