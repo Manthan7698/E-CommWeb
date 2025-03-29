@@ -36,6 +36,9 @@ session_start();
                                 </span>
                                 <br>
                                 <br>
+                                <p class="item-price">Price: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'], 2) ?></p>
+                                <p class="item-subtotal">Subtotal: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'] * $row['qty'], 2) ?></p>
+                                <br>
                                 <label for="size">Size :</label>
                                 <select name="sizes" id="size">
                                     <option>Select Size</option>
@@ -64,7 +67,15 @@ session_start();
             <div class="bag-subtotal-des">
                 <h3>Subtotal</h3>
                 <p class="small-p-txt">Shipping and discount codes are added at checkout.</p>
-                <p class="subtotal-txt">Subtotal: <span><strong>$0.00</strong></span></p>
+                <?php
+                $total = 0;
+                $stmt = $conn->prepare('SELECT SUM(product_price * qty) as total FROM cart');
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $total = $row['total'] ?? 0;
+                ?>
+                <p class="subtotal-txt">Subtotal: <span><strong><i class="fa-solid fa-dollar-sign"></i><?= number_format($total, 2) ?></strong></span></p>
                 <br>
                 <button class="proceed-to-buy">Proceed to Buy</button>
             </div>
@@ -107,11 +118,39 @@ session_start();
                 .then(data => {
                     if (data.success) {
                         updateCartCount();
+                        updatePrices();
                     } else {
                         alert('Error updating quantity');
                     }
                 })
                 .catch(error => console.error('Error:', error));
+            }
+
+            function updatePrices() {
+                fetch('get_cart_total.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the main subtotal
+                        const subtotalElement = document.querySelector('.subtotal-txt strong');
+                        if (subtotalElement) {
+                            subtotalElement.innerHTML = `<i class="fa-solid fa-dollar-sign"></i>${data.total.toFixed(2)}`;
+                        }
+
+                        // Update individual item subtotals
+                        document.querySelectorAll('.bag-item').forEach(item => {
+                            const quantityInput = item.querySelector('.quantity-input');
+                            const priceElement = item.querySelector('.item-price');
+                            const subtotalElement = item.querySelector('.item-subtotal');
+                            
+                            if (quantityInput && priceElement && subtotalElement) {
+                                const price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g, ''));
+                                const quantity = parseInt(quantityInput.value);
+                                const subtotal = price * quantity;
+                                subtotalElement.innerHTML = `Subtotal: <i class="fa-solid fa-dollar-sign"></i>${subtotal.toFixed(2)}`;
+                            }
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
             }
 
             quantityInputs.forEach(input => {
@@ -167,6 +206,7 @@ session_start();
                             if (data.success) {
                                 this.closest('.bag-item').remove();
                                 updateCartCount();
+                                updatePrices();
                             } else {
                                 alert('Error removing item');
                             }
