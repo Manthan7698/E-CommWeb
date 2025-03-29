@@ -13,6 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validate input
     if (!empty($pid) && !empty($pname) && !empty($pprice) && !empty($pimg) && !empty($qty) && !empty($pcode)) {
+        // Check if product already exists in cart
+        $check_query = "SELECT * FROM cart WHERE id = ?";
+        $check_stmt = $conn->prepare($check_query);
+        $check_stmt->bind_param("i", $pid);
+        $check_stmt->execute();
+        $result = $check_stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            echo json_encode(['success' => false, 'message' => 'Product is already in your bag']);
+            exit;
+        }
+
         // Prepare SQL query to insert into the cart table
         $query = "INSERT INTO cart (id, product_name, product_price, product_img, qty, product_code) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
@@ -20,15 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Execute the query and check for success
         if ($stmt->execute()) {
-            echo "Product added to cart successfully.";
+            echo json_encode(['success' => true, 'message' => 'Product added to your bag']);
         } else {
-            echo "Error: " . $stmt->error;
+            echo json_encode(['success' => false, 'message' => 'Error adding product to bag']);
         }
 
-        // Close the statement
+        // Close the statements
         $stmt->close();
+        $check_stmt->close();
     } else {
-        echo "All fields are required.";
+        echo json_encode(['success' => false, 'message' => 'All fields are required']);
     }
 }
 

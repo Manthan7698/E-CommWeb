@@ -58,40 +58,57 @@ function updateCartCount() {
         .catch(error => console.error('Error:', error));
 }
 
+// Create and show notification
+function showNotification(message, isSuccess) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
 // Add to Cart Functionality
 const addToCartButtons = document.querySelectorAll('.addItemBtn');
 
 addToCartButtons.forEach(button => {
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
-    const form = button.closest('.form-submit');
-    const productId = form.querySelector('.pid').value;
-    const productName = form.querySelector('.pname').value;
-    const productPrice = form.querySelector('.pprice').value;
-    const productImg = form.querySelector('.pimage').value;
-    const quantity = form.querySelector('#quantity') ? form.querySelector('#quantity').value : 1;
-    const productCode = form.querySelector('.pcode').value;
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const form = button.closest('.form-submit');
+        const productId = form.querySelector('.pid').value;
+        const productName = form.querySelector('.pname').value;
+        const productPrice = form.querySelector('.pprice').value;
+        const productImg = form.querySelector('.pimage').value;
+        const quantity = form.querySelector('#quantity') ? form.querySelector('#quantity').value : 1;
+        const productCode = form.querySelector('.pcode').value;
 
-    if (productId && productName && productPrice && productImg && quantity && productCode) {
-      fetch('add_to_cart.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `&id=${productId}&product_name=${productName}&product_price=${productPrice}&product_img=${productImg}&quantity=${quantity}&product_code=${productCode}`,
-      })
-        .then(response => response.text())
-        .then(data => {
-          alert(data); // Display success or error message
-          updateCartCount(); // Update cart count after adding item
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    } else {
-      alert('Product details are missing.');
-    }
-  });
+        if (productId && productName && productPrice && productImg && quantity && productCode) {
+            fetch('add_to_cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `&id=${productId}&product_name=${productName}&product_price=${productPrice}&product_img=${productImg}&quantity=${quantity}&product_code=${productCode}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                showNotification(data.message, data.success);
+                if (data.success) {
+                    updateCartCount();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Error adding product to bag', false);
+            });
+        } else {
+            showNotification('Product details are missing', false);
+        }
+    });
 });
 
 // Update cart count when page loads
