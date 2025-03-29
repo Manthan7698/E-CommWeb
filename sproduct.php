@@ -11,8 +11,9 @@ session_start();
     <title>E-Commerce</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="live-reload.js"></script>
     <script>
-    
+
     </script>
 
 
@@ -56,35 +57,35 @@ session_start();
             <h6><?= $row['product_brand'] ?></h6>
             <h4><?= $row['product_name'] ?></h4>
             <h2><i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'], 2) ?></h2>
-            <label for="size">Size :</label>
-            <select name="sizes" id="Size" title="Select Size">
-                <option>Select Size</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-                <option>XXL</option>
-            </select>
-           
+
             <div class="button-container">
-                <form action="add-to-cart.php" class="form-submit">
-                <div class="quantity-container">
-                <label for="quantity">Quantity :</label>
-                <select name="quantity" id="quantity" title="Quantity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
+                <form action="add_to_cart.php" class="form-submit">
+                    <label for="size">Size :</label>
+                    <select name="sizes" id="Size" title="Select Size">
+                        <option>Select Size</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                        <option>XXL</option>
+                    </select>
+                    <div class="quantity-container">
+                        <label for="quantity">Quantity :</label>
+                        <select name="quantity" id="quantity" title="Quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
                     <input type="hidden" class="pid" value="<?= $row['id'] ?>">
                     <input type="hidden" class="pname" value="<?= $row['product_name'] ?>">
                     <input type="hidden" class="pprice" value="<?= $row['product_price'] ?>">
                     <input type="hidden" class="pimage" value="<?= $row['product_img'] ?>">
                     <input type="hidden" class="pcode" value="<?= $row['product_code'] ?>">
-                   
-                    <input type="submit" class="addItemBtn" title="AddToBag"><i class="fas fa-shopping-cart"></i>
+
+                    <button type="submit" class="addItemBtn" title="AddToBag"><span>Add To Bag</span><i class="fas fa-shopping-cart"></i></button>
                 </form>
             </div>
             <h4>Product Description</h4>
@@ -94,6 +95,11 @@ session_start();
                 taped neck and shoulder, and a seamless double-needle collar, and
                 available in a range of colors. it offers it all in the ultimate
                 head-turing package.</span>
+                <br>
+                <br>
+                <marquee style="background-color: #0881796f; color: #000; font-weight: bold; padding: 2px; border-radius: 5px;" behavior="scroll" direction="left" loop="infinite" scrollamount="10" >
+                    <span>% Free Shipping, Free Returns, and always 2-day shipping %</span>
+                </marquee>
         </div>
     </section>
 
@@ -155,7 +161,7 @@ session_start();
     <script src="https://kit.fontawesome.com/0164451027.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 
-    
+
 
 </body>
 

@@ -22,10 +22,12 @@ session_start();
                 <div class="bag-item-box">
                     <?php
                     include 'config.php';
+                    $total = 0;
                     $stmt = $conn->prepare('SELECT * FROM cart');
                     $stmt->execute();
                     $result = $stmt->get_result();
                     while ($row = $result->fetch_assoc()):
+                        $total += $row['product_price'] * $row['qty'];
                     ?>
                         <div class="bag-item">
                             <img src="<?php echo $row['product_img'] ?>" alt="">
@@ -64,9 +66,9 @@ session_start();
             <div class="bag-subtotal-des">
                 <h3>Subtotal</h3>
                 <p class="small-p-txt">Shipping and discount codes are added at checkout.</p>
-                <p class="subtotal-txt">Subtotal: <span><strong>$0.00</strong></span></p>
+                <p class="subtotal-txt">$<?= number_format($total, 2) ?></p>
                 <br>
-                <button class="proceed-to-buy">Proceed to Buy</button>
+                <a href="checkout.php" class="proceed-to-buy">Proceed to Buy</a>
             </div>
         </div>
         </div>
