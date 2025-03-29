@@ -11,7 +11,9 @@ session_start();
     <title>E-Commerce</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="live-reload.js"></script>
     <script>
+
 
     </script>
 
@@ -159,6 +161,7 @@ session_start();
 
     <script src="https://kit.fontawesome.com/0164451027.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+
 
 
 
