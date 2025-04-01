@@ -64,10 +64,9 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="bag-box-area blank-area"></div>
         <div class="bag-subtotal-box">
             <div class="bag-subtotal-des">
-                <h3>Subtotal</h3>
+                <h3>Order Summary</h3>
                 <p class="small-p-txt">Shipping and discount codes are added at checkout.</p>
                 <?php
                 $total = 0;
@@ -78,10 +77,8 @@ session_start();
                 $total = $row['total'] ?? 0;
                 ?>
                 <p class="subtotal-txt">Subtotal: <span><strong><i class="fa-solid fa-dollar-sign"></i><?= number_format($total, 2) ?></strong></span></p>
-                <br>
                 <a href="checkout.php" class="proceed-to-buy">Proceed to Buy</a>
             </div>
-        </div>
         </div>
     </section>
 

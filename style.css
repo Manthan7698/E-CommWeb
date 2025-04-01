@@ -1038,19 +1038,74 @@ footer .copyright {
 
 /* Bag Page */
 
-#bag-container{
-  background-color: rgba(128, 128, 128, 0.26);
-  width: 100%;
+#bag-container {
+    background-color: rgba(128, 128, 128, 0.26);
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
 }
 
-#bag-container .bag-subtotal-box{
-  display: flex; 
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding-left: 10px;
-  width: 33%;
-  height: 300px;
+.bag-box-area {
+    flex: 2;
+    padding: 30px 15px;
+}
+
+.bag-item-box-area {
+    background-color: #fff;
+    padding: 30px 20px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.bag-subtotal-box {
+    flex: 1;
+    background-color: #fff;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.bag-subtotal-des {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bag-subtotal-des h3 {
+    margin-bottom: 10px;
+}
+
+.bag-item-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bag-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.bag-item:last-child {
+    border-bottom: none;
+}
+
+.bag-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.bag-item-des {
+    flex: 1;
 }
 
 .proceed-to-buy {
@@ -1071,41 +1126,6 @@ footer .copyright {
 
 .proceed-to-buy:hover {
   background-color: #FFC107; /* Darker yellow on hover */
-}
-
-.bag-box-area{
-  padding: 30px 15px;
-}
-
-#bag-container .bag-box-area{
-  display: flex;
-}
-
-.bag-item-box-area{
-  background-color: #fff;
-  padding: 30px 20px;
-  width: 66%;
-}
-
-.bag-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 10px;
-}
-
-.bag-item img{
-  width: 45%;
-  height: 45%;
-  object-fit: cover;
-  padding-right: 20px;
-}
-
-.bag-item-des p{
-  font-size: 14px;
-}
-
-.bag-item-des span{
-  font-size: 14px;
 }
 
 .blank-area{
