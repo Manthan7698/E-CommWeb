@@ -34,12 +34,10 @@ session_start();
                             <div class="bag-item-des">
                                 <h4><?= $row['product_brand']?></h4>
                                 <h5><?= $row['product_name'] ?></h5>
-                                <span><?= $row['product_details'] ?>
-                                </span>
-                                <br>
-                                <br>
-                                <p class="item-price">Price: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'], 2) ?></p>
-                                <p class="item-subtotal">Subtotal: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'] * $row['qty'], 2) ?></p>
+                                <div class="price-container">
+                                    <p class="item-price">Price: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'], 2) ?></p>
+                                    <p class="item-subtotal">Subtotal: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'] * $row['qty'], 2) ?></p>
+                                </div>
                                 <br>
                                 <label for="size">Size :</label>
                                 <select name="sizes" id="size">
@@ -51,12 +49,20 @@ session_start();
                                     <option>XXL</option>
                                 </select>
                                 <br>
-                                <br>
-                                <div class="quantity-controls">
-                                    <button class="quantity-btn minus" data-cart-id="<?= $row['id'] ?>">-</button>
-                                    <input type="number" class="quantity-input" value="<?= $row['qty'] ?>" min="1" max="10" data-cart-id="<?= $row['id'] ?>">
-                                    <button class="quantity-btn plus" data-cart-id="<?= $row['id'] ?>">+</button>
-                                    <button class="remove-item" data-cart-id="<?= $row['id'] ?>"><i class="fa-solid fa-trash"></i></button>
+                                <div class="cart-controls">
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn minus-btn" data-cart-id="<?= $row['id'] ?>">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                        <span class="quantity-value"><?= $row['qty'] ?></span>
+                                        <button class="quantity-btn plus-btn" data-cart-id="<?= $row['id'] ?>">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <button class="delete-btn" data-cart-id="<?= $row['id'] ?>">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </div> 
                         </div>
@@ -98,14 +104,11 @@ session_start();
     <script src="https://kit.fontawesome.com/0164451027.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
-        // Quantity update functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const quantityInputs = document.querySelectorAll('.quantity-input');
-            const minusButtons = document.querySelectorAll('.quantity-btn.minus');
-            const plusButtons = document.querySelectorAll('.quantity-btn.plus');
-            const removeButtons = document.querySelectorAll('.remove-item');
+            const quantityControls = document.querySelectorAll('.quantity-controls');
+            const deleteButtons = document.querySelectorAll('.delete-btn');
 
-            function updateQuantity(cartId, newQuantity) {
+            function updateQuantity(cartId, newQuantity, quantityControl) {
                 fetch('update_quantity.php', {
                     method: 'POST',
                     headers: {
@@ -116,6 +119,8 @@ session_start();
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        const quantityValue = quantityControl.querySelector('.quantity-value');
+                        quantityValue.textContent = newQuantity;
                         updateCartCount();
                         updatePrices();
                     } else {
@@ -125,25 +130,74 @@ session_start();
                 .catch(error => console.error('Error:', error));
             }
 
+            function removeItem(cartId, itemElement) {
+                if (confirm('Are you sure you want to remove this item?')) {
+                    fetch('remove_from_cart.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `cart_id=${cartId}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            itemElement.closest('.bag-item').remove();
+                            updateCartCount();
+                            updatePrices();
+                        } else {
+                            alert('Error removing item');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+            }
+
+            quantityControls.forEach(control => {
+                const minusBtn = control.querySelector('.minus-btn');
+                const plusBtn = control.querySelector('.plus-btn');
+                const quantityValue = control.querySelector('.quantity-value');
+                const cartId = minusBtn.dataset.cartId;
+
+                minusBtn.addEventListener('click', function() {
+                    const currentValue = parseInt(quantityValue.textContent);
+                    if (currentValue > 1) {
+                        updateQuantity(cartId, currentValue - 1, control);
+                    }
+                });
+
+                plusBtn.addEventListener('click', function() {
+                    const currentValue = parseInt(quantityValue.textContent);
+                    if (currentValue < 10) {
+                        updateQuantity(cartId, currentValue + 1, control);
+                    }
+                });
+            });
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartId = this.dataset.cartId;
+                    removeItem(cartId, this);
+                });
+            });
+
             function updatePrices() {
                 fetch('get_cart_total.php')
                     .then(response => response.json())
                     .then(data => {
-                        // Update the main subtotal
                         const subtotalElement = document.querySelector('.subtotal-txt strong');
                         if (subtotalElement) {
                             subtotalElement.innerHTML = `<i class="fa-solid fa-dollar-sign"></i>${data.total.toFixed(2)}`;
                         }
 
-                        // Update individual item subtotals
                         document.querySelectorAll('.bag-item').forEach(item => {
-                            const quantityInput = item.querySelector('.quantity-input');
+                            const quantityValue = item.querySelector('.quantity-value');
                             const priceElement = item.querySelector('.item-price');
                             const subtotalElement = item.querySelector('.item-subtotal');
                             
-                            if (quantityInput && priceElement && subtotalElement) {
+                            if (quantityValue && priceElement && subtotalElement) {
                                 const price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g, ''));
-                                const quantity = parseInt(quantityInput.value);
+                                const quantity = parseInt(quantityValue.textContent);
                                 const subtotal = price * quantity;
                                 subtotalElement.innerHTML = `Subtotal: <i class="fa-solid fa-dollar-sign"></i>${subtotal.toFixed(2)}`;
                             }
@@ -151,69 +205,6 @@ session_start();
                     })
                     .catch(error => console.error('Error:', error));
             }
-
-            quantityInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    const cartId = this.dataset.cartId;
-                    const newQuantity = parseInt(this.value);
-                    if (newQuantity >= 1 && newQuantity <= 10) {
-                        updateQuantity(cartId, newQuantity);
-                    } else {
-                        this.value = 1;
-                        updateQuantity(cartId, 1);
-                    }
-                });
-            });
-
-            minusButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const cartId = this.dataset.cartId;
-                    const input = this.nextElementSibling;
-                    const currentValue = parseInt(input.value);
-                    if (currentValue > 1) {
-                        input.value = currentValue - 1;
-                        updateQuantity(cartId, currentValue - 1);
-                    }
-                });
-            });
-
-            plusButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const cartId = this.dataset.cartId;
-                    const input = this.previousElementSibling;
-                    const currentValue = parseInt(input.value);
-                    if (currentValue < 10) {
-                        input.value = currentValue + 1;
-                        updateQuantity(cartId, currentValue + 1);
-                    }
-                });
-            });
-
-            removeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const cartId = this.dataset.cartId;
-                    if (confirm('Are you sure you want to remove this item?')) {
-                        fetch('remove_from_cart.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: `cart_id=${cartId}`
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                this.closest('.bag-item').remove();
-                                updateCartCount();
-                                updatePrices();
-                            } else {
-                                alert('Error removing item');
-                            }
-                        })
-                        .catch(error => console.error('Error:', error));
-                    }
-                });
-            });
         });
     </script>
 

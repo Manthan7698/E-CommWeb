@@ -1047,7 +1047,7 @@ footer .copyright {
 }
 
 .bag-box-area {
-    flex: 2;
+    flex: 3;
     padding: 30px 15px;
 }
 
@@ -1091,6 +1091,7 @@ footer .copyright {
     gap: 20px;
     padding: 20px;
     border-bottom: 1px solid #eee;
+    position: relative;
 }
 
 .bag-item:last-child {
@@ -1098,13 +1099,65 @@ footer .copyright {
 }
 
 .bag-item img {
-    width: 30%;
+    width: 250px;
+    height: 300px;
     object-fit: cover;
     border-radius: 8px;
 }
 
 .bag-item-des {
     flex: 1;
+    padding-right: 150px;
+    position: relative;
+}
+
+.price-container {
+    position: absolute;
+    right: -0px;
+    top: 0;
+    text-align: right;
+}
+
+.item-price {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.item-subtotal {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.bag-item-des h4 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.bag-item-des h5 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+/* Size selector styling */
+.bag-item-des label {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.bag-item-des select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    background-color: #fff;
 }
 
 .proceed-to-buy {
@@ -1656,78 +1709,53 @@ footer .copyright {
 
 /* Quantity Controls */
 .quantity-controls {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
+    background-color: #fff;
+    border: 2px solid #FFD700;
+    border-radius: 50px;
+    padding: 4px 8px;
     margin-top: 10px;
+    margin-right: 15px;
+    gap: 12px;
 }
 
 .quantity-btn {
-    background-color: #088178;
-    color: white;
+    background-color: transparent;
+    color: #000;
     border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0;
 }
 
 .quantity-btn:hover {
-    background-color: #066c65;
+    color: #FFD700;
 }
 
-.quantity-input {
-    width: 50px;
-    height: 30px;
+.quantity-value {
+    font-size: 14px;
+    min-width: 20px;
     text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    font-weight: 500;
 }
 
-.remove-item {
-    background-color: #ff4444;
-    color: white;
-    border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
+.minus-btn .trash-icon {
+    color: #ff4444;
 }
 
-.remove-item:hover {
-    background-color: #cc0000;
+.minus-btn .trash-icon:hover {
+    color: #cc0000;
 }
 
-.item-price {
-    font-size: 16px;
-    color: #088178;
-    margin: 5px 0;
-}
-
-.item-subtotal {
-    font-size: 16px;
-    color: #088178;
-    font-weight: bold;
-    margin: 5px 0;
-}
-
-.subtotal-txt {
-    font-size: 18px;
-    margin: 15px 0;
-}
-
-.subtotal-txt strong {
-    color: #088178;
+.hidden {
+    display: none;
 }
 
 /* Notification Styles */
@@ -1773,4 +1801,74 @@ footer .copyright {
         transform: translateX(100%);
         opacity: 0;
     }
+}
+
+/* Cart Controls */
+.cart-controls {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+.quantity-controls {
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #FFD700;
+    border-radius: 50px;
+    padding: 4px 8px;
+    gap: 12px;
+}
+
+.quantity-btn {
+    background-color: transparent;
+    color: #000;
+    border: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.quantity-btn:hover {
+    color: #FFD700;
+}
+
+.quantity-value {
+    font-size: 14px;
+    min-width: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.divider {
+    width: 1px;
+    height: 20px;
+    background-color: #e0e0e0;
+    margin: 0 12px;
+}
+
+.delete-btn {
+    background-color: transparent;
+    color: #ff4444;
+    border: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.delete-btn:hover {
+    color: #cc0000;
 }
