@@ -389,6 +389,11 @@ body {
   flex-wrap: wrap;
 }
 
+#product2 h2, p{
+  text-align: center;
+}
+
+
 #banner {
   display: flex;
   flex-direction: column;
