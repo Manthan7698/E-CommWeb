@@ -10,9 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pimg = $_POST['product_img'];
     $qty = $_POST['quantity'];
     $pcode = $_POST['product_code'];
+    $pbrand = $_POST['product_brand'];
+    $pdetails = $_POST['product_details'];
 
     // Validate input
-    if (!empty($pid) && !empty($pname) && !empty($pprice) && !empty($pimg) && !empty($qty) && !empty($pcode)) {
+    if (!empty($pid) && !empty($pname) && !empty($pprice) && !empty($pimg) && !empty($qty) && !empty($pcode) && !empty($pbrand) && !empty($pdetails)) {
         // Check if product already exists in cart
         $check_query = "SELECT * FROM cart WHERE id = ?";
         $check_stmt = $conn->prepare($check_query);
@@ -26,21 +28,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Prepare SQL query to insert into the cart table
-        $query = "INSERT INTO cart (id, product_name, product_price, product_img, qty, product_code) VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO cart (id, product_name, product_price, product_img, qty, product_code, product_brand, product_details) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("isssis", $pid, $pname, $pprice, $pimg, $qty, $pcode);
+        $stmt->bind_param("isssisss", $pid, $pname, $pprice, $pimg, $qty, $pcode, $pbrand, $pdetails);
 
         // Execute the query and check for success
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => 'Product added to your bag']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error adding product to bag']);
+            error_log("Error adding product to cart: " . $stmt->error);
+            echo json_encode(['success' => false, 'message' => 'Error adding product to bag: ' . $stmt->error]);
         }
 
         // Close the statements
         $stmt->close();
         $check_stmt->close();
     } else {
+        error_log("Missing required fields in add_to_cart.php");
         echo json_encode(['success' => false, 'message' => 'All fields are required']);
     }
 }

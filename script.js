@@ -85,14 +85,16 @@ addToCartButtons.forEach(button => {
         const productImg = form.querySelector('.pimage').value;
         const quantity = form.querySelector('#quantity') ? form.querySelector('#quantity').value : 1;
         const productCode = form.querySelector('.pcode').value;
+        const productBrand = form.querySelector('.pbrand').value;
+        const productDetails = form.querySelector('.pdetails').value;
 
-        if (productId && productName && productPrice && productImg && quantity && productCode) {
+        if (productId && productName && productPrice && productImg && quantity && productCode && productBrand && productDetails) {
             fetch('add_to_cart.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `&id=${productId}&product_name=${productName}&product_price=${productPrice}&product_img=${productImg}&quantity=${quantity}&product_code=${productCode}`,
+                body: `&id=${productId}&product_name=${productName}&product_price=${productPrice}&product_img=${productImg}&quantity=${quantity}&product_code=${productCode}&product_brand=${productBrand}&product_details=${productDetails}`,
             })
             .then(response => response.json())
             .then(data => {
