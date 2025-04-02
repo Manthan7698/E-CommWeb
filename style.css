@@ -1762,15 +1762,18 @@ footer .copyright {
 .notification {
     position: fixed;
     top: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 25px;
+    border-radius: 25px;
     color: white;
     font-size: 14px;
     font-weight: 500;
     z-index: 9999;
-    animation: slideIn 0.5s ease-out;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: slideDown 0.5s ease-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+    min-width: 200px;
 }
 
 .notification.success {
@@ -1781,26 +1784,30 @@ footer .copyright {
     background-color: #ff4444;
 }
 
-@keyframes slideIn {
+@keyframes slideDown {
     from {
-        transform: translateX(100%);
+        transform: translate(-50%, -100%);
         opacity: 0;
     }
     to {
-        transform: translateX(0);
+        transform: translate(-50%, 0);
         opacity: 1;
     }
 }
 
-@keyframes slideOut {
+@keyframes fadeOut {
     from {
-        transform: translateX(0);
         opacity: 1;
+        transform: translate(-50%, 0);
     }
     to {
-        transform: translateX(100%);
         opacity: 0;
+        transform: translate(-50%, -20px);
     }
+}
+
+.notification.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
 }
 
 /* Cart Controls */
@@ -1871,4 +1878,41 @@ footer .copyright {
 
 .delete-btn:hover {
     color: #cc0000;
+}
+
+.empty-cart-message {
+    text-align: center;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.empty-cart-message h3 {
+    font-size: 24px;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.empty-cart-message p {
+    color: #606063;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.shop-now-btn {
+    background-color: #088178;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.shop-now-btn:hover {
+    background-color: #065f58;
+    transform: translateY(-2px);
 }

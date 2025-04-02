@@ -26,6 +26,16 @@ session_start();
                     $stmt = $conn->prepare('SELECT * FROM cart');
                     $stmt->execute();
                     $result = $stmt->get_result();
+                    
+                    if ($result->num_rows === 0) {
+                        echo '<div class="empty-cart-message">';
+                        echo '<i class="fa-solid fa-shopping-bag" style="font-size: 50px; color: #088178; margin-bottom: 20px;"></i>';
+                        echo '<h3>Your Shopping Bag is Empty!</h3>';
+                        echo '<p>Looks like you haven\'t added anything to your bag yet.</p>';
+                        echo '<a href="shop.php" class="shop-now-btn">Shop Now</a>';
+                        echo '</div>';
+                    }
+                    
                     while ($row = $result->fetch_assoc()):
                         $total += $row['product_price'] * $row['qty'];
                     ?>

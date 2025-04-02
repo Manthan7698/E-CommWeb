@@ -60,16 +60,25 @@ function updateCartCount() {
 
 // Create and show notification
 function showNotification(message, isSuccess) {
+    // Remove any existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => {
+        notification.remove();
+    });
+
     const notification = document.createElement('div');
     notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
     notification.textContent = message;
     
     document.body.appendChild(notification);
     
-    // Remove notification after 3 seconds
+    // Remove notification after 3 seconds with fade out animation
     setTimeout(() => {
-        notification.remove();
-    }, 3000);
+        notification.classList.add('fade-out');
+        setTimeout(() => {
+            notification.remove();
+        }, 500); // Wait for fade out animation to complete
+    }, 2500);
 }
 
 // Add to Cart Functionality
