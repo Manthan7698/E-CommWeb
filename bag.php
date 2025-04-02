@@ -92,7 +92,7 @@ session_start();
                 $row = $result->fetch_assoc();
                 $total = $row['total'] ?? 0;
                 ?>
-                <p class="subtotal-txt">Subtotal: <span><strong><i class="fa-solid fa-dollar-sign"></i><?= number_format($total, 2) ?></strong></span></p>
+                <p class="subtotal-txt">Total: <span><strong><i class="fa-solid fa-dollar-sign"></i><?= number_format($total, 2) ?></strong></span></p>
                 <a href="checkout.php" class="proceed-to-buy">Proceed to Buy</a>
             </div>
         </div>
