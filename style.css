@@ -1067,7 +1067,7 @@ footer .copyright {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     height: fit-content;
     position: sticky;
-    top: 100px;
+    top: 136px;
 }
 
 .bag-subtotal-des {
@@ -1098,8 +1098,7 @@ footer .copyright {
 }
 
 .bag-item img {
-    width: 150px;
-    height: 150px;
+    width: 30%;
     object-fit: cover;
     border-radius: 8px;
 }
