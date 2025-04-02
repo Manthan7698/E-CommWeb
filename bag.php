@@ -46,7 +46,7 @@ session_start();
                                 <h5><?= $row['product_name'] ?></h5>
                                 <div class="price-container">
                                     <p class="item-price">Price: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'], 2) ?></p>
-                                    <p class="item-subtotal">Subtotal: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'] * $row['qty'], 2) ?></p>
+                                    <p class="item-subtotal">Total: <i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'] * $row['qty'], 2) ?></p>
                                 </div>
                                 <br>
                                 <label for="size">Size :</label>
@@ -92,7 +92,7 @@ session_start();
                 $row = $result->fetch_assoc();
                 $total = $row['total'] ?? 0;
                 ?>
-                <p class="subtotal-txt">Total: <span><strong><i class="fa-solid fa-dollar-sign"></i><?= number_format($total, 2) ?></strong></span></p>
+                <p class="subtotal-txt">Subtotal: <span><strong><i class="fa-solid fa-dollar-sign"></i><?= number_format($total, 2) ?></strong></span></p>
                 <a href="checkout.php" class="proceed-to-buy">Proceed to Buy</a>
             </div>
         </div>
