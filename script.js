@@ -96,6 +96,14 @@ addToCartButtons.forEach(button => {
         const productCode = form.querySelector('.pcode').value;
         const productBrand = form.querySelector('.pbrand').value;
         const productDetails = form.querySelector('.pdetails').value;
+        const productSize = form.querySelector('.psize') ? form.querySelector('.psize').value : '';
+
+        // Check if we're on the product page and size is required
+        const isProductPage = document.getElementById('Size') !== null;
+        if (isProductPage && !productSize) {
+            showNotification('Please select a size before adding to cart', false);
+            return;
+        }
 
         if (productId && productName && productPrice && productImg && quantity && productCode && productBrand && productDetails) {
             fetch('add_to_cart.php', {
@@ -103,7 +111,7 @@ addToCartButtons.forEach(button => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `&id=${productId}&product_name=${productName}&product_price=${productPrice}&product_img=${productImg}&quantity=${quantity}&product_code=${productCode}&product_brand=${productBrand}&product_details=${productDetails}`,
+                body: `&id=${productId}&product_name=${productName}&product_price=${productPrice}&product_img=${productImg}&quantity=${quantity}&product_code=${productCode}&product_brand=${productBrand}&product_details=${productDetails}&product_size=${productSize}`,
             })
             .then(response => response.json())
             .then(data => {

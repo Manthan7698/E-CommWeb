@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pcode = $_POST['product_code'];
     $pbrand = $_POST['product_brand'];
     $pdetails = $_POST['product_details'];
+    $psize = $_POST['product_size'];
 
     // Validate input
     if (!empty($pid) && !empty($pname) && !empty($pprice) && !empty($pimg) && !empty($qty) && !empty($pcode) && !empty($pbrand) && !empty($pdetails)) {
@@ -28,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Prepare SQL query to insert into the cart table
-        $query = "INSERT INTO cart (id, product_name, product_price, product_img, qty, product_code, product_brand, product_details) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO cart (id, product_name, product_price, product_img, qty, product_code, product_brand, product_details, product_size) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("isssisss", $pid, $pname, $pprice, $pimg, $qty, $pcode, $pbrand, $pdetails);
+        $stmt->bind_param("isssissss", $pid, $pname, $pprice, $pimg, $qty, $pcode, $pbrand, $pdetails, $psize);
 
         // Execute the query and check for success
         if ($stmt->execute()) {

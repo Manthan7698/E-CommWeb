@@ -13,8 +13,16 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <script src="live-reload.js"></script>
     <script>
-
-
+        document.addEventListener('DOMContentLoaded', function() {
+            const sizeSelect = document.getElementById('Size');
+            const sizeInput = document.querySelector('.psize');
+            
+            if (sizeSelect && sizeInput) {
+                sizeSelect.addEventListener('change', function() {
+                    sizeInput.value = this.value;
+                });
+            }
+        });
     </script>
 
 
@@ -87,6 +95,7 @@ session_start();
                     <input type="hidden" class="pcode" value="<?= $row['product_code'] ?>">
                     <input type="hidden" class="pbrand" value="<?= $row['product_brand'] ?>">
                     <input type="hidden" class="pdetails" value="<?= $row['product_details'] ?>">
+                    <input type="hidden" class="psize" value="">
                     <button type="submit" class="addItemBtn" title="AddToBag"><i class="fas fa-shopping-cart"></i></button>
                 </form>
             </div>
@@ -138,6 +147,7 @@ session_start();
                             <input type="hidden" class="pcode" value="<?= $row['product_code'] ?>">
                             <input type="hidden" class="pbrand" value="<?= $row['product_brand'] ?>">
                             <input type="hidden" class="pdetails" value="<?= $row['product_details'] ?>">
+                            <input type="hidden" class="psize" value="">
                             <button class="addItemBtn"><i class="fas fa-shopping-cart"></i></button>
                         </form>
                     </div>

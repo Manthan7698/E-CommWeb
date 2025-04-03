@@ -94,7 +94,7 @@ include("config.php");
                             <img src="<?= $row['product_img'] ?>" alt="<?= $row['product_name'] ?>">
                             <div class="item-details">
                                 <h4><?= $row['product_name'] ?></h4>
-                                <p>Size: <?= $row['size'] ?></p>
+                                <p>Size: <?= $row['product_size'] ?></p>
                                 <p>Quantity: <?= $row['qty'] ?></p>
                                 <p class="item-price">$<?= number_format($subtotal, 2) ?></p>
                             </div>
