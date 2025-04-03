@@ -3,7 +3,7 @@
 $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
 ?>
 <section id="header">
-    <a href="index.php" class="logo"><img src="img/logo.png" alt="Logo"></a>
+    <a href="index.php" class="logo" id="logo"><img src="img/logo.png" alt="Logo"></a>
     
     <div class="search-box">
         <input type="text" placeholder="Search...">
