@@ -1,18 +1,47 @@
 const bar = document.getElementById('bar');
 const close = document.getElementById('close');
-const nav = document.getElementById('navbar');
+const navContainer = document.querySelector('.nav-container');
 
 if (bar) {
   bar.addEventListener('click', () => {
-    nav.classList.toggle('active');
+    navContainer.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
   });
 }
 
 if (close) {
   close.addEventListener('click', () => {
-    nav.classList.remove('active');
+    navContainer.classList.remove('active');
+    document.body.style.overflow = ''; // Re-enable scrolling
   });
 }
+
+// Close menu when clicking on a nav link
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navContainer.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+  if (navContainer.classList.contains('active') && 
+      !navContainer.contains(event.target) && 
+      event.target !== bar) {
+    navContainer.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 799) {
+    navContainer.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
 
 // Login and Register Buttons
 
@@ -51,12 +80,21 @@ function updateCartCount() {
         .then(response => response.json())
         .then(data => {
             const cartCount = document.getElementById('bag-item-count');
+            const mobileCartCount = document.getElementById('mobile-bag-count');
+            
             if (cartCount) {
                 cartCount.textContent = data.count;
+            }
+            
+            if (mobileCartCount) {
+                mobileCartCount.textContent = data.count;
             }
         })
         .catch(error => console.error('Error:', error));
 }
+
+// Update cart count when page loads
+document.addEventListener('DOMContentLoaded', updateCartCount);
 
 // Create and show notification
 function showNotification(message, isSuccess) {
@@ -129,7 +167,4 @@ addToCartButtons.forEach(button => {
         }
     });
 });
-
-// Update cart count when page loads
-document.addEventListener('DOMContentLoaded', updateCartCount);
 

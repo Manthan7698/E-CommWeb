@@ -3,12 +3,14 @@
 $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
 ?>
 <section id="header">
-    <a href="#" class="logo"><img src="img/logo.png" alt="Logo"></a>
+    <a href="index.php" class="logo"><img src="img/logo.png" alt="Logo"></a>
+    
     <div class="search-box">
         <input type="text" placeholder="Search...">
         <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button>
     </div>
-    <div>
+    
+    <div class="nav-container">
         <ul id="navbar">
             <li><a href="index.php" class="nav-link <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Home</a></li>
             <li><a href="shop.php" class="nav-link <?php echo ($current_page == 'shop.php') ? 'active' : ''; ?>">Shop</a></li>
@@ -25,8 +27,14 @@ $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
             <li><a href="#" id="close" class="close-btn" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
         </ul>
     </div>
+    
     <div id="mobile">
-        <a href="bag.php" class="mobile-bag" title="Shopping Bag"><i class="fa-solid fa-bag-shopping"></i></a>
-        <i id="bar" class="fa-solid fa-outdent"></i>
+        <a href="bag.php" class="mobile-bag" title="Shopping Bag">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="mobile-bag-count">
+                <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+            </span>
+        </a>
+        <i id="bar" class="fa-solid fa-bars"></i>
     </div>
 </section>
