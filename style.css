@@ -107,6 +107,8 @@ body {
 }
 
 #header .logo {
+  margin-right: 10px;
+  padding-right: 10px;
   transition: transform 0.3s ease;
 }
 
@@ -171,7 +173,7 @@ body {
 
 #navbar li {
   list-style: none;
-  padding: 0 20px;
+  padding: 0 15px;
   position: relative;
 }
 
@@ -236,7 +238,7 @@ body {
   font-weight: 600;
   color: #1a1a1a;
   transition: all 0.3s ease;
-  padding: 8px 20px;
+  padding: 8px 15px;
   border-radius: 20px;
   background: transparent;
 }
