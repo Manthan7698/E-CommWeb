@@ -1,6 +1,11 @@
 <?php
 // Get the current file name
 $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
+
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <section id="header">
     <a href="index.php" class="logo" id="logo"><img src="img/logo.png" alt="Logo"></a>
@@ -26,7 +31,20 @@ $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
                     <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
                 </span>
             </li>
-            <li><a id="login-btn" href="login.php" class="login-link <?php echo ($current_page == 'login.php') ? 'active' : ''; ?>">Login</a></li>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <li class="user-menu">
+                    <a href="#" class="nav-link user-link">
+                        <i class="fa-solid fa-user"></i> <?php echo $_SESSION['user_name']; ?>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="profile.php">My Profile</a>
+                        <a href="orders.php">My Orders</a>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </li>
+            <?php else: ?>
+                <li><a id="login-btn" href="login.php" class="login-link <?php echo ($current_page == 'login.php') ? 'active' : ''; ?>">Login</a></li>
+            <?php endif; ?>
             <li><a href="#" id="close" class="close-btn" title="Close"><i class="fa-solid fa-xmark"></i></a></li>
         </ul>
     </div>
@@ -41,6 +59,40 @@ $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
         <i id="bar" class="fa-solid fa-bars"></i>
     </div>
 </section>
+
+<style>
+    .user-menu {
+        position: relative;
+    }
+    
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        min-width: 150px;
+        z-index: 1000;
+    }
+    
+    .user-menu:hover .dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-menu a {
+        display: block;
+        padding: 10px 15px;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+    
+    .dropdown-menu a:hover {
+        background-color: #f5f5f5;
+    }
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
