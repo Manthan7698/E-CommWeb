@@ -5,10 +5,13 @@ $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
 <section id="header">
     <a href="index.php" class="logo" id="logo"><img src="img/logo.png" alt="Logo"></a>
     
+    <form method="get" action="search.php" id="search-form">
     <div class="search-box">
-        <input type="text" placeholder="Search...">
+        <input type="text" name="q" id="search-input" placeholder="Search..." autocomplete="off">
         <button name="search-btn" type="submit" title="Search"><i class="fa-solid fa-search"></i></button>
+        <div id="search-suggestions" class="search-suggestions"></div>
     </div>
+    </form>
     
     <div class="nav-container">
         <ul id="navbar">
@@ -38,3 +41,92 @@ $current_page = basename($_SERVER['PHP_SELF']); // e.g., "index.php"
         <i id="bar" class="fa-solid fa-bars"></i>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const searchSuggestions = document.getElementById('search-suggestions');
+    let searchTimeout;
+
+    // Function to fetch search suggestions
+    function fetchSuggestions(query) {
+        if (query.length < 2) {
+            searchSuggestions.innerHTML = '';
+            searchSuggestions.classList.remove('active');
+            return;
+        }
+
+        fetch(`search_suggestions.php?q=${encodeURIComponent(query)}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                searchSuggestions.innerHTML = '';
+                
+                if (data.length > 0) {
+                    const suggestionsList = document.createElement('div');
+                    suggestionsList.className = 'suggestions-list';
+                    
+                    data.forEach(item => {
+                        const suggestionItem = document.createElement('a');
+                        suggestionItem.href = `sproduct.php?pid=${item.id}`;
+                        suggestionItem.className = 'suggestion-item';
+                        
+                        suggestionItem.innerHTML = `
+                            <div class="suggestion-content">
+                                <img src="${item.image}" alt="${item.name}" class="suggestion-img">
+                                <div class="suggestion-details">
+                                    <div class="suggestion-name">${item.name}</div>
+                                    <div class="suggestion-brand">${item.brand}</div>
+                                </div>
+                            </div>
+                        `;
+                        
+                        suggestionsList.appendChild(suggestionItem);
+                    });
+                    
+                    searchSuggestions.appendChild(suggestionsList);
+                    searchSuggestions.classList.add('active');
+                } else {
+                    searchSuggestions.classList.remove('active');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching suggestions:', error);
+                searchSuggestions.classList.remove('active');
+            });
+    }
+
+    // Add event listener for input changes
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        const query = this.value.trim();
+        
+        // Add a small delay to prevent too many requests
+        searchTimeout = setTimeout(() => {
+            fetchSuggestions(query);
+        }, 300);
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!searchInput.contains(event.target) && !searchSuggestions.contains(event.target)) {
+            searchSuggestions.innerHTML = '';
+            searchSuggestions.classList.remove('active');
+        }
+    });
+
+    // Show suggestions when focusing on the search input
+    searchInput.addEventListener('focus', function() {
+        if (this.value.trim().length >= 2) {
+            fetchSuggestions(this.value.trim());
+        }
+    });
+    
+    // Debug: Log when the script is loaded
+    console.log('Search functionality initialized');
+});
+</script>

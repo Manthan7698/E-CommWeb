@@ -64,12 +64,12 @@ session_start();
         <div class="toogle-panel toogle-left">
           <h3>Welcome User!</h3>
           <p>If you already have an account</p>
-          <button class="hidden" id="login">Sign In</button>
+          <button id="login">Sign In</button>
         </div>
         <div class="toogle-panel toogle-right">
           <h3>Hello, User!</h3>
           <p>If you don't have an account</p>
-          <button class="hidden" id="register">Sign Up</button>
+          <button id="register">Sign Up</button>
         </div>
       </div>
     </div>
