@@ -58,6 +58,8 @@ session_start();
               <input type="hidden" class="pprice" value="<?= $row['product_price'] ?>">
               <input type="hidden" class="pimage" value="<?= $row['product_img'] ?>">
               <input type="hidden" class="pcode" value="<?= $row['product_code'] ?>">
+              <input type="hidden" class="pbrand" value="<?= $row['product_brand'] ?>">
+              <input type="hidden" class="pdetails" value="<?= $row['product_details'] ?>">
               <button class="addItemBtn"><i class="fas fa-shopping-cart"></i></button>
             </form>
           </div>
