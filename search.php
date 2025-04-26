@@ -19,7 +19,6 @@ $result = $stmt->get_result();
 // Debug: Log the number of results found
 error_log("Found " . $result->num_rows . " results for query: " . $search);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
