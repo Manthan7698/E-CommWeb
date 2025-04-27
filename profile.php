@@ -14,149 +14,82 @@ $error_message = '';
 
 // Handle form submission for profile update
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['update_profile'])) {
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-        $current_password = $_POST['current_password'];
-        $new_password = $_POST['new_password'];
-        $confirm_password = $_POST['confirm_password'];
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $current_password = $_POST['current_password'];
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
+    
+    // Validate input
+    $errors = [];
+    
+    if (empty($name)) {
+        $errors[] = "Name is required";
+    }
+    
+    if (empty($email)) {
+        $errors[] = "Email is required";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format";
+    }
+    
+    // Check if email already exists for another user
+    $check_email = "SELECT * FROM users WHERE email = '$email' AND id != $user_id";
+    $result = mysqli_query($conn, $check_email);
+    
+    if (mysqli_num_rows($result) > 0) {
+        $errors[] = "Email already exists for another user";
+    }
+    
+    // If password change is requested
+    if (!empty($current_password)) {
+        // Get current user data
+        $user_query = "SELECT * FROM users WHERE id = $user_id";
+        $user_result = mysqli_query($conn, $user_query);
+        $user_data = mysqli_fetch_assoc($user_result);
         
-        // Handle profile picture upload
-        $profile_picture = $user_data['profile_picture'];
-        if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0) {
-            $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-            $filename = $_FILES['profile_picture']['name'];
-            $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-            
-            if (in_array($ext, $allowed)) {
-                $new_filename = uniqid() . '.' . $ext;
-                $upload_path = 'uploads/profile_pictures/' . $new_filename;
-                
-                if (!file_exists('uploads/profile_pictures')) {
-                    mkdir('uploads/profile_pictures', 0777, true);
-                }
-                
-                if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $upload_path)) {
-                    $profile_picture = $new_filename;
-                }
-            }
+        // Verify current password
+        if (!password_verify($current_password, $user_data['password'])) {
+            $errors[] = "Current password is incorrect";
         }
         
-        // Validate input
-        $errors = [];
-        
-        if (empty($name)) {
-            $errors[] = "Name is required";
+        // Validate new password
+        if (empty($new_password)) {
+            $errors[] = "New password is required";
+        } elseif (strlen($new_password) < 6) {
+            $errors[] = "New password must be at least 6 characters";
         }
         
-        if (empty($username)) {
-            $errors[] = "Username is required";
-        }
-        
-        if (empty($email)) {
-            $errors[] = "Email is required";
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "Invalid email format";
-        }
-        
-        // Check if username or email already exists for another user
-        $check_user = "SELECT * FROM users WHERE (username = '$username' OR email = '$email') AND id != $user_id";
-        $result = mysqli_query($conn, $check_user);
-        
-        if (mysqli_num_rows($result) > 0) {
-            $errors[] = "Username or email already exists for another user";
-        }
-        
-        // If password change is requested
-        if (!empty($current_password)) {
-            // Get current user data
-            $user_query = "SELECT * FROM users WHERE id = $user_id";
-            $user_result = mysqli_query($conn, $user_query);
-            $user_data = mysqli_fetch_assoc($user_result);
-            
-            // Verify current password
-            if (!password_verify($current_password, $user_data['password'])) {
-                $errors[] = "Current password is incorrect";
-            }
-            
-            // Validate new password
-            if (empty($new_password)) {
-                $errors[] = "New password is required";
-            } elseif (strlen($new_password) < 6) {
-                $errors[] = "New password must be at least 6 characters";
-            }
-            
-            if ($new_password !== $confirm_password) {
-                $errors[] = "New passwords do not match";
-            }
-        }
-        
-        // If no errors, proceed with update
-        if (empty($errors)) {
-            // Update user information
-            $update_query = "UPDATE users SET 
-                name = '$name',
-                username = '$username',
-                email = '$email',
-                phone = '$phone',
-                profile_picture = '$profile_picture'";
-            
-            // Add password update if provided
-            if (!empty($new_password)) {
-                $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-                $update_query .= ", password = '$hashed_password'";
-            }
-            
-            $update_query .= " WHERE id = $user_id";
-            
-            if (mysqli_query($conn, $update_query)) {
-                // Update session variables
-                $_SESSION['user_name'] = $name;
-                $_SESSION['user_email'] = $email;
-                
-                $success_message = "Profile updated successfully!";
-            } else {
-                $error_message = "Error updating profile: " . mysqli_error($conn);
-            }
-        } else {
-            $error_message = implode("<br>", $errors);
+        if ($new_password !== $confirm_password) {
+            $errors[] = "New passwords do not match";
         }
     }
     
-    // Handle address form submission
-    if (isset($_POST['add_address'])) {
-        $address_type = mysqli_real_escape_string($conn, $_POST['address_type']);
-        $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
-        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-        $address_line1 = mysqli_real_escape_string($conn, $_POST['address_line1']);
-        $address_line2 = mysqli_real_escape_string($conn, $_POST['address_line2']);
-        $city = mysqli_real_escape_string($conn, $_POST['city']);
-        $state = mysqli_real_escape_string($conn, $_POST['state']);
-        $zip_code = mysqli_real_escape_string($conn, $_POST['zip_code']);
-        $country = mysqli_real_escape_string($conn, $_POST['country']);
-        $is_default = isset($_POST['is_default']) ? 1 : 0;
+    // If no errors, proceed with update
+    if (empty($errors)) {
+        // Update user information
+        $update_query = "UPDATE users SET name = '$name', email = '$email', phone = '$phone'";
         
-        // If this is set as default, unset other defaults of the same type
-        if ($is_default) {
-            $reset_default = "UPDATE user_addresses SET is_default = 0 
-                            WHERE user_id = $user_id AND address_type = '$address_type'";
-            mysqli_query($conn, $reset_default);
+        // Add password update if provided
+        if (!empty($new_password)) {
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $update_query .= ", password = '$hashed_password'";
         }
         
-        $insert_address = "INSERT INTO user_addresses 
-            (user_id, address_type, full_name, phone, address_line1, address_line2, 
-            city, state, zip_code, country, is_default) 
-            VALUES 
-            ($user_id, '$address_type', '$full_name', '$phone', '$address_line1', 
-            '$address_line2', '$city', '$state', '$zip_code', '$country', $is_default)";
+        $update_query .= " WHERE id = $user_id";
         
-        if (mysqli_query($conn, $insert_address)) {
-            $success_message = "Address added successfully!";
+        if (mysqli_query($conn, $update_query)) {
+            // Update session variables
+            $_SESSION['user_name'] = $name;
+            $_SESSION['user_email'] = $email;
+            
+            $success_message = "Profile updated successfully!";
         } else {
-            $error_message = "Error adding address: " . mysqli_error($conn);
+            $error_message = "Error updating profile: " . mysqli_error($conn);
         }
+    } else {
+        $error_message = implode("<br>", $errors);
     }
 }
 
@@ -166,16 +99,56 @@ $user_result = mysqli_query($conn, $user_query);
 $user_data = mysqli_fetch_assoc($user_result);
 
 // Get user addresses
-$addresses_query = "SELECT * FROM user_addresses WHERE user_id = $user_id ORDER BY is_default DESC, created_at DESC";
+$addresses_query = "SELECT * FROM user_addresses WHERE user_id = $user_id";
 $addresses_result = mysqli_query($conn, $addresses_query);
 
-// Initialize addresses array
-$addresses = [];
-if ($addresses_result) {
-    while ($address = mysqli_fetch_assoc($addresses_result)) {
-        $addresses[] = $address;
-    }
-}
+// Get wishlist items
+$wishlist_query = "SELECT w.*, p.product_name, p.product_price, p.product_img 
+                  FROM wishlist w 
+                  JOIN products p ON w.product_id = p.id 
+                  WHERE w.user_id = $user_id";
+$wishlist_result = mysqli_query($conn, $wishlist_query);
+
+// Get saved carts
+$saved_carts_query = "SELECT * FROM saved_carts WHERE user_id = $user_id";
+$saved_carts_result = mysqli_query($conn, $saved_carts_query);
+
+// Get payment methods
+$payment_methods_query = "SELECT * FROM payment_methods WHERE user_id = $user_id";
+$payment_methods_result = mysqli_query($conn, $payment_methods_query);
+
+// Get subscriptions
+$subscriptions_query = "SELECT * FROM subscriptions WHERE user_id = $user_id";
+$subscriptions_result = mysqli_query($conn, $subscriptions_query);
+
+// Get reward points
+$reward_points_query = "SELECT SUM(points) as total_points FROM reward_points 
+                       WHERE user_id = $user_id AND status = 'active'";
+$reward_points_result = mysqli_query($conn, $reward_points_query);
+$reward_points = mysqli_fetch_assoc($reward_points_result)['total_points'] ?? 0;
+
+// Get coupons
+$coupons_query = "SELECT * FROM coupons WHERE user_id = $user_id AND status = 'active'";
+$coupons_result = mysqli_query($conn, $coupons_query);
+
+// Get notification preferences
+$notifications_query = "SELECT * FROM notification_preferences WHERE user_id = $user_id";
+$notifications_result = mysqli_query($conn, $notifications_query);
+$notifications = mysqli_fetch_assoc($notifications_result);
+
+// Get recent login history
+$login_history_query = "SELECT * FROM login_history 
+                       WHERE user_id = $user_id 
+                       ORDER BY login_time DESC 
+                       LIMIT 5";
+$login_history_result = mysqli_query($conn, $login_history_query);
+
+// Get support tickets
+$tickets_query = "SELECT * FROM support_tickets 
+                 WHERE user_id = $user_id 
+                 ORDER BY created_at DESC 
+                 LIMIT 5";
+$tickets_result = mysqli_query($conn, $tickets_query);
 
 mysqli_close($conn);
 ?>
@@ -219,28 +192,34 @@ mysqli_close($conn);
       margin-bottom: 10px;
     }
     
-    .profile-content {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 30px;
+    .profile-tabs {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 30px;
     }
     
-    .profile-picture {
-      text-align: center;
+    .profile-tab {
+      padding: 15px 30px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
     }
     
-    .profile-picture img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
+    .profile-tab.active {
+      border-bottom-color: #088178;
+      color: #088178;
     }
     
-    .profile-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    .profile-tab:hover {
+      color: #088178;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
     }
     
     .form-group {
@@ -255,7 +234,8 @@ mysqli_close($conn);
     }
     
     .form-group input,
-    .form-group textarea {
+    .form-group textarea,
+    .form-group select {
       width: 100%;
       padding: 10px;
       border: 1px solid #ddd;
@@ -264,25 +244,13 @@ mysqli_close($conn);
     }
     
     .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group textarea:focus,
+    .form-group select:focus {
       border-color: #088178;
       outline: none;
     }
     
-    .password-section {
-      grid-column: span 2;
-      border-top: 1px solid #eee;
-      padding-top: 20px;
-      margin-top: 20px;
-    }
-    
-    .password-section h3 {
-      margin-bottom: 20px;
-      color: #333;
-    }
-    
     .btn-container {
-      grid-column: span 2;
       text-align: center;
       margin-top: 20px;
     }
@@ -319,143 +287,87 @@ mysqli_close($conn);
       color: #cc0000;
     }
     
-    .addresses-section {
-      margin-top: 40px;
-      grid-column: span 2;
-    }
-    
-    .addresses-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
       margin-bottom: 20px;
     }
     
-    .addresses-header h2 {
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
       color: #333;
     }
     
-    .add-address-btn {
-      background-color: #088178;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
+    .card-action {
+      color: #088178;
+      text-decoration: none;
       font-size: 14px;
     }
     
-    .addresses-grid {
+    .address-list,
+    .wishlist-items,
+    .saved-carts,
+    .payment-methods,
+    .subscriptions,
+    .coupons,
+    .login-history,
+    .support-tickets {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
     }
     
-    .address-card {
+    .address-item,
+    .wishlist-item,
+    .saved-cart,
+    .payment-method,
+    .subscription,
+    .coupon,
+    .login-entry,
+    .ticket {
       background-color: #f9f9f9;
-      padding: 20px;
+      padding: 15px;
       border-radius: 5px;
-      border: 1px solid #eee;
     }
     
-    .address-card h3 {
-      margin-bottom: 10px;
-      color: #333;
+    .reward-points {
+      text-align: center;
+      padding: 30px;
+      background-color: #f0f8ff;
+      border-radius: 8px;
     }
     
-    .address-card p {
-      margin: 5px 0;
-      color: #666;
+    .points-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: #088178;
+      margin: 10px 0;
     }
     
-    .address-actions {
-      margin-top: 15px;
-      display: flex;
-      gap: 10px;
-    }
-    
-    .address-actions button {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-    
-    .edit-btn {
-      background-color: #088178;
-      color: white;
-    }
-    
-    .delete-btn {
-      background-color: #dc3545;
-      color: white;
-    }
-    
-    .default-badge {
-      display: inline-block;
-      background-color: #28a745;
-      color: white;
-      padding: 3px 8px;
-      border-radius: 3px;
-      font-size: 12px;
-      margin-left: 10px;
-    }
-    
-    .address-form {
-      background-color: #f9f9f9;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-    
-    .address-form h3 {
-      margin-bottom: 20px;
-      color: #333;
-    }
-    
-    .form-row {
-      display: flex;
+    .notification-preferences {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
-      margin-bottom: 15px;
     }
     
-    .form-row .form-group {
-      flex: 1;
-    }
-    
-    .default-address-option {
+    .preference-item {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 15px 0;
     }
     
-    .default-address-option select {
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      width: 200px;
-    }
-    
-    .default-address-option label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-    
-    .default-address-option input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-    
-    .address-form-buttons {
-      display: flex;
-      justify-content: flex-start;
-      gap: 10px;
-      margin-top: 20px;
+    .preference-item input[type="checkbox"] {
+      width: auto;
     }
   </style>
 </head>
@@ -466,7 +378,7 @@ mysqli_close($conn);
   <div class="profile-container">
     <div class="profile-header">
       <h1>My Profile</h1>
-      <p>Manage your account information</p>
+      <p>Manage your account information and preferences</p>
     </div>
     
     <?php if (!empty($success_message)): ?>
@@ -477,37 +389,35 @@ mysqli_close($conn);
       <div class="message error-message"><?php echo $error_message; ?></div>
     <?php endif; ?>
     
-    <div class="profile-content">
-      <div class="profile-picture">
-        <img src="uploads/profile_pictures/<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 'default.jpg'; ?>" alt="Profile Picture">
-        <form method="POST" action="profile.php" enctype="multipart/form-data" class="profile-picture-form">
-          <input type="hidden" name="update_profile" value="1">
-          <input type="file" name="profile_picture" accept="image/*" class="profile-picture-input">
-          <button type="submit" class="btn-update">Upload Picture</button>
-        </form>
-      </div>
-      
-      <form method="POST" action="profile.php" class="profile-form" enctype="multipart/form-data">
-        <input type="hidden" name="update_profile" value="1">
-        
+    <div class="profile-tabs">
+      <div class="profile-tab active" data-tab="personal">Personal Information</div>
+      <div class="profile-tab" data-tab="addresses">Addresses</div>
+      <div class="profile-tab" data-tab="wishlist">Wishlist</div>
+      <div class="profile-tab" data-tab="saved-carts">Saved Carts</div>
+      <div class="profile-tab" data-tab="payment">Payment Methods</div>
+      <div class="profile-tab" data-tab="subscriptions">Subscriptions</div>
+      <div class="profile-tab" data-tab="rewards">Rewards & Coupons</div>
+      <div class="profile-tab" data-tab="notifications">Notifications</div>
+      <div class="profile-tab" data-tab="security">Security</div>
+      <div class="profile-tab" data-tab="support">Support</div>
+    </div>
+    
+    <!-- Personal Information Tab -->
+    <div class="tab-content active" id="personal">
+      <form method="POST" action="profile.php" class="profile-form">
         <div class="form-group">
           <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user_data['name']); ?>" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user_data['username'] ?? ''); ?>" required>
+          <input type="text" id="name" name="name" value="<?php echo $user_data['name']; ?>" required>
         </div>
         
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user_data['email']); ?>" required>
+          <input type="email" id="email" name="email" value="<?php echo $user_data['email']; ?>" required>
         </div>
         
         <div class="form-group">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($user_data['phone'] ?? ''); ?>">
+          <input type="tel" id="phone" name="phone" value="<?php echo $user_data['phone'] ?? ''; ?>">
         </div>
         
         <div class="password-section">
@@ -534,119 +444,224 @@ mysqli_close($conn);
           <button type="submit" class="btn-update">Update Profile</button>
         </div>
       </form>
+    </div>
+    
+    <!-- Addresses Tab -->
+    <div class="tab-content" id="addresses">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Saved Addresses</h3>
+          <a href="#" class="card-action">Add New Address</a>
+        </div>
+        <div class="address-list">
+          <?php while ($address = mysqli_fetch_assoc($addresses_result)): ?>
+            <div class="address-item">
+              <h4><?php echo $address['address_type'] == 'shipping' ? 'Shipping Address' : 'Billing Address'; ?></h4>
+              <p><?php echo $address['full_name']; ?></p>
+              <p><?php echo $address['address_line1']; ?></p>
+              <?php if (!empty($address['address_line2'])): ?>
+                <p><?php echo $address['address_line2']; ?></p>
+              <?php endif; ?>
+              <p><?php echo $address['city'] . ', ' . $address['state'] . ' ' . $address['zip_code']; ?></p>
+              <p><?php echo $address['country']; ?></p>
+              <p>Phone: <?php echo $address['phone']; ?></p>
+              <?php if ($address['is_default']): ?>
+                <span class="default-badge">Default</span>
+              <?php endif; ?>
+            </div>
+          <?php endwhile; ?>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Wishlist Tab -->
+    <div class="tab-content" id="wishlist">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">My Wishlist</h3>
+        </div>
+        <div class="wishlist-items">
+          <?php while ($item = mysqli_fetch_assoc($wishlist_result)): ?>
+            <div class="wishlist-item">
+              <img src="<?php echo $item['product_img']; ?>" alt="<?php echo $item['product_name']; ?>">
+              <h4><?php echo $item['product_name']; ?></h4>
+              <p class="price">$<?php echo $item['product_price']; ?></p>
+              <button class="btn-update">Add to Cart</button>
+            </div>
+          <?php endwhile; ?>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Saved Carts Tab -->
+    <div class="tab-content" id="saved-carts">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Saved Carts</h3>
+        </div>
+        <div class="saved-carts">
+          <?php while ($cart = mysqli_fetch_assoc($saved_carts_result)): ?>
+            <div class="saved-cart">
+              <h4><?php echo $cart['cart_name']; ?></h4>
+              <p>Created: <?php echo date('F j, Y', strtotime($cart['created_at'])); ?></p>
+              <button class="btn-update">Load Cart</button>
+            </div>
+          <?php endwhile; ?>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Payment Methods Tab -->
+    <div class="tab-content" id="payment">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Payment Methods</h3>
+          <a href="#" class="card-action">Add New Payment Method</a>
+        </div>
+        <div class="payment-methods">
+          <?php while ($method = mysqli_fetch_assoc($payment_methods_result)): ?>
+            <div class="payment-method">
+              <h4><?php echo ucfirst($method['payment_type']); ?></h4>
+              <p>Card Number: **** **** **** <?php echo substr($method['card_number'], -4); ?></p>
+              <p>Expires: <?php echo date('m/Y', strtotime($method['expiry_date'])); ?></p>
+              <?php if ($method['is_default']): ?>
+                <span class="default-badge">Default</span>
+              <?php endif; ?>
+            </div>
+          <?php endwhile; ?>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Subscriptions Tab -->
+    <div class="tab-content" id="subscriptions">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">My Subscriptions</h3>
+        </div>
+        <div class="subscriptions">
+          <?php while ($subscription = mysqli_fetch_assoc($subscriptions_result)): ?>
+            <div class="subscription">
+              <h4><?php echo $subscription['plan_name']; ?></h4>
+              <p>Status: <?php echo ucfirst($subscription['status']); ?></p>
+              <p>Start Date: <?php echo date('F j, Y', strtotime($subscription['start_date'])); ?></p>
+              <?php if ($subscription['end_date']): ?>
+                <p>End Date: <?php echo date('F j, Y', strtotime($subscription['end_date'])); ?></p>
+              <?php endif; ?>
+              <p>Auto-renew: <?php echo $subscription['auto_renew'] ? 'Yes' : 'No'; ?></p>
+            </div>
+          <?php endwhile; ?>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Rewards & Coupons Tab -->
+    <div class="tab-content" id="rewards">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Reward Points</h3>
+        </div>
+        <div class="reward-points">
+          <h4>Available Points</h4>
+          <div class="points-value"><?php echo $reward_points; ?></div>
+          <p>Points can be redeemed for discounts on future purchases</p>
+        </div>
+      </div>
       
-      <div class="addresses-section">
-        <div class="addresses-header">
-          <h2>Saved Addresses</h2>
-          <button class="add-address-btn" onclick="showAddressForm()">Add New Address</button>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Available Coupons</h3>
         </div>
-        
-        <div class="addresses-grid">
-          <?php if (!empty($addresses)): ?>
-            <?php foreach ($addresses as $address): ?>
-              <div class="address-card">
-                <h3>
-                  <?php echo ucfirst($address['address_type']); ?> Address
-                  <?php if ($address['is_default']): ?>
-                    <span class="default-badge">Default</span>
-                  <?php endif; ?>
-                </h3>
-                <p><strong>Name:</strong> <?php echo htmlspecialchars($address['full_name']); ?></p>
-                <p><strong>Phone:</strong> <?php echo htmlspecialchars($address['phone']); ?></p>
-                <p><strong>Address:</strong> <?php echo htmlspecialchars($address['address_line1']); ?></p>
-                <?php if (!empty($address['address_line2'])): ?>
-                  <p><?php echo htmlspecialchars($address['address_line2']); ?></p>
-                <?php endif; ?>
-                <p>
-                  <?php echo htmlspecialchars($address['city']); ?>, 
-                  <?php echo htmlspecialchars($address['state']); ?> 
-                  <?php echo htmlspecialchars($address['zip_code']); ?>
-                </p>
-                <p><?php echo htmlspecialchars($address['country']); ?></p>
-                <div class="address-actions">
-                  <button class="edit-btn">Edit</button>
-                  <button class="delete-btn">Delete</button>
-                </div>
-              </div>
-            <?php endforeach; ?>
-          <?php else: ?>
-            <div class="no-addresses">
-              <p>No addresses saved yet. Add your first address below.</p>
+        <div class="coupons">
+          <?php while ($coupon = mysqli_fetch_assoc($coupons_result)): ?>
+            <div class="coupon">
+              <h4><?php echo $coupon['code']; ?></h4>
+              <p><?php echo $coupon['discount_type'] == 'percentage' ? 
+                $coupon['discount_value'] . '% off' : 
+                '$' . $coupon['discount_value'] . ' off'; ?></p>
+              <p>Expires: <?php echo date('F j, Y', strtotime($coupon['expiry_date'])); ?></p>
             </div>
-          <?php endif; ?>
+          <?php endwhile; ?>
         </div>
-        
-        <div id="address-form" style="display: none;">
-          <h3>Add New Address</h3>
-          <form method="POST" action="profile.php" class="address-form">
-            <input type="hidden" name="add_address" value="1">
-            
-            <div class="form-group">
-              <label>Address Type</label>
-              <select name="address_type" required>
-                <option value="shipping">Shipping Address</option>
-                <option value="billing">Billing Address</option>
-              </select>
+      </div>
+    </div>
+    
+    <!-- Notifications Tab -->
+    <div class="tab-content" id="notifications">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Notification Preferences</h3>
+        </div>
+        <form action="update_notifications.php" method="POST">
+          <div class="notification-preferences">
+            <div class="preference-item">
+              <input type="checkbox" id="email_notifications" name="email_notifications" 
+                <?php echo $notifications['email_notifications'] ? 'checked' : ''; ?>>
+              <label for="email_notifications">Email Notifications</label>
             </div>
-            
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" name="full_name" required>
+            <div class="preference-item">
+              <input type="checkbox" id="sms_notifications" name="sms_notifications"
+                <?php echo $notifications['sms_notifications'] ? 'checked' : ''; ?>>
+              <label for="sms_notifications">SMS Notifications</label>
             </div>
-            
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" name="phone" required>
+            <div class="preference-item">
+              <input type="checkbox" id="order_updates" name="order_updates"
+                <?php echo $notifications['order_updates'] ? 'checked' : ''; ?>>
+              <label for="order_updates">Order Updates</label>
             </div>
-            
-            <div class="form-group">
-              <label>Address Line 1</label>
-              <input type="text" name="address_line1" required>
+            <div class="preference-item">
+              <input type="checkbox" id="promotional_offers" name="promotional_offers"
+                <?php echo $notifications['promotional_offers'] ? 'checked' : ''; ?>>
+              <label for="promotional_offers">Promotional Offers</label>
             </div>
-            
-            <div class="form-group">
-              <label>Address Line 2</label>
-              <input type="text" name="address_line2">
+            <div class="preference-item">
+              <input type="checkbox" id="newsletter" name="newsletter"
+                <?php echo $notifications['newsletter'] ? 'checked' : ''; ?>>
+              <label for="newsletter">Newsletter</label>
             </div>
-            
-            <div class="form-row">
-              <div class="form-group">
-                <label>City</label>
-                <input type="text" name="city" required>
-              </div>
-              <div class="form-group">
-                <label>State</label>
-                <input type="text" name="state" required>
-              </div>
+          </div>
+          <div class="btn-container">
+            <button type="submit" class="btn-update">Save Preferences</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Security Tab -->
+    <div class="tab-content" id="security">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Login Activity</h3>
+        </div>
+        <div class="login-history">
+          <?php while ($login = mysqli_fetch_assoc($login_history_result)): ?>
+            <div class="login-entry">
+              <p><strong>Date:</strong> <?php echo date('F j, Y g:i A', strtotime($login['login_time'])); ?></p>
+              <p><strong>IP Address:</strong> <?php echo $login['ip_address']; ?></p>
+              <p><strong>Device:</strong> <?php echo $login['device_info']; ?></p>
+              <p><strong>Status:</strong> <?php echo ucfirst($login['status']); ?></p>
             </div>
-            
-            <div class="form-row">
-              <div class="form-group">
-                <label>ZIP Code</label>
-                <input type="text" name="zip_code" required>
-              </div>
-              <div class="form-group">
-                <label>Country</label>
-                <input type="text" name="country" required>
-              </div>
+          <?php endwhile; ?>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Support Tab -->
+    <div class="tab-content" id="support">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Support Tickets</h3>
+          <a href="#" class="card-action">Create New Ticket</a>
+        </div>
+        <div class="support-tickets">
+          <?php while ($ticket = mysqli_fetch_assoc($tickets_result)): ?>
+            <div class="ticket">
+              <h4><?php echo $ticket['subject']; ?></h4>
+              <p><strong>Status:</strong> <?php echo ucfirst($ticket['status']); ?></p>
+              <p><strong>Priority:</strong> <?php echo ucfirst($ticket['priority']); ?></p>
+              <p><strong>Created:</strong> <?php echo date('F j, Y', strtotime($ticket['created_at'])); ?></p>
             </div>
-            
-            <div class="default-address-option">
-              <label>
-                <input type="checkbox" name="is_default" id="is_default">
-                Set as default address
-              </label>
-              <select name="default_type" id="default_type" style="display: none;">
-                <option value="shipping">Shipping Address</option>
-                <option value="billing">Billing Address</option>
-              </select>
-            </div>
-            
-            <div class="address-form-buttons">
-              <button type="submit" class="btn-update">Save Address</button>
-              <button type="button" class="btn-update" onclick="hideAddressForm()">Cancel</button>
-            </div>
-          </form>
+          <?php endwhile; ?>
         </div>
       </div>
     </div>
@@ -655,18 +670,17 @@ mysqli_close($conn);
   <?php include 'footer.php'; ?>
 
   <script>
-    function showAddressForm() {
-      document.getElementById('address-form').style.display = 'block';
-    }
-    
-    function hideAddressForm() {
-      document.getElementById('address-form').style.display = 'none';
-    }
-
-    // Handle default address checkbox
-    document.getElementById('is_default').addEventListener('change', function() {
-      const defaultTypeSelect = document.getElementById('default_type');
-      defaultTypeSelect.style.display = this.checked ? 'block' : 'none';
+    // Tab switching functionality
+    document.querySelectorAll('.profile-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and contents
+        document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
     });
   </script>
 </body>
