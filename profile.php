@@ -211,7 +211,7 @@ mysqli_close($conn);
     
     .profile-header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
     
     .profile-header h1 {
@@ -219,10 +219,73 @@ mysqli_close($conn);
       margin-bottom: 10px;
     }
     
+    .profile-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .nav-option {
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .nav-option:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-color: #088178;
+    }
+    
+    .nav-option.active {
+      background-color: #088178;
+      color: white;
+      border-color: #088178;
+    }
+    
+    .nav-option i {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #088178;
+    }
+    
+    .nav-option.active i {
+      color: white;
+    }
+    
+    .nav-option h3 {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    
+    .nav-option p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+    }
+    
+    .nav-option.active p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
     .profile-content {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 30px;
+      display: none;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+    }
+    
+    .profile-content.active {
+      display: block;
     }
     
     .profile-picture {
@@ -466,25 +529,65 @@ mysqli_close($conn);
   <div class="profile-container">
     <div class="profile-header">
       <h1>My Profile</h1>
-      <p>Manage your account information</p>
+      <p>Manage your account settings and preferences</p>
     </div>
     
-    <?php if (!empty($success_message)): ?>
-      <div class="message success-message"><?php echo $success_message; ?></div>
-    <?php endif; ?>
+    <div class="profile-navigation">
+      <div class="nav-option active" data-tab="personal-info">
+        <i class="fas fa-user"></i>
+        <h3>Personal Information</h3>
+        <p>Update your profile details</p>
+      </div>
+      
+      <div class="nav-option" data-tab="wishlist">
+        <i class="fas fa-heart"></i>
+        <h3>Wishlist and Favorites</h3>
+        <p>View your saved items</p>
+      </div>
+      
+      <div class="nav-option" data-tab="notifications">
+        <i class="fas fa-bell"></i>
+        <h3>Notifications</h3>
+        <p>Manage your preferences</p>
+      </div>
+      
+      <div class="nav-option" data-tab="security">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Security Settings</h3>
+        <p>Protect your account</p>
+      </div>
+      
+      <div class="nav-option" data-tab="support">
+        <i class="fas fa-headset"></i>
+        <h3>Support</h3>
+        <p>Get help and support</p>
+      </div>
+    </div>
     
-    <?php if (!empty($error_message)): ?>
-      <div class="message error-message"><?php echo $error_message; ?></div>
-    <?php endif; ?>
-    
-    <div class="profile-content">
+    <div class="profile-content active" id="personal-info">
+      <?php if (!empty($success_message)): ?>
+        <div class="message success-message"><?php echo $success_message; ?></div>
+      <?php endif; ?>
+      
+      <?php if (!empty($error_message)): ?>
+        <div class="message error-message"><?php echo $error_message; ?></div>
+      <?php endif; ?>
+      
       <div class="profile-picture">
-        <img src="uploads/profile_pictures/<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 'default.jpg'; ?>" alt="Profile Picture">
+        <img src="uploads/profile_pictures/<?php echo isset($user_data['profile_picture']) ? $user_data['profile_picture'] : 'default.jpg'; ?>" alt="Profile Picture" id="profile-image">
         <form method="POST" action="profile.php" enctype="multipart/form-data" class="profile-picture-form">
           <input type="hidden" name="update_profile" value="1">
-          <input type="file" name="profile_picture" accept="image/*" class="profile-picture-input">
-          <button type="submit" class="btn-update">Upload Picture</button>
+          <label for="profile-picture-input" class="profile-picture-label">
+            <i class="fas fa-camera"></i> Choose Photo
+          </label>
+          <input type="file" id="profile-picture-input" name="profile_picture" accept="image/*" class="profile-picture-input">
+          <button type="submit" class="profile-picture-upload-btn" id="upload-btn">
+            <i class="fas fa-upload"></i> Upload
+          </button>
         </form>
+        <div class="profile-picture-preview" id="preview-container">
+          <img id="preview-image" src="#" alt="Preview">
+        </div>
       </div>
       
       <form method="POST" action="profile.php" class="profile-form" enctype="multipart/form-data">
@@ -650,6 +753,26 @@ mysqli_close($conn);
         </div>
       </div>
     </div>
+    
+    <div class="profile-content" id="wishlist">
+      <h2>Wishlist and Favorites</h2>
+      <p>Your saved items will appear here.</p>
+    </div>
+    
+    <div class="profile-content" id="notifications">
+      <h2>Notification Preferences</h2>
+      <p>Manage your notification settings here.</p>
+    </div>
+    
+    <div class="profile-content" id="security">
+      <h2>Security Settings</h2>
+      <p>Manage your account security here.</p>
+    </div>
+    
+    <div class="profile-content" id="support">
+      <h2>Support and Help</h2>
+      <p>Get assistance with your account here.</p>
+    </div>
   </div>
 
   <?php include 'footer.php'; ?>
@@ -667,6 +790,19 @@ mysqli_close($conn);
     document.getElementById('is_default').addEventListener('change', function() {
       const defaultTypeSelect = document.getElementById('default_type');
       defaultTypeSelect.style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Tab switching functionality
+    document.querySelectorAll('.nav-option').forEach(option => {
+      option.addEventListener('click', function() {
+        // Remove active class from all options and contents
+        document.querySelectorAll('.nav-option').forEach(opt => opt.classList.remove('active'));
+        document.querySelectorAll('.profile-content').forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked option and corresponding content
+        this.classList.add('active');
+        document.getElementById(this.dataset.tab).classList.add('active');
+      });
     });
   </script>
 </body>

@@ -58,4 +58,4 @@ if (mysqli_query($conn, $update_query)) {
 mysqli_close($conn);
 header("Location: profile.php");
 exit();
-?> 
+?>
