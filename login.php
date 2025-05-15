@@ -6,7 +6,6 @@ require __DIR__ . '/vendor/autoload.php';
 $client = new Google\Client;
 
 $client->setClientId("333815118093-j8baguhu17sftohddjh8ks4i05qcgno1.apps.googleusercontent.com");
-$client->setClientSecret("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");
 $client->setRedirectUri("http://localhost/E-CommWeb/index.php");
 
 $url = $client->createAuthUrl();
