@@ -1,6 +1,16 @@
 <?php
 session_start();
 
+require __DIR__ . '/vendor/autoload.php';
+
+$client = new Google\Client;
+
+$client->setClientId("333815118093-j8baguhu17sftohddjh8ks4i05qcgno1.apps.googleusercontent.com");
+$client->setClientSecret("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");
+$client->setRedirectUri("http://localhost/E-CommWeb/index.php");
+
+$url = $client->createAuthUrl();
+
 // Check if user is already logged in
 if (isset($_SESSION['user_id'])) {
     header("Location: index.php");
@@ -54,13 +64,6 @@ if (isset($_SESSION['user_id'])) {
     <div class="sign-up">
       <form action="register.php" method="POST">
         <h3>Create Account</h3>
-        <div class="icons">
-          <a href="#" class="icon" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" class="icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="icon" title="Google"><i class="fa-brands fa-google"></i></a>
-          <a href="#" class="icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        </div>
-        <span>or use email for registration</span>
         <input type="text" name="name" placeholder="Name" required />
         <input type="email" name="email" placeholder="Email" required />
         <input type="password" name="password" placeholder="Password" required />
@@ -73,7 +76,7 @@ if (isset($_SESSION['user_id'])) {
         <div class="icons">
           <a href="#" class="icon" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
           <a href="#" class="icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="icon" title="Google"><i class="fa-brands fa-google"></i></a>
+          <a href="<?= $url ?>" class="icon" title="Google"><i class="fa-brands fa-google"></i></a>
           <a href="#" class="icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
         </div>
         <span>or use email password</span>
