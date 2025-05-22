@@ -20,9 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // If no errors, proceed with login
     if (empty($errors)) {
-        // Check if user exists
-        $sql = "SELECT * FROM users WHERE email = '$email'";
-        $result = mysqli_query($conn, $sql);
+        // Check if user exists using prepared statement
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
         
         if (mysqli_num_rows($result) == 1) {
             $user = mysqli_fetch_assoc($result);
@@ -31,11 +34,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $user['password'])) {
                 // Password is correct, set session variables
                 $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['name'];
-                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['name'] = $user['name'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'] ?? 'user'; // Set role, default to 'user' if not set
                 
-                // Redirect to home page
-                header("Location: index.php");
+                // Redirect based on role
+                if ($_SESSION['role'] === 'admin') {
+                    header("Location: admin/dashboard.php");
+                } else {
+                    header("Location: index.php");
+                }
                 exit();
             } else {
                 $errors[] = "Invalid email or password";

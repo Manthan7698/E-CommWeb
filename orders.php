@@ -43,7 +43,8 @@ if (mysqli_num_rows($table_exists) == 0) {
 }
 
 // Get user's orders
-$orders_query = "SELECT * FROM orders WHERE user_id = $user_id ORDER BY order_date DESC";
+// $orders_query = "SELECT * FROM orders WHERE user_id = $user_id ORDER BY order_date DESC";
+$orders_query = "SELECT * FROM orders WHERE user_id = $user_id ";
 $orders_result = mysqli_query($conn, $orders_query);
 
 mysqli_close($conn);

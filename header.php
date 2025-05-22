@@ -34,7 +34,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li class="user-menu">
                     <a href="#" class="nav-link user-link">
-                        <i class="fa-solid fa-user"></i> <?php echo $_SESSION['user_name']; ?>
+                        <i class="fa-solid fa-user"></i> <?php echo $_SESSION['name']; ?>
                     </a>
                     <div class="dropdown-menu">
                         <a href="profile.php">My Profile</a>
