@@ -54,12 +54,6 @@ if (isset($_SESSION['user_id'])) {
     <div class="sign-up">
       <form action="register.php" method="POST">
         <h3>Create Account</h3>
-        <div class="icons">
-          <a href="#" class="icon" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" class="icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="icon" title="Google"><i class="fa-brands fa-google"></i></a>
-          <a href="#" class="icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        </div>
         <span>or use email for registration</span>
         <input type="text" name="name" placeholder="Name" required />
         <input type="email" name="email" placeholder="Email" required />
@@ -71,10 +65,7 @@ if (isset($_SESSION['user_id'])) {
       <form action="auth.php" method="POST">
         <h3>Sign In</h3>
         <div class="icons">
-          <a href="#" class="icon" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" class="icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="#" class="icon" title="Google"><i class="fa-brands fa-google"></i></a>
-          <a href="#" class="icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
         </div>
         <span>or use email password</span>
         
@@ -96,7 +87,7 @@ if (isset($_SESSION['user_id'])) {
         
         <input type="email" name="email" placeholder="Email" required />
         <input type="password" name="password" placeholder="Password" required />
-        <a href="#">Forgot password</a>
+        <a href="#">Forgot password ?</a>
         <button type="submit">Sign In</button>
       </form>
     </div>
