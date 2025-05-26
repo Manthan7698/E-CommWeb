@@ -83,7 +83,7 @@ $url = $client->createAuthUrl();
         <h3>Sign In</h3>
         <div class="icons">
           <a href="<?= htmlspecialchars($url); ?>" class="icon" title="Google">
-            <i class="fa-brands fa-google"></i>
+            <i class="fa-brands fa-google"></i><span>Sign In With Google</span>
           </a>
         </div>
         <span>or use email password.</span>
