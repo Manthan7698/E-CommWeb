@@ -4,8 +4,8 @@ require __DIR__ . '/vendor/autoload.php';
 require 'config.php'; // Add database connection
 
 $client = new Google\Client();
-$client->setClientId("333815118093-j8baguhu17sftohddjh8ks4i05qcgno1.apps.googleusercontent.com");
-$client->setClientSecret("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");
+$client->setClientId("979257647670-62bvrvca3c6211mtee5gr12tkd2ngctp.apps.googleusercontent.com");
+$client->setClientSecret("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");
 $client->setRedirectUri("http://localhost/E-CommWeb/google_callback.php");
 
 if (isset($_GET['code'])) {

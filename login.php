@@ -8,6 +8,23 @@ if (isset($_SESSION['user_id'])) {
 }
 ?>
 
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+require 'config.php';
+
+$client = new Google\Client;
+
+$client->setClientId('979257647670-62bvrvca3c6211mtee5gr12tkd2ngctp.apps.googleusercontent.com');
+$client->setClientSecret('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');
+$redirect_uri = 'http://localhost/E-CommWeb/google_callback.php';
+$client->setRedirectUri($redirect_uri);
+$client->addScope('email');
+$client->addScope('profile');
+
+$url = $client->createAuthUrl();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,9 +82,11 @@ if (isset($_SESSION['user_id'])) {
       <form action="auth.php" method="POST">
         <h3>Sign In</h3>
         <div class="icons">
-          <a href="#" class="icon" title="Google"><i class="fa-brands fa-google"></i></a>
+          <a href="<?= htmlspecialchars($url); ?>" class="icon" title="Google">
+            <i class="fa-brands fa-google"></i>
+          </a>
         </div>
-        <span>or use email password</span>
+        <span>or use email password.</span>
         
         <?php
         // Display error messages
