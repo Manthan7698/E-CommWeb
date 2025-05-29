@@ -237,7 +237,7 @@ mysqli_close($conn);
     <?php if (!empty($error_message)): ?>
       <div class="message error-message"><?php echo $error_message; ?></div>
     <?php endif; ?>
-    
+      
     <form method="POST" action="profile.php" class="profile-form">
       <div class="form-group">
         <label for="name">Full Name</label>
@@ -248,7 +248,7 @@ mysqli_close($conn);
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" value="<?php echo $user_data['email']; ?>" required>
       </div>
-      
+      <?php if(empty($_SESSION['is_google_user'])): ?>
       <div class="password-section">
         <h3>Change Password</h3>
         <p>Leave blank if you don't want to change your password</p>
@@ -268,7 +268,7 @@ mysqli_close($conn);
           <input type="password" id="confirm_password" name="confirm_password">
         </div>
       </div>
-      
+      <?php endif; ?>
       <div class="btn-container">
         <button type="submit" class="btn-update">Update Profile</button>
       </div>

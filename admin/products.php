@@ -18,7 +18,7 @@ if (isset($_POST['delete_product'])) {
 }
 
 // Get all products with their categories
-$sql = "SELECT p.*, c.name as category_name 
+$sql = "SELECT p.*, c.name as category_name, p.product_status 
         FROM products p 
         LEFT JOIN categories c ON p.category_id = c.id 
         ORDER BY p.created_at DESC";
@@ -307,6 +307,8 @@ $result = mysqli_query($conn, $sql);
                     <tbody>
                         <?php while ($product = mysqli_fetch_assoc($result)) { 
                              $imagePath = empty($product['product_img']) ? '../img/products/default.jpg' : '../' . $product['product_img'];
+                             // Debug status
+                             error_log("Product ID: " . $product['id'] . ", Status: " . $product['product_status']);
                         ?>
                             <tr>
                                 <td>
@@ -321,11 +323,11 @@ $result = mysqli_query($conn, $sql);
                                 <td><?php echo $product['stock']; ?></td>
                                 <td>
                                     <span class="status-badge <?php 
-                                        if ($product['status'] === 'active') echo 'status-active';
-                                        else if ($product['status'] === 'inactive') echo 'status-inactive';
+                                        if ($product['product_status'] === 'active') echo 'status-active';
+                                        else if ($product['product_status'] === 'inactive') echo 'status-inactive';
                                         else echo 'status-out-of-stock';
                                         ?>">
-                                        <?php echo ucfirst(str_replace('_', ' ', $product['status'])); ?>
+                                        <?php echo ucfirst(str_replace('_', ' ', $product['product_status'])); ?>
                                     </span>
                                 </td>
                                 <td>

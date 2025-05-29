@@ -33,8 +33,15 @@ if (session_status() == PHP_SESSION_NONE) {
             </li>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li class="user-menu">
-                    <a href="#" class="nav-link user-link">
-                        <i class="fa-solid fa-user"></i> <?php echo $_SESSION['user_name']; ?>
+                    <a href="profile.php" class="nav-link user-link">
+                        <i class="fa-solid fa-user"></i> 
+                        <?php 
+                        if (!empty($_SESSION['is_google_user'])) {
+                            echo $_SESSION['user_name'];
+                        } else {
+                            echo $_SESSION['name'];
+                        }
+                        ?>
                     </a>
                     <div class="dropdown-menu">
                         <a href="profile.php">My Profile</a>

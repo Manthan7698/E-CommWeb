@@ -36,6 +36,19 @@ $categories = mysqli_query($conn, $sql);
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Enable error reporting
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    
+    // Create debug log file
+    $debug_log = fopen("debug.log", "a");
+    fwrite($debug_log, "\n\n=== Product Update Debug Log ===\n");
+    fwrite($debug_log, "Time: " . date('Y-m-d H:i:s') . "\n");
+    
+    // Log POST data
+    fwrite($debug_log, "POST Data:\n");
+    fwrite($debug_log, print_r($_POST, true));
+    
     $category_id = (int)$_POST['category_id'];
     $product_brand = mysqli_real_escape_string($conn, $_POST['product_brand']);
     $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
@@ -44,11 +57,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_code = mysqli_real_escape_string($conn, $_POST['product_code']);
     $product_details = mysqli_real_escape_string($conn, $_POST['product_details']);
     $stock = (int)$_POST['stock'];
-    $status = mysqli_real_escape_string($conn, $_POST['status']);
+    $selected_status = mysqli_real_escape_string($conn, $_POST['product_status']);
+
+    if ($stock === 0) {
+        $product_status = 'out_of_stock';
+    } else {
+        $product_status = ($selected_status === 'inactive') ? 'inactive' : 'active';
+    }
     $is_featured = isset($_POST['is_featured']) ? 1 : 0;
 
-    // Handle image upload (optional update)
-    $product_image = $product['product_img']; // Keep existing image if no new one uploaded
+    // Log processed data
+    fwrite($debug_log, "\nProcessed Data:\n");
+    fwrite($debug_log, "Product Status: " . $product_status . "\n");
+    
+    // Handle image upload
+    $product_image = $product['product_img']; // Keep existing image by default
     if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === 0) {
         $allowed = ['jpg', 'jpeg', 'png', 'webp'];
         $filename = $_FILES['product_image']['name'];
@@ -59,50 +82,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $upload_path = '../img/products/' . $new_filename;
 
             if (move_uploaded_file($_FILES['product_image']['tmp_name'], $upload_path)) {
+                // Delete old image if exists
+                if (!empty($product['product_img']) && file_exists('../' . $product['product_img'])) {
+                    unlink('../' . $product['product_img']);
+                }
                 $product_image = 'img/products/' . $new_filename;
-                // TODO: Optionally delete the old image file
             }
         }
     }
 
     // Update product
     $sql = "UPDATE products SET 
-            category_id = ?, product_brand = ?, product_name = ?, product_price = ?, 
-            discount_price = ?, product_code = ?, product_details = ?, product_img = ?, 
-            stock = ?, status = ?, is_featured = ?
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
             WHERE id = ?";
 
-    // Debug: Log the SQL query and parameters
-    error_log("Update Product SQL: " . $sql);
-    error_log("Update Product Params: " . print_r([$category_id, $product_brand, $product_name, $product_price, $discount_price, $product_code, $product_details, $product_image, $stock, $status, $is_featured, $product_id], true));
+    // Log the SQL query
+    fwrite($debug_log, "\nSQL Query:\n" . $sql . "\n");
+    fwrite($debug_log, "Parameters:\n");
+    fwrite($debug_log, "category_id: $category_id\n");
+    fwrite($debug_log, "product_brand: $product_brand\n");
+    fwrite($debug_log, "product_name: $product_name\n");
+    fwrite($debug_log, "product_price: $product_price\n");
+    fwrite($debug_log, "discount_price: $discount_price\n");
+    fwrite($debug_log, "product_code: $product_code\n");
+    fwrite($debug_log, "product_details: $product_details\n");
+    fwrite($debug_log, "product_img: $product_image\n");
+    fwrite($debug_log, "stock: $stock\n");
+    fwrite($debug_log, "product_status: $product_status\n");
+    fwrite($debug_log, "is_featured: $is_featured\n");
+    fwrite($debug_log, "product_id: $product_id\n");
 
     $stmt = mysqli_prepare($conn, $sql);
-
-    if ($stmt === false) {
-        error_log("Update Product Prepare Error: " . mysqli_error($conn));
+    if (!$stmt) {
+        fwrite($debug_log, "\nPrepare Error: " . mysqli_error($conn) . "\n");
+        $error = "Error preparing statement: " . mysqli_error($conn);
     } else {
-        mysqli_stmt_bind_param($stmt, "issdssssiisi", 
+        mysqli_stmt_bind_param($stmt, "issdssssssii", 
             $category_id, $product_brand, $product_name, $product_price, $discount_price,
-            $product_code, $product_details, $product_image, $stock, $status, $is_featured, $product_id
+            $product_code, $product_details, $product_image, $stock, $product_status, $is_featured,
+            $product_id
         );
 
-        if (mysqli_stmt_execute($stmt)) {
-            error_log("Product updated successfully: ID " . $product_id);
-            $_SESSION['success_message'] = "Product updated successfully!";
+        if (!mysqli_stmt_execute($stmt)) {
+            fwrite($debug_log, "\nExecute Error: " . mysqli_stmt_error($stmt) . "\n");
+            $error = "Error updating product: " . mysqli_stmt_error($stmt);
+        } else {
+            fwrite($debug_log, "\nUpdate successful!\n");
+            
+            // Verify the update
+            $verify_sql = "SELECT * FROM products WHERE id = ?";
+            $verify_stmt = mysqli_prepare($conn, $verify_sql);
+            mysqli_stmt_bind_param($verify_stmt, "i", $product_id);
+            mysqli_stmt_execute($verify_stmt);
+            $result = mysqli_stmt_get_result($verify_stmt);
+            $updated_product = mysqli_fetch_assoc($result);
+            
+            fwrite($debug_log, "\nVerification after update:\n");
+            fwrite($debug_log, print_r($updated_product, true));
+            
             header('Location: products.php');
             exit();
-        } else {
-             error_log("Error updating product ID " . $product_id . ": " . mysqli_error($conn));
-             $_SESSION['error_message'] = "Error updating product: " . mysqli_error($conn);
         }
-         mysqli_stmt_close($stmt);
     }
-
-    // If there was an error, redirect back to edit page with error message
-    if (isset($_SESSION['error_message'])) {
-        header('Location: edit_product.php?id=' . $product_id);
-        exit();
-    }
+    
+    fclose($debug_log);
 }
 
 ?>
@@ -427,11 +480,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-row">
                          <div class="form-group">
-                            <label for="status">Status</label>
-                            <select name="status" id="status" class="form-control" required>
-                                <option value="active" <?php echo $product['status'] == 'active' ? 'selected' : ''; ?>>Active</option>
-                                <option value="inactive" <?php echo $product['status'] == 'inactive' ? 'selected' : ''; ?>>Inactive</option>
-                                <option value="out_of_stock" <?php echo $product['status'] == 'out_of_stock' ? 'selected' : ''; ?>>Out of Stock</option>
+                            <label for="product_status">Status</label>
+                            <select name="product_status" id="product_status" class="form-control" required>
+                                <option value="active" <?php echo $product['product_status'] == 'active' ? 'selected' : ''; ?>>Active</option>
+                                <option value="inactive" <?php echo $product['product_status'] == 'inactive' ? 'selected' : ''; ?>>Inactive</option>
+                                <option value="out_of_stock" <?php echo $product['product_status'] == 'out_of_stock' ? 'selected' : ''; ?>>Out of Stock</option>
                             </select>
                         </div>
 

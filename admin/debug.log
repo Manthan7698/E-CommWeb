@@ -1,0 +1,2759 @@
+=== New Product Addition ===
+Time: 2025-05-28 13:02:53
+POST data: Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Shirt 
+    [product_price] => 676
+    [discount_price] => 
+    [product_code] => p1002
+    [stock] => 34
+    [product_details] =>  gr rvrge4vwrg egve gegerg erfe vg rg rhdfb sgs
+    [status] => inactive
+)
+
+Raw status value: inactive
+Escaped status value: inactive
+Inserted product data: Array
+(
+    [id] => 37
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Shirt 
+    [product_price] => 676
+    [discount_price] => 
+    [product_img] => img/products/6836ed5d22e6f.jpg
+    [product_code] => p1002
+    [product_details] =>  gr rvrge4vwrg egve gegerg erfe vg rg rhdfb sgs
+    [stock] => 34
+    [product_status] => 
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:32:53
+    [updated_at] => 2025-05-28 16:32:53
+)
+
+=== End Product Addition ===
+
+=== New Product Addition ===
+Time: 2025-05-28 13:05:10
+POST data: Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Trousers
+    [product_price] => 7878
+    [discount_price] => 
+    [product_code] => p68957
+    [stock] => 574
+    [product_details] => jbgjhb hjdsm, eh iuefbefke fkenfkw enfkjew .ds, er rsibf s sf df, lefwsnlfnwe
+    [product_status] => inactive
+)
+
+Raw status value: inactive
+Escaped status value: inactive
+Inserted product data: Array
+(
+    [id] => 38
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Trousers
+    [product_price] => 7878
+    [discount_price] => 
+    [product_img] => img/products/6836ede6ab797.jpg
+    [product_code] => p68957
+    [product_details] => jbgjhb hjdsm, eh iuefbefke fkenfkw enfkjew .ds, er rsibf s sf df, lefwsnlfnwe
+    [stock] => 574
+    [product_status] => 
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:35:10
+    [updated_at] => 2025-05-28 16:35:10
+)
+
+=== End Product Addition ===
+
+=== New Product Addition ===
+Time: 2025-05-28 13:07:41
+POST data: Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 35
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => inactive
+)
+
+Raw status value: inactive
+Escaped status value: inactive
+Column check result: Array
+(
+    [Field] => product_status
+    [Type] => enum('active','inactive','out_of_stock')
+    [Null] => YES
+    [Key] => 
+    [Default] => active
+    [Extra] => 
+)
+
+SQL Query: INSERT INTO products (
+        category_id, product_brand, product_name, product_price, discount_price,
+        product_code, product_details, product_img, stock, product_status, is_featured
+    ) VALUES (
+        12,
+        'nike',
+        'Cartoon Astronaut T-Shirt',
+        234322,
+        NULL,
+        'p214',
+        ' efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn',
+        'img/products/6836ee7def064.jpg',
+        35,
+        'inactive',
+        0
+    )
+Inserted product data: Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 35
+    [product_status] => inactive
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 16:37:41
+)
+
+=== End Product Addition ===
+
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:11:42
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 35
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => inactive
+)
+
+Processed Data:
+Product Status: inactive
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: nike
+product_name: Cartoon Astronaut T-Shirt
+product_price: 234322
+discount_price: 
+product_code: p214
+product_details:  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+product_img: img/products/6836ee7def064.jpg
+stock: 35
+product_status: inactive
+is_featured: 0
+product_id: 39
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 35
+    [product_status] => 
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 16:37:56
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:12:52
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 35
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => inactive
+)
+
+Processed Data:
+Product Status: inactive
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: nike
+product_name: Cartoon Astronaut T-Shirt
+product_price: 234322
+discount_price: 
+product_code: p214
+product_details:  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+product_img: img/products/6836ee7def064.jpg
+stock: 35
+product_status: inactive
+is_featured: 0
+product_id: 39
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 35
+    [product_status] => inactive
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 16:42:52
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:12:58
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 35
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: nike
+product_name: Cartoon Astronaut T-Shirt
+product_price: 234322
+discount_price: 
+product_code: p214
+product_details:  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+product_img: img/products/6836ee7def064.jpg
+stock: 35
+product_status: active
+is_featured: 0
+product_id: 39
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 35
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 16:42:58
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:13:04
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 35
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: nike
+product_name: Cartoon Astronaut T-Shirt
+product_price: 234322
+discount_price: 
+product_code: p214
+product_details:  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+product_img: img/products/6836ee7def064.jpg
+stock: 35
+product_status: out_of_stock
+is_featured: 0
+product_id: 39
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 35
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 16:43:04
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:13:20
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 35
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: nike
+product_name: Cartoon Astronaut T-Shirt
+product_price: 234322
+discount_price: 
+product_code: p214
+product_details:  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+product_img: img/products/6836ee7def064.jpg
+stock: 35
+product_status: active
+is_featured: 0
+product_id: 39
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 35
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 16:43:20
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:13:37
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 35
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: nike
+product_name: Cartoon Astronaut T-Shirt
+product_price: 234322
+discount_price: 
+product_code: p214
+product_details:  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+product_img: img/products/6836ee7def064.jpg
+stock: 35
+product_status: out_of_stock
+is_featured: 0
+product_id: 39
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 35
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 16:43:37
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:14:54
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 3
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: nike
+product_name: Cartoon Astronaut T-Shirt
+product_price: 234322
+discount_price: 
+product_code: p214
+product_details:  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+product_img: img/products/6836ee7def064.jpg
+stock: 3
+product_status: out_of_stock
+is_featured: 0
+product_id: 39
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 3
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 16:44:54
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:32:00
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1003
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1003
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f3.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 3
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 3
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f3.jpg
+    [product_code] => p1003
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:02:00
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:32:13
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1004
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1004
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f4.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 4
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 4
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f4.jpg
+    [product_code] => p1004
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:02:13
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:32:19
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1005
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Shierts
+product_price: 69
+discount_price: 
+product_code: p1005
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f5.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 5
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 5
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/f5.jpg
+    [product_code] => p1005
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:02:19
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:32:26
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1005
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Shierts
+product_price: 69
+discount_price: 
+product_code: p1005
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f5.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 5
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 5
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/f5.jpg
+    [product_code] => p1005
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:02:19
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:32:35
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1006
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Shierts
+product_price: 69
+discount_price: 
+product_code: p1006
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f6.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 6
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 6
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/f6.jpg
+    [product_code] => p1006
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:02:35
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:32:44
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Trousers
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1007
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Trousers
+product_price: 79
+discount_price: 
+product_code: p1007
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f7.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 7
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 7
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Trousers
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f7.jpg
+    [product_code] => p1007
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:02:44
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:32:54
+POST Data:
+Array
+(
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Trousers
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1007
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 13
+product_brand: Adidas
+product_name: Cartoon Astronaut Trousers
+product_price: 79
+discount_price: 
+product_code: p1007
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f7.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 7
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 7
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Trousers
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f7.jpg
+    [product_code] => p1007
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:02:54
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:36:58
+POST Data:
+Array
+(
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut T-Shierts
+    [product_price] => 99
+    [discount_price] => 
+    [product_code] => p1008
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 13
+product_brand: Adidas
+product_name: Cartoon Astronaut T-Shierts
+product_price: 99
+discount_price: 
+product_code: p1008
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f8.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 8
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 8
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut T-Shierts
+    [product_price] => 99
+    [discount_price] => 
+    [product_img] => img/products/f8.jpg
+    [product_code] => p1008
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:06:58
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:37:16
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1009
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut T-Shirt
+product_price: 69
+discount_price: 
+product_code: p1009
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n1.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 9
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 9
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n1.jpg
+    [product_code] => p1009
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:07:16
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:37:24
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1010
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1010
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n2.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 10
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 10
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n2.jpg
+    [product_code] => p1010
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:07:24
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:37:34
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1011
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1011
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n3.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 11
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 11
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n3.jpg
+    [product_code] => p1011
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:07:34
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:37:42
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1012
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1012
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n4.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 12
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 12
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n4.jpg
+    [product_code] => p1012
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:07:42
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:37:52
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1013
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1013
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n5.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 13
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 13
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n5.jpg
+    [product_code] => p1013
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:07:52
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:38:00
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1014
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1014
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n6.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 14
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 14
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n6.jpg
+    [product_code] => p1014
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:08:00
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 13:38:07
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 99
+    [discount_price] => 
+    [product_code] => p1015
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 99
+discount_price: 
+product_code: p1015
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n7.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 15
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 15
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 99
+    [discount_price] => 
+    [product_img] => img/products/n7.jpg
+    [product_code] => p1015
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:08:07
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 14:10:34
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_code] => p214
+    [stock] => 3
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: nike
+product_name: Cartoon Astronaut T-Shirt
+product_price: 234322
+discount_price: 
+product_code: p214
+product_details:  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+product_img: img/products/6836ee7def064.jpg
+stock: 3
+product_status: active
+is_featured: 0
+product_id: 39
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 39
+    [category_id] => 12
+    [product_brand] => nike
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 234322
+    [discount_price] => 
+    [product_img] => img/products/6836ee7def064.jpg
+    [product_code] => p214
+    [product_details] =>  efjgskfbe,m,s,fse l.kfnes,jhfseef,hjskh flj.s,ef. seh.fn
+    [stock] => 3
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-28 16:37:41
+    [updated_at] => 2025-05-28 17:40:34
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 14:10:55
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1003
+    [stock] => 6
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1003
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f3.jpg
+stock: 6
+product_status: active
+is_featured: 0
+product_id: 3
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 3
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f3.jpg
+    [product_code] => p1003
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 6
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:40:55
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 14:11:03
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1004
+    [stock] => 15
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1004
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f4.jpg
+stock: 15
+product_status: active
+is_featured: 0
+product_id: 4
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 4
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f4.jpg
+    [product_code] => p1004
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 15
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:41:03
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 14:12:01
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1005
+    [stock] => 1
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Shierts
+product_price: 69
+discount_price: 
+product_code: p1005
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f5.jpg
+stock: 1
+product_status: active
+is_featured: 0
+product_id: 5
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 5
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/f5.jpg
+    [product_code] => p1005
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 1
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:42:01
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 14:18:08
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1006
+    [stock] => 2
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Shierts
+product_price: 69
+discount_price: 
+product_code: p1006
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f6.jpg
+stock: 2
+product_status: active
+is_featured: 0
+product_id: 6
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 6
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/f6.jpg
+    [product_code] => p1006
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 2
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:48:08
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 19:19:43
+POST Data:
+Array
+(
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Trousers
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1007
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 13
+product_brand: Adidas
+product_name: Cartoon Astronaut Trousers
+product_price: 79
+discount_price: 
+product_code: p1007
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f7.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 7
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 7
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Trousers
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f7.jpg
+    [product_code] => p1007
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 17:02:54
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 19:19:50
+POST Data:
+Array
+(
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Trousers
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1007
+    [stock] => 11
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 13
+product_brand: Adidas
+product_name: Cartoon Astronaut Trousers
+product_price: 79
+discount_price: 
+product_code: p1007
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f7.jpg
+stock: 11
+product_status: active
+is_featured: 0
+product_id: 7
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 7
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Trousers
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f7.jpg
+    [product_code] => p1007
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 11
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 22:49:50
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 19:19:56
+POST Data:
+Array
+(
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut T-Shierts
+    [product_price] => 99
+    [discount_price] => 
+    [product_code] => p1008
+    [stock] => 7
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 13
+product_brand: Adidas
+product_name: Cartoon Astronaut T-Shierts
+product_price: 99
+discount_price: 
+product_code: p1008
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f8.jpg
+stock: 7
+product_status: active
+is_featured: 0
+product_id: 8
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 8
+    [category_id] => 13
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut T-Shierts
+    [product_price] => 99
+    [discount_price] => 
+    [product_img] => img/products/f8.jpg
+    [product_code] => p1008
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 7
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 22:49:56
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 19:25:42
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1009
+    [stock] => 4
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut T-Shirt
+product_price: 69
+discount_price: 
+product_code: p1009
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n1.jpg
+stock: 4
+product_status: active
+is_featured: 0
+product_id: 9
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 9
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut T-Shirt
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n1.jpg
+    [product_code] => p1009
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 4
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 22:55:42
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 19:25:56
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1010
+    [stock] => 4
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1010
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n2.jpg
+stock: 4
+product_status: active
+is_featured: 0
+product_id: 10
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 10
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n2.jpg
+    [product_code] => p1010
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 4
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 22:55:56
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-28 19:26:10
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1010
+    [stock] => 4
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => inactive
+)
+
+Processed Data:
+Product Status: inactive
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1010
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n2.jpg
+stock: 4
+product_status: inactive
+is_featured: 0
+product_id: 10
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 10
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n2.jpg
+    [product_code] => p1010
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 4
+    [product_status] => inactive
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-28 22:56:10
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:12:13
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1011
+    [stock] => 4
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1011
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n3.jpg
+stock: 4
+product_status: active
+is_featured: 0
+product_id: 11
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 11
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n3.jpg
+    [product_code] => p1011
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 4
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 14:42:13
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:12:19
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1012
+    [stock] => 5
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1012
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n4.jpg
+stock: 5
+product_status: active
+is_featured: 0
+product_id: 12
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 12
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n4.jpg
+    [product_code] => p1012
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 5
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 14:42:19
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:12:26
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1013
+    [stock] => 4
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1013
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n5.jpg
+stock: 4
+product_status: active
+is_featured: 0
+product_id: 13
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 13
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n5.jpg
+    [product_code] => p1013
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 4
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 14:42:26
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:12:33
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1014
+    [stock] => 27
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 69
+discount_price: 
+product_code: p1014
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n6.jpg
+stock: 27
+product_status: active
+is_featured: 0
+product_id: 14
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 14
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/n6.jpg
+    [product_code] => p1014
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 27
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 14:42:33
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:12:40
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 99
+    [discount_price] => 
+    [product_code] => p1015
+    [stock] => 11
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 99
+discount_price: 
+product_code: p1015
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/n7.jpg
+stock: 11
+product_status: active
+is_featured: 0
+product_id: 15
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 15
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 99
+    [discount_price] => 
+    [product_img] => img/products/n7.jpg
+    [product_code] => p1015
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 11
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 14:42:40
+)

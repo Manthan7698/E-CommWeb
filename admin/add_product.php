@@ -14,6 +14,16 @@ $categories = mysqli_query($conn, $sql);
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Enable error reporting
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    
+    // Set up custom error logging
+    $logFile = __DIR__ . '/debug.log';
+    file_put_contents($logFile, "=== New Product Addition ===\n", FILE_APPEND);
+    file_put_contents($logFile, "Time: " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+    file_put_contents($logFile, "POST data: " . print_r($_POST, true) . "\n", FILE_APPEND);
+    
     $category_id = (int)$_POST['category_id'];
     $product_brand = mysqli_real_escape_string($conn, $_POST['product_brand']);
     $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
@@ -22,8 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_code = mysqli_real_escape_string($conn, $_POST['product_code']);
     $product_details = mysqli_real_escape_string($conn, $_POST['product_details']);
     $stock = (int)$_POST['stock'];
-    $status = mysqli_real_escape_string($conn, $_POST['status']);
+    $selected_status = mysqli_real_escape_string($conn, $_POST['product_status']);
+
+    if ($stock === 0) {
+        $product_status = 'out_of_stock';
+    } else {
+        $product_status = ($selected_status === 'inactive') ? 'inactive' : 'active';
+    }
     $is_featured = isset($_POST['is_featured']) ? 1 : 0;
+
+    // First, verify the column exists
+    $check_column = "SHOW COLUMNS FROM products LIKE 'product_status'";
+    $column_result = mysqli_query($conn, $check_column);
+    file_put_contents($logFile, "Column check result: " . print_r(mysqli_fetch_assoc($column_result), true) . "\n", FILE_APPEND);
 
     // Handle image upload
     $product_image = '';
@@ -42,22 +63,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Insert product
+    // Insert product with direct SQL for debugging
     $sql = "INSERT INTO products (
         category_id, product_brand, product_name, product_price, discount_price,
-        product_code, product_details, product_img, stock, status, is_featured
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        product_code, product_details, product_img, stock, product_status, is_featured
+    ) VALUES (
+        " . (int)$category_id . ",
+        '" . mysqli_real_escape_string($conn, $product_brand) . "',
+        '" . mysqli_real_escape_string($conn, $product_name) . "',
+        " . (float)$product_price . ",
+        " . ($discount_price ? (float)$discount_price : "NULL") . ",
+        '" . mysqli_real_escape_string($conn, $product_code) . "',
+        '" . mysqli_real_escape_string($conn, $product_details) . "',
+        '" . mysqli_real_escape_string($conn, $product_image) . "',
+        " . (int)$stock . ",
+        '" . mysqli_real_escape_string($conn, $product_status) . "',
+        " . (int)$is_featured . "
+    )";
 
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "issdssssiis", 
-        $category_id, $product_brand, $product_name, $product_price, $discount_price,
-        $product_code, $product_details, $product_image, $stock, $status, $is_featured
-    );
+    file_put_contents($logFile, "SQL Query: " . $sql . "\n", FILE_APPEND);
 
-    if (mysqli_stmt_execute($stmt)) {
-        header('Location: products.php');
-        exit();
+    if (!mysqli_query($conn, $sql)) {
+        file_put_contents($logFile, "Query failed: " . mysqli_error($conn) . "\n", FILE_APPEND);
+        die("Query failed: " . mysqli_error($conn));
     }
+
+    // Verify the insert
+    $inserted_id = mysqli_insert_id($conn);
+    if ($inserted_id) {
+        $verify_sql = "SELECT * FROM products WHERE id = " . (int)$inserted_id;
+        $result = mysqli_query($conn, $verify_sql);
+        $inserted_product = mysqli_fetch_assoc($result);
+        file_put_contents($logFile, "Inserted product data: " . print_r($inserted_product, true) . "\n", FILE_APPEND);
+    }
+
+    file_put_contents($logFile, "=== End Product Addition ===\n\n", FILE_APPEND);
+    header('Location: products.php');
+    exit();
 }
 ?>
 
@@ -355,10 +397,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <select name="status" id="status" class="form-control" required>
+                            <label for="product_status">Status</label>
+                            <select name="product_status" id="product_status" class="form-control" required>
+                                <option value="">Select Status</option>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
+                                <option value="out_of_stock">Out of Stock</option>
                             </select>
                         </div>
 

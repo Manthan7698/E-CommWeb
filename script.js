@@ -123,10 +123,30 @@ function showNotification(message, isSuccess) {
 const addToCartButtons = document.querySelectorAll('.addItemBtn');
 
 addToCartButtons.forEach(button => {
+    // Check if product is out of stock
+    const form = button.closest('.form-submit');
+    const productId = form.querySelector('.pid').value;
+    
+    // Check if the product has an out-of-stock badge
+    const productCard = button.closest('.pro');
+    const isOutOfStock = productCard && productCard.querySelector('.out-of-stock-badge');
+    
+    if (isOutOfStock) {
+        button.disabled = true;
+        button.style.opacity = '0.5';
+        button.style.cursor = 'not-allowed';
+        button.title = 'Out of Stock';
+    }
+
     button.addEventListener('click', (e) => {
         e.preventDefault();
+        
+        // Don't proceed if button is disabled
+        if (button.disabled) {
+            return;
+        }
+
         const form = button.closest('.form-submit');
-        const productId = form.querySelector('.pid').value;
         const productName = form.querySelector('.pname').value;
         const productPrice = form.querySelector('.pprice').value;
         const productImg = form.querySelector('.pimage').value;

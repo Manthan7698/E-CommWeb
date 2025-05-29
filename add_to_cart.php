@@ -16,6 +16,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validate input
     if (!empty($pid) && !empty($pname) && !empty($pprice) && !empty($pimg) && !empty($qty) && !empty($pcode) && !empty($pbrand) && !empty($pdetails)) {
+        // Check if product is in stock
+        $stock_query = "SELECT stock FROM products WHERE id = ?";
+        $stock_stmt = $conn->prepare($stock_query);
+        $stock_stmt->bind_param("i", $pid);
+        $stock_stmt->execute();
+        $stock_result = $stock_stmt->get_result();
+        $stock_row = $stock_result->fetch_assoc();
+        
+        if ($stock_row['stock'] <= 0) {
+            echo json_encode(['success' => false, 'message' => 'Sorry, this product is out of stock']);
+            exit;
+        }
+
         // Check if product already exists in cart
         $check_query = "SELECT * FROM cart WHERE id = ?";
         $check_stmt = $conn->prepare($check_query);

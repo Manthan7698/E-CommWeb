@@ -16,6 +16,21 @@ include 'add_to_cart.php';
         .pro a img{
             border-radius: 20px;
         }
+        .out-of-stock-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4444;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+        .pro {
+            position: relative;
+        }
     </style>
 </head>
 
@@ -70,7 +85,10 @@ include 'add_to_cart.php';
             while ($row = $result->fetch_assoc()):
             ?>
                 <div class="pro">
-                   <a href="sproduct.php?pid=<?php echo $row['id']?>"><img src="<?= $row['product_img'] ?>" width="100%"></a> 
+                    <?php if ($row['stock'] == 0): ?>
+                        <div class="out-of-stock-badge">Out of Stock</div>
+                    <?php endif; ?>
+                    <a href="sproduct.php?pid=<?php echo $row['id']?>"><img src="<?= $row['product_img'] ?>" width="100%"></a> 
                     <div class="des">
                         <span><?= $row['product_brand'] ?></span>
                         <h5><?= $row['product_name'] ?></h5>
@@ -119,6 +137,9 @@ include 'add_to_cart.php';
             while ($row = $result->fetch_assoc()):
             ?>
                 <div class="pro">
+                    <?php if ($row['stock'] == 0): ?>
+                        <div class="out-of-stock-badge">Out of Stock</div>
+                    <?php endif; ?>
                     <a href="sproduct.php?pid=<?= $row['id']?>"><img src="<?= $row['product_img'] ?>" width="100%"></a>
                     <div class="des">
                         <span><?= $row['product_brand'] ?></span>
