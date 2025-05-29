@@ -72,6 +72,10 @@ include("config.php");
                             <input type="radio" id="paypal" name="payment" value="paypal">
                             <label for="paypal">PayPal</label>
                         </div>
+                        <div class="payment-option">
+                            <input type="radio" id="upi" name="payment" value="upi">
+                            <label for="upi">UPI</label>
+                        </div>
                     </div>
 
                     <button type="submit" class="place-order-btn">Place Order</button>

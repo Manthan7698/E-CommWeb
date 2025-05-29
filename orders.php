@@ -47,7 +47,12 @@ if (mysqli_num_rows($table_exists) == 0) {
 $orders_query = "SELECT * FROM orders WHERE user_id = $user_id ";
 $orders_result = mysqli_query($conn, $orders_query);
 
-mysqli_close($conn);
+// Debug: Let's see what columns we actually have
+$first_order = mysqli_fetch_assoc($orders_result);
+if ($first_order) {
+    // Reset the result pointer
+    mysqli_data_seek($orders_result, 0);
+}
 ?>
 
 <!DOCTYPE html>
@@ -233,8 +238,10 @@ mysqli_close($conn);
         <div class="order-card">
           <div class="order-header">
             <div class="order-id">Order #<?php echo $order['id']; ?></div>
-            <div class="order-date"><?php echo date('F j, Y', strtotime($order['order_date'])); ?></div>
-            <div class="order-status status-<?php echo strtolower($order['status']); ?>"><?php echo $order['status']; ?></div>
+            <div class="order-date"><?php echo isset($order['created_at']) ? date('F j, Y', strtotime($order['created_at'])) : 'N/A'; ?></div>
+            <div class="order-status status-<?php echo isset($order['order_status']) ? strtolower($order['order_status']) : 'pending'; ?>">
+              <?php echo isset($order['order_status']) ? $order['order_status'] : 'Pending'; ?>
+            </div>
           </div>
           
           <div class="order-items">
@@ -262,7 +269,7 @@ mysqli_close($conn);
           </div>
           
           <div class="order-footer">
-            <div class="order-total">Total: $<?php echo number_format($order['total_amount'], 2); ?></div>
+            <div class="order-total">Total: $<?php echo isset($order['amount_paid']) ? number_format($order['amount_paid'], 2) : '0.00'; ?></div>
             <button class="view-details-btn">View Details</button>
           </div>
         </div>
@@ -271,6 +278,11 @@ mysqli_close($conn);
   </div>
 
   <?php include 'footer.php'; ?>
+  
+  <?php
+  // Close the database connection at the end of the file
+  mysqli_close($conn);
+  ?>
 </body>
 
 </html> 
