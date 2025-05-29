@@ -57,6 +57,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get the inserted order ID
         $order_id = $conn->insert_id;
         
+        // Update product stock
+        foreach ($cart_items as $item) {
+            // Get current stock
+            $stock_query = $conn->prepare("SELECT stock FROM products WHERE id = ?");
+            $stock_query->bind_param("i", $item['id']);
+            $stock_query->execute();
+            $stock_result = $stock_query->get_result();
+            $stock_data = $stock_result->fetch_assoc();
+            
+            if (!$stock_data) {
+                throw new Exception("Product with ID {$item['id']} not found");
+            }
+            
+            $current_stock = $stock_data['stock'];
+            
+            // Calculate new stock
+            $new_stock = $current_stock - $item['qty'];
+            
+            if ($new_stock < 0) {
+                throw new Exception("Insufficient stock for product ID {$item['id']}");
+            }
+            
+            // Update stock
+            $update_stock = $conn->prepare("UPDATE products SET stock = ?, product_status = CASE WHEN ? <= 0 THEN 'out_of_stock' ELSE product_status END WHERE id = ?");
+            $update_stock->bind_param("iii", $new_stock, $new_stock, $item['id']);
+            $update_stock->execute();
+        }
+        
         // Clear the cart
         $conn->query("TRUNCATE TABLE cart");
         
