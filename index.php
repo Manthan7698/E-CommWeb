@@ -79,7 +79,7 @@ include 'add_to_cart.php';
         <div class="pro-container">
             <?php
             include 'config.php';
-            $stmt = $conn->prepare("SELECT * FROM products LIMIT 8");
+            $stmt = $conn->prepare("SELECT * FROM products WHERE product_status IN ('active', 'out_of_stock') LIMIT 8");
             $stmt->execute();
             $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()):
@@ -131,7 +131,7 @@ include 'add_to_cart.php';
         <div class="pro-container">
             <?php
             include 'config.php';
-            $stmt = $conn->prepare("SELECT * FROM products LIMIT 8 OFFSET 8");
+            $stmt = $conn->prepare("SELECT * FROM products WHERE product_status IN ('active','out_of_stock') LIMIT 8 OFFSET 8");
             $stmt->execute();
             $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()):

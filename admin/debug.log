@@ -2757,3 +2757,348 @@ Array
     [created_at] => 2025-05-22 15:42:38
     [updated_at] => 2025-05-29 14:42:40
 )
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:22:28
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1003
+    [stock] => 6
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => inactive
+)
+
+Processed Data:
+Product Status: inactive
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1003
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f3.jpg
+stock: 6
+product_status: inactive
+is_featured: 0
+product_id: 3
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 3
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f3.jpg
+    [product_code] => p1003
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 6
+    [product_status] => inactive
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 14:52:28
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:22:54
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1003
+    [stock] => 6
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1003
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f3.jpg
+stock: 6
+product_status: active
+is_featured: 0
+product_id: 3
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 3
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f3.jpg
+    [product_code] => p1003
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 6
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 14:52:54
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:23:07
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1003
+    [stock] => 6
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => inactive
+)
+
+Processed Data:
+Product Status: inactive
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1003
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f3.jpg
+stock: 6
+product_status: inactive
+is_featured: 0
+product_id: 3
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 3
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f3.jpg
+    [product_code] => p1003
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 6
+    [product_status] => inactive
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 14:53:07
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:35:26
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1003
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => inactive
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1003
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f3.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 3
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 3
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f3.jpg
+    [product_code] => p1003
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 15:05:26
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-29 11:35:44
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_code] => p1003
+    [stock] => 9
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => out_of_stock
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cuban Collar Shirt With Short Sleeves
+product_price: 79
+discount_price: 
+product_code: p1003
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f3.jpg
+stock: 9
+product_status: active
+is_featured: 0
+product_id: 3
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 3
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cuban Collar Shirt With Short Sleeves
+    [product_price] => 79
+    [discount_price] => 
+    [product_img] => img/products/f3.jpg
+    [product_code] => p1003
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 9
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 15:05:44
+)
