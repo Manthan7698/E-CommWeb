@@ -17,6 +17,21 @@ session_start();
     .pro a img {
       border-radius: 20px;
     }
+    .out-of-stock-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff4444;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 1;
+    }
+    .pro {
+      position: relative;
+    }
   </style>
 </head>
 
@@ -32,12 +47,15 @@ session_start();
     <div class="pro-container">
       <?php
       include 'config.php';
-      $stmt = $conn->prepare("SELECT * FROM products");
+      $stmt = $conn->prepare("SELECT * FROM products WHERE product_status IN ('active', 'out_of_stock')");
       $stmt->execute();
       $result = $stmt->get_result();
       while ($row = $result->fetch_assoc()):
       ?>
         <div class="pro">
+          <?php if ($row['stock'] == 0): ?>
+            <div class="out-of-stock-badge">Out of Stock</div>
+          <?php endif; ?>
           <a href="sproduct.php?pid=<?php echo $row['id'] ?>"><img src="<?= $row['product_img'] ?>" width="100%"></a>
           <div class="des">
             <span><?= $row['product_brand'] ?></span>
@@ -60,7 +78,7 @@ session_start();
               <input type="hidden" class="pcode" value="<?= $row['product_code'] ?>">
               <input type="hidden" class="pbrand" value="<?= $row['product_brand'] ?>">
               <input type="hidden" class="pdetails" value="<?= $row['product_details'] ?>">
-              <button class="addItemBtn"><i class="fas fa-shopping-cart"></i></button>
+              <button class="addItemBtn" <?php echo ($row['stock'] == 0) ? 'disabled' : ''; ?>><i class="fas fa-shopping-cart"></i></button>
             </form>
           </div>
         </div>
