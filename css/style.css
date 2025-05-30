@@ -525,6 +525,7 @@ button.white {
 }
 
 .pro {
+  /* background-color: #bfc7c65b; */
   width: 23%;
   min-width: 250px;
   padding: 10px 12px;
@@ -1206,6 +1207,11 @@ footer .copyright {
 #contact-details .map{
   width: 50%;
   height: 400px;
+  transition: 0.4s ease-in-out;
+}
+
+#contact-details .map:hover{
+  box-shadow: 15px 15px 0px 0px #088178;
 }
 
 #contact-details .map iframe{

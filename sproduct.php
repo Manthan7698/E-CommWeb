@@ -24,9 +24,30 @@ session_start();
             }
         });
     </script>
-
-
-
+    <style>
+        .out-of-stock-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4444;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .single-pro-image {
+            position: relative;
+        }
+        .out-of-stock-text {
+            color: #ff4444;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .pro {
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,13 +59,16 @@ session_start();
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
-
+    $isOutOfStock = $row['stock'] <= 0 || $row['product_status'] === 'out_of_stock';
     ?>
     <?php include 'header.php'; ?>
 
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
             <img src="<?= $row['product_img'] ?>" id="MainImg" width="100%" alt="" />
+            <?php if ($isOutOfStock): ?>
+                <div class="out-of-stock-badge">Out of Stock</div>
+            <?php endif; ?>
 
             <div class="small-img-group">
                 <div class="small-img-col">
@@ -68,6 +92,9 @@ session_start();
             <h2><i class="fa-solid fa-dollar-sign"></i><?= number_format($row['product_price'], 2) ?></h2>
 
             <div class="button-container">
+                <?php if ($isOutOfStock): ?>
+                    <div class="out-of-stock-text">This product is currently out of stock</div>
+                <?php else: ?>
                 <form action="" class="form-submit">
                     <label for="size">Size :</label>
                     <select name="sizes" id="Size" title="Select Size">
@@ -98,6 +125,7 @@ session_start();
                     <input type="hidden" class="psize" value="">
                     <button type="submit" class="addItemBtn" title="AddToBag"><i class="fas fa-shopping-cart"></i></button>
                 </form>
+                <?php endif; ?>
             </div>
             <h4>Product Description</h4>
             <span>The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per
@@ -123,9 +151,13 @@ session_start();
             $stmt->execute();
             $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()):
+                $isOutOfStock = $row['stock'] <= 0 || $row['product_status'] === 'out_of_stock';
             ?>
                 <div class="pro">
                     <a href="sproduct.php?pid=<?= $row['id'] ?>"><img src="<?= $row['product_img'] ?>" width="100%"></a>
+                    <?php if ($isOutOfStock): ?>
+                        <div class="out-of-stock-badge">Out of Stock</div>
+                    <?php endif; ?>
                     <div class="des">
                         <span><?= $row['product_brand'] ?></span>
                         <h5><?= $row['product_name'] ?></h5>

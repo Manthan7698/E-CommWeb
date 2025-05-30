@@ -17,11 +17,23 @@ if (isset($_POST['delete_product'])) {
     mysqli_stmt_execute($stmt);
 }
 
-// Get all products with their categories
+// Get all categories for the filter
+$categories_sql = "SELECT id, name FROM categories ORDER BY name";
+$categories_result = mysqli_query($conn, $categories_sql);
+
+// Get selected category from URL parameter
+$selected_category = isset($_GET['category']) ? (int)$_GET['category'] : 0;
+
+// Modify the products query to include category filter
 $sql = "SELECT p.*, c.name as category_name, p.product_status 
         FROM products p 
-        LEFT JOIN categories c ON p.category_id = c.id 
-        ORDER BY p.created_at DESC";
+        LEFT JOIN categories c ON p.category_id = c.id";
+
+if ($selected_category > 0) {
+    $sql .= " WHERE p.category_id = " . $selected_category;
+}
+
+$sql .= " ORDER BY p.created_at DESC";
 $result = mysqli_query($conn, $sql);
 ?>
 
@@ -225,6 +237,23 @@ $result = mysqli_query($conn, $sql);
             padding: 5px 10px;
             font-size: 14px;
         }
+
+        /* Category Filter Styles */
+        .form-select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: var(--white);
+            color: var(--text-color);
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
@@ -284,10 +313,22 @@ $result = mysqli_query($conn, $sql);
         <div class="main-content">
             <div class="header">
                 <h1>Manage Products</h1>
-                <a href="add_product.php" class="btn btn-primary">
-                    <i class="fas fa-plus"></i>
-                    Add New Product
-                </a>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <form method="GET" style="display: flex; gap: 10px; align-items: center;">
+                        <select name="category" class="form-select" onchange="this.form.submit()">
+                            <option value="0">All Categories</option>
+                            <?php while ($category = mysqli_fetch_assoc($categories_result)) { ?>
+                                <option value="<?php echo $category['id']; ?>" <?php echo $selected_category == $category['id'] ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($category['name']); ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </form>
+                    <a href="add_product.php" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add New Product
+                    </a>
+                </div>
             </div>
 
             <!-- Products Table -->

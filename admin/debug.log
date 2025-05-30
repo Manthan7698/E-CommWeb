@@ -3240,3 +3240,743 @@ Array
     [created_at] => 2025-05-22 15:42:38
     [updated_at] => 2025-05-29 17:39:16
 )
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-30 14:01:10
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1005
+    [stock] => 0
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => inactive
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Shierts
+product_price: 69
+discount_price: 
+product_code: p1005
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f5.jpg
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 5
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 5
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/f5.jpg
+    [product_code] => p1005
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-29 17:58:31
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-30 14:01:19
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1006
+    [stock] => 2
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => inactive
+)
+
+Processed Data:
+Product Status: inactive
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Shierts
+product_price: 69
+discount_price: 
+product_code: p1006
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f6.jpg
+stock: 2
+product_status: inactive
+is_featured: 0
+product_id: 6
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 6
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/f6.jpg
+    [product_code] => p1006
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 2
+    [product_status] => inactive
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-30 17:31:19
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-30 14:03:16
+POST Data:
+Array
+(
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_code] => p1006
+    [stock] => 2
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 12
+product_brand: Adidas
+product_name: Cartoon Astronaut Shierts
+product_price: 69
+discount_price: 
+product_code: p1006
+product_details: The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+product_img: img/products/f6.jpg
+stock: 2
+product_status: active
+is_featured: 0
+product_id: 6
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 6
+    [category_id] => 12
+    [product_brand] => Adidas
+    [product_name] => Cartoon Astronaut Shierts
+    [product_price] => 69
+    [discount_price] => 
+    [product_img] => img/products/f6.jpg
+    [product_code] => p1006
+    [product_details] => The Gildan Ultra Cotton T-Shirt is made from a substantial 6.0az.per sq.yd. fabric constructed from 100% cotton...
+    [stock] => 2
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-22 15:42:38
+    [updated_at] => 2025-05-30 17:33:16
+)
+=== New Product Addition ===
+Time: 2025-05-30 14:18:23
+POST data: Array
+(
+    [category_id] => 14
+    [product_brand] => Lacoste
+    [product_name] => Noir Cologne
+    [product_price] => 73
+    [discount_price] => 
+    [product_code] => pp01
+    [stock] => 10
+    [product_details] => Lacoste Perfume Top Notes
+Watermelon
+Middle Notes
+Verbena, Basil, Lavender
+Base Notes
+Coumarin, Cashmeran, Patchouli, Dark Chocolate
+    [product_status] => active
+)
+
+Column check result: Array
+(
+    [Field] => product_status
+    [Type] => enum('active','inactive','out_of_stock')
+    [Null] => YES
+    [Key] => 
+    [Default] => active
+    [Extra] => 
+)
+
+SQL Query: INSERT INTO products (
+        category_id, product_brand, product_name, product_price, discount_price,
+        product_code, product_details, product_img, stock, product_status, is_featured
+    ) VALUES (
+        14,
+        'Lacoste',
+        'Noir Cologne',
+        73,
+        NULL,
+        'pp01',
+        'Lacoste Perfume Top Notes\\r\\nWatermelon\\r\\nMiddle Notes\\r\\nVerbena, Basil, Lavender\\r\\nBase Notes\\r\\nCoumarin, Cashmeran, Patchouli, Dark Chocolate',
+        'img/products/6839a20f9ed25.webp',
+        10,
+        'active',
+        0
+    )
+Inserted product data: Array
+(
+    [id] => 40
+    [category_id] => 14
+    [product_brand] => Lacoste
+    [product_name] => Noir Cologne
+    [product_price] => 73
+    [discount_price] => 
+    [product_img] => img/products/6839a20f9ed25.webp
+    [product_code] => pp01
+    [product_details] => Lacoste Perfume Top Notes\r\nWatermelon\r\nMiddle Notes\r\nVerbena, Basil, Lavender\r\nBase Notes\r\nCoumarin, Cashmeran, Patchouli, Dark Chocolate
+    [stock] => 10
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-30 17:48:23
+    [updated_at] => 2025-05-30 17:48:23
+)
+
+=== End Product Addition ===
+
+=== New Product Addition ===
+Time: 2025-05-30 14:30:55
+POST data: Array
+(
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_code] => pp02
+    [stock] => 10
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [product_status] => active
+)
+
+Column check result: Array
+(
+    [Field] => product_status
+    [Type] => enum('active','inactive','out_of_stock')
+    [Null] => YES
+    [Key] => 
+    [Default] => active
+    [Extra] => 
+)
+
+SQL Query: INSERT INTO products (
+        category_id, product_brand, product_name, product_price, discount_price,
+        product_code, product_details, product_img, stock, product_status, is_featured
+    ) VALUES (
+        14,
+        'Tom Ford',
+        'Black Orchid Eau de Parfum',
+        160,
+        NULL,
+        'pp02',
+        'Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.',
+        '',
+        10,
+        'active',
+        0
+    )
+Inserted product data: Array
+(
+    [id] => 41
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_img] => 
+    [product_code] => pp02
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [stock] => 10
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-30 18:00:55
+    [updated_at] => 2025-05-30 18:00:55
+)
+
+=== End Product Addition ===
+
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-30 14:32:13
+POST Data:
+Array
+(
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_code] => pp02
+    [stock] => 10
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 14
+product_brand: Tom Ford
+product_name: Black Orchid Eau de Parfum
+product_price: 160
+discount_price: 
+product_code: pp02
+product_details: Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+product_img: 
+stock: 10
+product_status: active
+is_featured: 0
+product_id: 41
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 41
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_img] => 
+    [product_code] => pp02
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [stock] => 10
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-30 18:00:55
+    [updated_at] => 2025-05-30 18:00:55
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-30 14:34:55
+POST Data:
+Array
+(
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_code] => pp02
+    [stock] => 10
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 14
+product_brand: Tom Ford
+product_name: Black Orchid Eau de Parfum
+product_price: 160
+discount_price: 
+product_code: pp02
+product_details: Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+product_img: img/products/6839a5ef7fa69.jpg
+stock: 10
+product_status: active
+is_featured: 0
+product_id: 41
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 41
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_img] => img/products/6839a5ef7fa69.jpg
+    [product_code] => pp02
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [stock] => 10
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-30 18:00:55
+    [updated_at] => 2025-05-30 18:04:55
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-30 14:35:27
+POST Data:
+Array
+(
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_code] => pp02
+    [stock] => 10
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 14
+product_brand: Tom Ford
+product_name: Black Orchid Eau de Parfum
+product_price: 160
+discount_price: 
+product_code: pp02
+product_details: Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+product_img: img/products/6839a60f5d116.webp
+stock: 10
+product_status: active
+is_featured: 0
+product_id: 41
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 41
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_img] => img/products/6839a60f5d116.webp
+    [product_code] => pp02
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [stock] => 10
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-30 18:00:55
+    [updated_at] => 2025-05-30 18:05:27
+)
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-30 14:36:14
+POST Data:
+Array
+(
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_code] => pp02
+    [stock] => 10
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: active
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 14
+product_brand: Tom Ford
+product_name: Black Orchid Eau de Parfum
+product_price: 160
+discount_price: 
+product_code: pp02
+product_details: Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+product_img: img/products/6839a63e82c1c.webp
+stock: 10
+product_status: active
+is_featured: 0
+product_id: 41
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 41
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_img] => img/products/6839a63e82c1c.webp
+    [product_code] => pp02
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [stock] => 10
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-30 18:00:55
+    [updated_at] => 2025-05-30 18:06:14
+)
+=== New Product Addition ===
+Time: 2025-05-30 14:39:11
+POST data: Array
+(
+    [category_id] => 14
+    [product_brand] => Gucci
+    [product_name] => Parfum Pour Homme
+    [product_price] => 89
+    [discount_price] => 
+    [product_code] => pp03
+    [stock] => 10
+    [product_details] => Black Orchid Eau de Parfum
+    [product_status] => active
+)
+
+Column check result: Array
+(
+    [Field] => product_status
+    [Type] => enum('active','inactive','out_of_stock')
+    [Null] => YES
+    [Key] => 
+    [Default] => active
+    [Extra] => 
+)
+
+SQL Query: INSERT INTO products (
+        category_id, product_brand, product_name, product_price, discount_price,
+        product_code, product_details, product_img, stock, product_status, is_featured
+    ) VALUES (
+        14,
+        'Gucci',
+        'Parfum Pour Homme',
+        89,
+        NULL,
+        'pp03',
+        'Black Orchid Eau de Parfum',
+        'img/products/6839a6ef5598a.webp',
+        10,
+        'active',
+        0
+    )
+Inserted product data: Array
+(
+    [id] => 42
+    [category_id] => 14
+    [product_brand] => Gucci
+    [product_name] => Parfum Pour Homme
+    [product_price] => 89
+    [discount_price] => 
+    [product_img] => img/products/6839a6ef5598a.webp
+    [product_code] => pp03
+    [product_details] => Black Orchid Eau de Parfum
+    [stock] => 10
+    [product_status] => active
+    [is_featured] => 0
+    [created_at] => 2025-05-30 18:09:11
+    [updated_at] => 2025-05-30 18:09:11
+)
+
+=== End Product Addition ===
+
+
+
+=== Product Update Debug Log ===
+Time: 2025-05-30 15:17:00
+POST Data:
+Array
+(
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_code] => pp02
+    [stock] => 0
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [product_status] => active
+)
+
+Processed Data:
+Product Status: out_of_stock
+
+SQL Query:
+UPDATE products SET 
+            category_id = ?,
+            product_brand = ?,
+            product_name = ?,
+            product_price = ?,
+            discount_price = ?,
+            product_code = ?,
+            product_details = ?,
+            product_img = ?,
+            stock = ?,
+            product_status = ?,
+            is_featured = ?
+            WHERE id = ?
+Parameters:
+category_id: 14
+product_brand: Tom Ford
+product_name: Black Orchid Eau de Parfum
+product_price: 160
+discount_price: 
+product_code: pp02
+product_details: Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+product_img: img/products/6839a63e82c1c.webp
+stock: 0
+product_status: out_of_stock
+is_featured: 0
+product_id: 41
+
+Update successful!
+
+Verification after update:
+Array
+(
+    [id] => 41
+    [category_id] => 14
+    [product_brand] => Tom Ford
+    [product_name] => Black Orchid Eau de Parfum
+    [product_price] => 160
+    [discount_price] => 
+    [product_img] => img/products/6839a63e82c1c.webp
+    [product_code] => pp02
+    [product_details] => Black Orchid Eau de Parfum opens with aphrodisiac black truffle and sparkling ylang ylang—touched with effervescent bergamot and bitter orange. Rum-soaked black plum surrounds the black orchid accord in golden sensuality, while woody patchouli and creamy vanilla wrap the orchid in rich warmth.
+    [stock] => 0
+    [product_status] => out_of_stock
+    [is_featured] => 0
+    [created_at] => 2025-05-30 18:00:55
+    [updated_at] => 2025-05-30 18:47:00
+)

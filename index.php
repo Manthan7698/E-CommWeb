@@ -1,5 +1,15 @@
 <?php
-session_start();
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Include database class
+require_once 'db.php';
+
+// Get database instance
+$db = Database::getInstance();
+
 include 'add_to_cart.php';
 ?>
 
@@ -78,11 +88,12 @@ include 'add_to_cart.php';
         <div id="message"></div>
         <div class="pro-container">
             <?php
-            include 'config.php';
-            $stmt = $conn->prepare("SELECT * FROM products WHERE product_status IN ('active', 'out_of_stock') LIMIT 8");
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_assoc()):
+            try {
+                $stmt = $db->prepare("SELECT * FROM products WHERE product_status IN ('active', 'out_of_stock') LIMIT 8");
+                if ($stmt) {
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = $result->fetch_assoc()):
             ?>
                 <div class="pro">
                     <?php if ($row['stock'] == 0): ?>
@@ -114,7 +125,15 @@ include 'add_to_cart.php';
                         </form>
                     </div>
                 </div>
-            <?php endwhile; ?>
+            <?php 
+                    endwhile;
+                    $stmt->close();
+                }
+            } catch (Exception $e) {
+                error_log("Error in index.php: " . $e->getMessage());
+                echo "An error occurred while fetching products.";
+            }
+            ?>
         </div>
     </section>
 
@@ -130,11 +149,12 @@ include 'add_to_cart.php';
         <div id="message"></div>
         <div class="pro-container">
             <?php
-            include 'config.php';
-            $stmt = $conn->prepare("SELECT * FROM products WHERE product_status IN ('active','out_of_stock') LIMIT 8 OFFSET 8");
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_assoc()):
+            try {
+                $stmt = $db->prepare("SELECT * FROM products WHERE product_status IN ('active','out_of_stock') LIMIT 8 OFFSET 8");
+                if ($stmt) {
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = $result->fetch_assoc()):
             ?>
                 <div class="pro">
                     <?php if ($row['stock'] == 0): ?>
@@ -166,7 +186,15 @@ include 'add_to_cart.php';
                         </form>
                     </div>
                 </div>
-            <?php endwhile; ?>
+            <?php 
+                    endwhile;
+                    $stmt->close();
+                }
+            } catch (Exception $e) {
+                error_log("Error in index.php: " . $e->getMessage());
+                echo "An error occurred while fetching products.";
+            }
+            ?>
         </div>
     </section>
 

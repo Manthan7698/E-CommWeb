@@ -1,5 +1,25 @@
 <?php
 session_start();
+require_once 'db.php';
+
+// Get database instance
+$db = Database::getInstance();
+$conn = $db->getConnection();
+
+// Get selected category from URL
+$selected_category = isset($_GET['category']) ? (int)$_GET['category'] : 0;
+
+// Get category name if a category is selected
+$category_name = '';
+if ($selected_category > 0) {
+    $cat_stmt = $conn->prepare("SELECT name FROM categories WHERE id = ?");
+    $cat_stmt->bind_param("i", $selected_category);
+    $cat_stmt->execute();
+    $cat_result = $cat_stmt->get_result();
+    if ($cat_row = $cat_result->fetch_assoc()) {
+        $category_name = $cat_row['name'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +52,17 @@ session_start();
     .pro {
       position: relative;
     }
+    .selected-category {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      border-left: 4px solid #088178;
+    }
+    .selected-category h2 {
+      color: #088178;
+      margin: 0;
+    }
   </style>
 </head>
 
@@ -44,22 +75,37 @@ session_start();
   </section>
 
   <section id="product1" class="section-p1">
+    <?php if($selected_category > 0 && $category_name): ?>
+      <div class="selected-category">
+        <h2>Showing products in: <?php echo htmlspecialchars($category_name); ?></h2>
+      </div>
+    <?php endif; ?>
+
     <div class="pro-container">
       <?php
-      include 'config.php';
-      $stmt = $conn->prepare("SELECT * FROM products WHERE product_status IN ('active', 'out_of_stock')");
+      // Modify the product query based on selected category
+      if ($selected_category > 0) {
+        $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = ? AND product_status IN ('active', 'out_of_stock')");
+        $stmt->bind_param("i", $selected_category);
+      } else {
+        $stmt = $conn->prepare("SELECT * FROM products WHERE product_status IN ('active', 'out_of_stock')");
+      }
       $stmt->execute();
       $result = $stmt->get_result();
-      while ($row = $result->fetch_assoc()):
+      
+      if ($result->num_rows > 0):
+        while ($row = $result->fetch_assoc()):
       ?>
         <div class="pro">
           <?php if ($row['stock'] == 0): ?>
             <div class="out-of-stock-badge">Out of Stock</div>
           <?php endif; ?>
-          <a href="sproduct.php?pid=<?php echo $row['id'] ?>"><img src="<?= $row['product_img'] ?>" width="100%"></a>
+          <a href="sproduct.php?pid=<?php echo $row['id']?>">
+            <img src="<?php echo $row['product_img'] ?>" width="100%" alt="">
+          </a>
           <div class="des">
-            <span><?= $row['product_brand'] ?></span>
-            <h5><?= $row['product_name'] ?></h5>
+            <span><?php echo $row['product_brand'] ?></span>
+            <h5><?php echo $row['product_name'] ?></h5>
             <div class="star">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -67,22 +113,29 @@ session_start();
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
             </div>
-            <h4><i class="fa-solid fa-dollar-sign"></i> <?php echo number_format($row['product_price'], 2); ?> </h4>
+            <h4><i class="fa-solid fa-dollar-sign"></i> <?php echo number_format($row['product_price'], 2); ?></h4>
           </div>
           <div class="card-footer-btn">
             <form action="" class="form-submit">
-              <input type="hidden" class="pid" value="<?= $row['id'] ?>">
-              <input type="hidden" class="pname" value="<?= $row['product_name'] ?>">
-              <input type="hidden" class="pprice" value="<?= $row['product_price'] ?>">
-              <input type="hidden" class="pimage" value="<?= $row['product_img'] ?>">
-              <input type="hidden" class="pcode" value="<?= $row['product_code'] ?>">
-              <input type="hidden" class="pbrand" value="<?= $row['product_brand'] ?>">
-              <input type="hidden" class="pdetails" value="<?= $row['product_details'] ?>">
-              <button class="addItemBtn" <?php echo ($row['stock'] == 0) ? 'disabled' : ''; ?>><i class="fas fa-shopping-cart"></i></button>
+              <input type="hidden" class="pid" value="<?php echo $row['id'] ?>">
+              <input type="hidden" class="pname" value="<?php echo $row['product_name'] ?>">
+              <input type="hidden" class="pprice" value="<?php echo $row['product_price'] ?>">
+              <input type="hidden" class="pimage" value="<?php echo $row['product_img'] ?>">
+              <input type="hidden" class="pcode" value="<?php echo $row['product_code'] ?>">
+              <input type="hidden" class="pbrand" value="<?php echo $row['product_brand'] ?>">
+              <input type="hidden" class="pdetails" value="<?php echo $row['product_details'] ?>">
+              <button class="addItemBtn"><i class="fas fa-shopping-cart"></i></button>
             </form>
           </div>
         </div>
-      <?php endwhile; ?>
+      <?php 
+        endwhile;
+      else:
+      ?>
+        <div class="no-products">
+          <h3>No products found in this category</h3>
+        </div>
+      <?php endif; ?>
     </div>
   </section>
 
